@@ -3,6 +3,33 @@
     "id": 1,
     "rating": 4,
     "title": "Intro to Python",
+    "author": 5,
+    "students": [
+      {
+        "studentid": 1,
+        "grade": 92,
+        "moduleGrades":[
+          {
+            "name": "loops",
+            "grade": 94
+          },
+          {
+            "name": "functions",
+            "grade": 90
+          }
+        ]
+      },
+      {
+        "studentid": 2,
+        "grade": 90,
+        "moduleGrades":[
+          {
+            "name": "variables",
+            "grade": 90
+          }
+        ]
+      }
+    ],
     "difficulty": "EASY",
     "comments": [
       {
