@@ -1,0 +1,39 @@
+[
+  {
+    "id": 1,
+    "type": "student",
+    "username":"wedwa",
+    "password:": "cAtdOgHoRse159",
+    "firstName": "William",
+    "lastName": "Edwards",
+    "email": "wwe1@email.sc.edu"
+  },
+  {
+    "id": 2,
+    "type": "student",
+    "username": "cfainber12",
+    "password": "123mYpaSsWoRD321",
+    "firstName": "Casey",
+    "lastName": "Fainberg",
+    "email": "fainberg@email.sc.edu"
+  },
+  {
+    "id": 5,
+    "type": "author",
+    "username": "nparker",
+    "password:": "author!5478",
+    "firstName": "Noah",
+    "lastName": "Parker",
+    "email": "nhparker@email.sc.edu"
+  },
+  {
+    "id": 6,
+    "type": "author",
+    "username": "sanza",
+    "password:": "passworddrowssap",
+    "firstName": "Austin",
+    "lastName": "Sanza",
+    "email": "wsanza@email.sc.edu"
+  }
+]
+

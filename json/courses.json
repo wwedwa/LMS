@@ -1,0 +1,84 @@
+[
+  {
+    "id": 1,
+    "rating": 4,
+    "title": "Intro to Python",
+    "difficulty": "EASY",
+    "comments": [
+      {
+        "userid": 3,
+        "description": "How do I retake quizzes?",
+        "replies": [
+          {
+            "userid": 4,
+            "description": "Just click the button that says retake",
+            "replies": [
+              {
+                "userid": 3,
+                "description": "thanks!",
+                "replies": []
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "reviews": [
+      {
+        "userid": 1,
+        "rating": 4,
+        "description": "Great course!"
+      }
+    ],
+    "topic": "Python",
+    "description": "Python intro",
+    "modules": [
+      {
+        "title": "variables",
+        "comments": ["..."],
+        "lessons": [
+          {
+            "title": "Types of variables",
+            "content": "ints, strings, booleans, doubles, longs, and more!"
+          },
+          {
+            "title": "Creating a variable",
+            "content": "Like this: x = \"Hello World!\" (yes, python is that easy)"
+          }
+        ],
+        "quiz": [
+          {
+            "question": "What is a variable?",
+            "answerChoices": [
+              "Something",
+              "Something else",
+              "The correct answer",
+              "The wrong answer"
+            ],
+            "correctAnswer": 2
+          },
+          {
+            "question": "Is this the proper way to assign a variable: \"x == 2\"?",
+            "answerChoices": [
+              "Yes",
+              "No"
+            ],
+            "correctAnswer": 1
+          }
+        ]
+      }
+    ],
+    "finalQuestions": [
+      {
+        "question": "Question",
+        "answerChoices": [
+          "Answer0",
+          "Answer1",
+          "Answer2"
+        ],
+        "correctAnswer": 0
+      }
+    ]
+  }
+]
+
