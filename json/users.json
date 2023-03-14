@@ -1,6 +1,6 @@
 [
   {
-    "id": 1,
+    "id": "9d7251a2-ca51-403d-bcdf-52100291f5c2",
     "type": "student",
     "username":"wedwa",
     "password:": "cAtdOgHoRse159",
@@ -9,7 +9,7 @@
     "email": "wwe1@email.sc.edu"
   },
   {
-    "id": 2,
+    "id": "257f7426-37bb-4ac6-ae7e-2d990299e415",
     "type": "student",
     "username": "cfainber12",
     "password": "123mYpaSsWoRD321",
@@ -18,7 +18,7 @@
     "email": "fainberg@email.sc.edu"
   },
   {
-    "id": 5,
+    "id": "c3305b1c-0abc-48aa-812e-348b8aaeaf8a",
     "type": "author",
     "username": "nparker",
     "password:": "author!5478",
@@ -27,7 +27,7 @@
     "email": "nhparker@email.sc.edu"
   },
   {
-    "id": 6,
+    "id": "da6abb4c-eba4-41ef-a49b-158d6f295691",
     "type": "author",
     "username": "sanza",
     "password:": "passworddrowssap",

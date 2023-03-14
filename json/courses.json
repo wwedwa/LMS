@@ -1,47 +1,32 @@
 [
   {
-    "id": 1,
+    "id": "33189195-6b2b-4eed-be23-7a82d7bca444",
     "rating": 4,
     "title": "Intro to Python",
     "author": 5,
     "students": [
       {
-        "studentid": 1,
-        "grade": 92,
-        "moduleGrades":[
-          {
-            "name": "loops",
-            "grade": 94
-          },
-          {
-            "name": "functions",
-            "grade": 90
-          }
-        ]
+        "studentid": "9d7251a2-ca51-403d-bcdf-52100291f5c2",
+        "moduleGrades":[90, -1, -1, 85, -1]
       },
       {
-        "studentid": 2,
+        "studentid": "257f7426-37bb-4ac6-ae7e-2d990299e415",
         "grade": 90,
-        "moduleGrades":[
-          {
-            "name": "variables",
-            "grade": 90
-          }
-        ]
+        "moduleGrades":[-1, 100, -1, 90, 87]
       }
     ],
     "difficulty": "EASY",
     "comments": [
       {
-        "userid": 3,
+        "userid": "257f7426-37bb-4ac6-ae7e-2d990299e415",
         "description": "How do I retake quizzes?",
         "replies": [
           {
-            "userid": 4,
+            "userid": "c3305b1c-0abc-48aa-812e-348b8aaeaf8a",
             "description": "Just click the button that says retake",
             "replies": [
               {
-                "userid": 3,
+                "userid": "257f7426-37bb-4ac6-ae7e-2d990299e415",
                 "description": "thanks!",
                 "replies": []
               }
@@ -52,7 +37,7 @@
     ],
     "reviews": [
       {
-        "userid": 1,
+        "userid": "9d7251a2-ca51-403d-bcdf-52100291f5c2",
         "rating": 4,
         "description": "Great course!"
       }
@@ -62,7 +47,7 @@
     "modules": [
       {
         "title": "variables",
-        "comments": ["..."],
+        "comments": [],
         "lessons": [
           {
             "title": "Types of variables",
@@ -93,17 +78,21 @@
             "correctAnswer": 1
           }
         ]
-      }
-    ],
-    "finalQuestions": [
+      },
       {
-        "question": "Question",
-        "answerChoices": [
-          "Answer0",
-          "Answer1",
-          "Answer2"
+        "title": "Conditionals",
+        "comments": [],
+        "lessons": [
+          {
+            "title": "If Statements",
+            "content": "Do something if stamenet evaluates to true"
+          },
+          {
+            "title": "If/Else Statements",
+            "content": "Adding an else will allow you to execute another bit of code if the original statement is false"
+          }
         ],
-        "correctAnswer": 0
+        "quiz": []
       }
     ]
   }
