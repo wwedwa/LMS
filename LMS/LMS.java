@@ -49,7 +49,7 @@ public class LMS {
   public void evaluateAssessment(Assessment assessment, ArrayList<int> answers) {
     return;
   }
-  public void updateGrade(UUID courseid, String moduleName, double grade) {
+  public void updateGrade(int moduleNum, double grade) {
     return;
   }
   public void addCourseComment(String decription) {
