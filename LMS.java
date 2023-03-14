@@ -1,4 +1,5 @@
 package LMS;
+
 public class LMS {
   private User user;
   private Course currCourse;
