@@ -1,4 +1,7 @@
 package LMS;
+
+import java.util.ArrayList;
+
 public class Assessment {
     private ArrayList<Question> questions;
     private int size;

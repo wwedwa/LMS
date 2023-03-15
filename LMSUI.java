@@ -1,5 +1,6 @@
 package LMS;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class LMSUI {
@@ -58,11 +59,11 @@ public class LMSUI {
     
   }
 
-  private void displayComments(ArrayList<Comment>) {
+  private void displayComments(ArrayList<Comment> comments) {
 
   }
 
-  private void displayReviews(ArrayList<Review>) {
+  private void displayReviews(ArrayList<Review> reviews) {
 
   }
 

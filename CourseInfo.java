@@ -1,3 +1,5 @@
+package LMS;
+
 import java.util.ArrayList;
 
 public class CourseInfo {

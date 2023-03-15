@@ -1,5 +1,7 @@
 package LMS;
 
+import java.util.ArrayList;
+
 public class CourseList {
   private ArrayList<Course> courses;
   private static CourseList courseList;

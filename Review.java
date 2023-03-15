@@ -1,3 +1,5 @@
+package LMS;
+
 public class Review {
     private User author;
     private int rating;

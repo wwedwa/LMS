@@ -1,5 +1,7 @@
 package LMS;
 
+import java.util.ArrayList;
+
 public class LMS {
   private User user;
   private Course currCourse;
@@ -20,7 +22,7 @@ public class LMS {
   public void addUser(String firstName, String lastName, String email, String username, String password) {
     return;
   }
-  public void addCourse(String title, Langauge Topic, String description, ArrayList<Module> modules, Difficulty difficulty) {
+  public void addCourse(String title, Language topic, String description, ArrayList<Module> modules, Difficulty difficulty) {
     return;
   }
   public ArrayList<Course> findCourses(String keyword) {
@@ -47,7 +49,7 @@ public class LMS {
   public Assessment getModuleQuiz() {
     return null;
   }
-  public void evaluateAssessment(Assessment assessment, ArrayList<int> answers) {
+  public void evaluateAssessment(Assessment assessment, ArrayList<Integer> answers) {
     return;
   }
   public void updateGrade(int moduleNum, double grade) {
