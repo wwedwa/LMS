@@ -1,7 +1,7 @@
 package LMS;
 
 public abstract class DataConstants {
-  protected static final String USER_FILE_NAME = "lib/users.json";
+  protected static final String USER_FILE_NAME = "json/users.json";
   protected static final String USER_ID = "id";
   protected static final String TYPE = "type";
   protected static final String USERNAME = "username";
