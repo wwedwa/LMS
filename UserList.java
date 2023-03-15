@@ -1,5 +1,7 @@
 package LMS;
 
+import java.util.ArrayList;
+
 public class UserList {
   private ArrayList<User> users;
   private static UserList userList;
@@ -17,6 +19,10 @@ public class UserList {
   }
 
   public User getUser(String userName) {
+    return null;
+  }
+
+  public ArrayList<User> getUsers() {
     return null;
   }
   
