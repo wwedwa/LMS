@@ -15,7 +15,7 @@ public class DataLoader extends DataConstants {
 
   public static ArrayList<User> LoadUsers() {
 		ArrayList<User> users = new ArrayList<User>();
-		
+    
 		try {
 			FileReader reader = new FileReader(USER_FILE_NAME);
 			JSONArray peopleJSON = (JSONArray)new JSONParser().parse(reader);
@@ -36,9 +36,7 @@ public class DataLoader extends DataConstants {
           users.add(new Author(firstName, lastName, email, username, password, type, id));
         }
 			}
-			
 			return users;
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
