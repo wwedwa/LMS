@@ -58,16 +58,16 @@ public class User {
   }
 
   public void registerCourse(Course course) {
-      
+      registeredCourses.add(course);
   }
   public void unregisterCourse(Course course) {
       
   }
   public void addCompletedCourse(Course course) {
-      
+      completedCourses.add(course);
   }
   public void addFavAuthor(Author author) {
-      
+      favoriteAuthors.add(author);
   }
   public void removeFavAuthor(Author author) {
       
