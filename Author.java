@@ -16,6 +16,6 @@ public class Author extends User {
     }
 
     public void updateRating(int rating) {
-        
+        this.rating = rating;
     }
 }
