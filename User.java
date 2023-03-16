@@ -23,7 +23,6 @@ public class User {
     this.password = password;
     this.userid = UUID.randomUUID();
   }
-
   public User(String username, String firstName, String lastName, String email, String password, UUID userid) {
     this.username = username;
     this.firstName = firstName;
@@ -36,41 +35,35 @@ public class User {
   public String getUsername() {
     return this.username;
   }
-
   public String getFirstName() {
     return this.firstName;
   }
-
   public String getLastName() {
     return this.lastName;
   }
-
   public String getEmail() {
     return this.email;
   }
-
   public String getPassword() {
     return this.password;
   }
-
   public UUID getId() {
     return this.userid;
   }
-
   public void registerCourse(Course course) {
-      registeredCourses.add(course);
+      this.registeredCourses.add(course);
   }
   public void unregisterCourse(Course course) {
-      
+      this.registeredCourses.remove(course);
   }
   public void addCompletedCourse(Course course) {
-      completedCourses.add(course);
+      this.completedCourses.add(course);
   }
   public void addFavAuthor(Author author) {
-      favoriteAuthors.add(author);
+      this.favoriteAuthors.add(author);
   }
   public void removeFavAuthor(Author author) {
-      
+      this.favoriteAuthors.remove(author);
   }
   public void updateCourseGrade(int moduleNum, double grade) {
       
