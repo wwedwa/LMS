@@ -53,7 +53,7 @@ public class User {
     public UUID getId() {
         return this.userid;
     }
-    public String getType(String type) {
+    public String getType() {
         return "student";
     }
     public void registerCourse(Course course) {
