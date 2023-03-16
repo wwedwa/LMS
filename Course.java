@@ -10,16 +10,16 @@ public class Course {
     private User author;
     private ArrayList<Comment> comments;
     private ArrayList<Review> reviews;
-    private Language topic;
+    private Language language;
     private String description;
     private ArrayList<Module> modules;
     private Difficulty difficulty;
     private int moduleCount;
 
-    public Course(String title, User author, Language topic, String description, ArrayList<Module> modules, Difficulty difficulty) {
+    public Course(String title, User author, Language language, String description, ArrayList<Module> modules, Difficulty difficulty) {
         this.title = title;
         this.author = author;
-        this.topic = topic;
+        this.language = language;
         this.description = description;
         this.modules = modules;
         this.difficulty = difficulty;
