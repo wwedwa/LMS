@@ -8,14 +8,14 @@ public class Author extends User {
     private double rating;
 
     public Author(String firstName, String lastName, String email, String username, String password, String type) {
-      super(firstName, lastName, email, username, password, type);
+      super(username, firstName, lastName, email, password);
     }
 
-    public Author(String firstName, String lastName, String email, String username, String password, String type, UUID id) {
-      super(firstName, lastName, email, username, password, type, id);
+    public Author(String firstName, String lastName, String email, String username, String password, UUID id) {
+      super(username, firstName, lastName, email, password, id);
     }
 
     public void updateRating(int rating) {
-        
+        this.rating = rating;
     }
 }

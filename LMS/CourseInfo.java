@@ -8,9 +8,11 @@ public class CourseInfo {
     private ArrayList<Double> moduleGrades;
 
     public CourseInfo(Course course) {
-
+        this.course = course;
     }
     public void updateGrade(int moduleNum, double grade) {
-        
+        if (moduleGrades.size() >= moduleNum) {
+            this.moduleGrades.set(moduleNum, grade);
+        }
     }
 }
