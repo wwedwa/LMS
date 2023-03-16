@@ -1,4 +1,4 @@
-package LMS;
+package src;
 public class Lesson {
     private String title;
     private String content;

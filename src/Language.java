@@ -1,4 +1,4 @@
-package LMS;
+package src;
 
 public enum Language {
   PYTHON,

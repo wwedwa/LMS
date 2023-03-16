@@ -1,4 +1,4 @@
-package LMS;
+package src;
 
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -70,9 +70,9 @@ public class DataLoader extends DataConstants {
 				String type = (String)personJSON.get(TYPE);
 
         if (type.equals("student")) {
-				  users.add(new User(firstName, lastName, email, username, password, type, id));
+				  users.add(new User(firstName, lastName, email, username, password, id));
         } else if (type.equals("author")) {
-          users.add(new Author(firstName, lastName, email, username, password, type, id));
+          users.add(new Author(firstName, lastName, email, username, password, id));
         }
 			}
 			return users;

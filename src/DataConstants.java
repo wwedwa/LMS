@@ -1,4 +1,4 @@
-package LMS;
+package src;
 
 public abstract class DataConstants {
   // Constants for user JSON file
