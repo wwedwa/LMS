@@ -8,14 +8,16 @@ public class Module {
     private ArrayList<Comment> comments;
     private ArrayList<Lesson> lessons;
 
-    public Module(String title, Assessment quiz) {
+    public Module(String title, Assessment quiz, ArrayList<Lesson> lessons) {
         this.title = title;
         this.quiz = quiz;
+        comments = new ArrayList<Comment>();
+        this.lessons = lessons;
     }
     public void addComment(Comment comment) {
-        return;
+        comments.add(comment);
     }
     public void addLesson(Lesson lesson) {
-        return;
+        lessons.add(lesson);
     }
 }

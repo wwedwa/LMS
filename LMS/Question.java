@@ -12,9 +12,15 @@ public class Question {
         this.correctAnswer = correctAnswer;
     }
     public boolean evaulate(int userAnswer) {
-        return true;
+        return correctAnswer == userAnswer;
     }
     public String getQuestion() {
-        return null;
+        return question;
+    }
+    public ArrayList<String> getAnswerChoices() {
+      return answerChoices;
+    }
+    public int getCorrectAnswer() {
+      return correctAnswer;
     }
 }
