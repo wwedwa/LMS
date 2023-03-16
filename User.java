@@ -57,10 +57,10 @@ public class User {
     return this.userid;
   }
 
-  public void addCourse(Course course) {
+  public void registerCourse(Course course) {
       
   }
-  public void removeCourse(Course course) {
+  public void unregisterCourse(Course course) {
       
   }
   public void addCompletedCourse(Course course) {
