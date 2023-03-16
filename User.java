@@ -1,62 +1,60 @@
 package LMS;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 public class User {
+  private String username;
   private String firstName;
   private String lastName;
   private String email;
-  private String username;
   private String password;
-  private String type;
-  private UUID id;
+  private UUID userid;
+  private ArrayList<Course> registeredCourses;
+  private ArrayList<Course> completedCourses;
+  private ArrayList<CourseInfo> gradeBook;
+  private ArrayList<Author> favoriteAuthors;
 
-  public User(String firstName, String lastName, String email, String username, String password, String type) {
+  public User(String username, String firstName, String lastName, String email, String password) {
+    this.username = username;
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
-    this.username = username;
     this.password = password;
-    this.type = type;
-    this.id = UUID.randomUUID();
+    this.userid = UUID.randomUUID();
   }
 
-  public User(String firstName, String lastName, String email, String username, String password, String type, UUID id) {
+  public User(String username, String firstName, String lastName, String email, String password, UUID userid) {
+    this.username = username;
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
-    this.username = username;
     this.password = password;
-    this.type = type;
-    this.id = id;
-  }
-
-  public String getFirstName() {
-    return firstName;
-  }
-
-  public String getLastName() {
-    return lastName;
-  }
-
-  public String getEmail() {
-    return email;
+    this.userid = userid;
   }
 
   public String getUsername() {
-    return username;
+    return this.username;
+  }
+
+  public String getFirstName() {
+    return this.firstName;
+  }
+
+  public String getLastName() {
+    return this.lastName;
+  }
+
+  public String getEmail() {
+    return this.email;
   }
 
   public String getPassword() {
-    return password;
-  }
-
-  public String getType() {
-    return type;
+    return this.password;
   }
 
   public UUID getId() {
-    return id;
+    return this.userid;
   }
 
   public void addCourse(Course course) {
