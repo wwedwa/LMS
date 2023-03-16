@@ -1,9 +1,12 @@
 [
   {
     "id": "33189195-6b2b-4eed-be23-7a82d7bca444",
+    "author": "da6abb4c-eba4-41ef-a49b-158d6f295691",
     "rating": 4,
     "title": "Intro to Python",
-    "author": 5,
+    "difficulty": "EASY",
+    "language": "PYTHON",
+    "description": "Python introduction for novices in coding",
     "students": [
       {
         "studentid": "9d7251a2-ca51-403d-bcdf-52100291f5c2",
@@ -15,14 +18,13 @@
         "moduleGrades":[-1, 100, -1, 90, 87]
       }
     ],
-    "difficulty": "EASY",
     "comments": [
       {
         "userid": "257f7426-37bb-4ac6-ae7e-2d990299e415",
         "description": "How do I retake quizzes?",
         "replies": [
           {
-            "userid": "c3305b1c-0abc-48aa-812e-348b8aaeaf8a",
+            "userid": "da6abb4c-eba4-41ef-a49b-158d6f295691",
             "description": "Just click the button that says retake",
             "replies": [
               {
@@ -42,8 +44,6 @@
         "description": "Great course!"
       }
     ],
-    "topic": "Python",
-    "description": "Python intro",
     "modules": [
       {
         "title": "variables",
@@ -97,4 +97,3 @@
     ]
   }
 ]
-
