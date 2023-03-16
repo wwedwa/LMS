@@ -14,7 +14,19 @@ public class LMS {
 
   }
   public boolean login(String username, String password) {
-    return true;
+    //if (userlist.getUser(username).password == password) {
+    //  user = userlist.getUser(username);
+    //  return true;
+    // }
+    // TEST CASE REMOVE AFTER USER LIST WORKS
+    if (username.equals("bob") && password.equals("bob")) {
+      user = new User("bob", "bob", "bob.email.com", "bob", "bob", "user");
+      return true;
+    }
+    // TEST CASE REMOVE AFTER USER LIST WORKS
+    else {
+      return false;
+    }
   }
   public void logout() {
     return;
@@ -75,5 +87,8 @@ public class LMS {
   }
   public ArrayList<Review> getReviews() {
     return null;
+  }
+  public User getUser() {
+    return user;
   }
 }
