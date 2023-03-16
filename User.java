@@ -9,6 +9,7 @@ public class User {
     private String lastName;
     private String email;
     private String password;
+    private String type;
     private UUID userid;
     private ArrayList<Course> registeredCourses;
     private ArrayList<Course> completedCourses;
@@ -22,6 +23,7 @@ public class User {
         this.email = email;
         this.password = password;
         this.userid = UUID.randomUUID();
+        this.type = "student";
     }
     public User(String username, String firstName, String lastName, String email, String password, UUID userid) {
         this.username = username;
@@ -30,6 +32,7 @@ public class User {
         this.email = email;
         this.password = password;
         this.userid = userid;
+        this.type = "student";
     }
 
     public String getUsername() {
