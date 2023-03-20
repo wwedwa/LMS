@@ -1,4 +1,4 @@
-package LMS.json;
+package json;
 
 import java.util.UUID;
 

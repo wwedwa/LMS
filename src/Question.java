@@ -1,4 +1,4 @@
-package LMS;
+package src;
 
 import java.util.ArrayList;
 
@@ -7,8 +7,9 @@ public class Question {
     private ArrayList<String> answerChoices;
     private int correctAnswer;
 
-    public Question(String question, int correctAnswer) {
+    public Question(String question, ArrayList<String> answerChoices, int correctAnswer) {
         this.question = question;
+        this.answerChoices = answerChoices;
         this.correctAnswer = correctAnswer;
     }
     public boolean evaulate(int userAnswer) {

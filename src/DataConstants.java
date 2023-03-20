@@ -1,0 +1,28 @@
+package src;
+
+public abstract class DataConstants {
+  // Constants for user JSON file
+  protected static final String USER_FILE_NAME = "json/users.json";
+  protected static final String COURSE_FILE_NAME = "json/courses.json";
+  protected static final String USER_ID = "id";
+  protected static final String TYPE = "type";
+  protected static final String USERNAME = "username";
+  protected static final String PASSWORD = "password";
+  protected static final String FIRST_NAME = "firstName";
+  protected static final String LAST_NAME = "lastName";
+  protected static final String EMAIL = "email";
+  // Constants for course JSON file
+  protected static final String COURSE_ID = "id";
+  protected static final String AUTHOR_ID = "author";
+  protected static final String RATING = "rating";
+  protected static final String TITLE = "title";
+  protected static final String DIFFICULTY = "difficulty";
+  protected static final String LANGUAGE = "language";
+  protected static final String DESCRIPTION = "description";
+  // Constants for modules within courses
+  protected static final String MODULES = "modules";
+  protected static final String MODULE_TITLE = "title";
+  protected static final String MODULE_COMMENTS = "comments";
+  protected static final String MODULE_LESSON = "lessons";
+  protected static final String MODULE_QUIZ = "quiz";
+}

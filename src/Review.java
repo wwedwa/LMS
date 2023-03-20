@@ -1,4 +1,4 @@
-package LMS;
+package src;
 
 public class Review {
     private User author;
