@@ -23,6 +23,13 @@ public abstract class DataConstants {
   protected static final String MODULES = "modules";
   protected static final String MODULE_TITLE = "title";
   protected static final String MODULE_COMMENTS = "comments";
-  protected static final String MODULE_LESSON = "lessons";
+  protected static final String MODULE_LESSONS = "lessons";
   protected static final String MODULE_QUIZ = "quiz";
+  // Constants for lessons within modules
+  protected static final String LESSON_TITLE = "title";
+  protected static final String LESSON_CONTENT = "content";
+  // Constants for quizzes within modules
+  protected static final String QUIZ_QUESTION = "question";
+  protected static final String QUIZ_ANSWER = "correctAnswer";
+  protected static final String QUIZ_CHOICES = "answerChoices";
 }
