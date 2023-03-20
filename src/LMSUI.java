@@ -133,13 +133,23 @@ public class LMSUI {
       description += tempLine;
     } while(tempLine != "");
     System.out.println("Enter the course language: ");
-    Language language = Language.valueOf(scanner.nextLine());
+    Language language = null;
+    try {
+      language = Language.valueOf(scanner.nextLine());
+    } catch(Exception e) {
+      while(language == null) {
+        try {
+        System.out.println("Please enter a valid language: ");
+        language = Language.valueOf(scanner.nextLine());
+        } catch (Exception err) {}
+      }
+    }
     System.out.println("\nEnter the Course Difficulty: ");
     Difficulty difficulty = null;
     try {
       difficulty = Difficulty.valueOf(scanner.nextLine());
     } catch(Exception e) {
-      while(difficulty != Difficulty.EASY && difficulty != Difficulty.MEDIUM && difficulty != Difficulty.HARD) {
+      while(difficulty == null) {
         try {
         System.out.println("Please enter a valid difficulty (EASY, MEDIUM, HARD): ");
         difficulty = Difficulty.valueOf(scanner.nextLine());
@@ -152,36 +162,56 @@ public class LMSUI {
     while(addingModules) {
       ArrayList<Lesson> lessons = new ArrayList<>();
       System.out.println("Module " + moduleNum);
-      System.out.println("Please enter the name of the lesson: ");
-      String lessonName = scanner.nextLine();
-      System.out.println("Enter all text for the module (Enter a line with just (finished) to end):");
-      String moduleText = "";
-      tempLine = "";
-      do {
-        moduleText += tempLine;
-        tempLine = scanner.nextLine();
-      } while(!tempLine.equals("finished"));
-      Lesson lesson = new Lesson(lessonName, moduleText);
-      lessons.add(lesson);
+      boolean addingLessons = true;
+      while (addingLessons) {
+        System.out.println("Please enter the name of the lesson: ");
+        String lessonName = scanner.nextLine();
+        System.out.println("Enter all text for the module (Enter a line with just (finished) to end):");
+        String moduleText = "";
+        tempLine = "";
+        do {
+          moduleText += tempLine;
+          tempLine = scanner.nextLine();
+        } while(!tempLine.equals("finished"));
+        Lesson lesson = new Lesson(lessonName, moduleText);
+        lessons.add(lesson);
+        System.out.println("Would you like to add another lesson? (y/n)");
+        if (scanner.nextLine().equals("n")) {
+          addingLessons = false;
+        }
+      }
       ArrayList<Question> questions = new ArrayList<>();
       System.out.println("You will now create a quiz for the lesson that consists of up to 5 questions");
-      System.out.print("Enter the question: ");
-      String question = scanner.nextLine();
-      System.out.print("Enter the number of answer choices (up to 4): ");
-      int choices = scanner.nextInt();
-      scanner.nextLine();
-      ArrayList<String> answers = new ArrayList<>();
-      for (int i = 0; i < choices; i++) {
-        System.out.print("Enter answer choice " + i + ": ");
-        answers.add(scanner.nextLine());
+      boolean addingQuestions = true;
+      while (addingQuestions) {
+        System.out.print("Enter the question: ");
+        String question = scanner.nextLine();
+        System.out.print("Enter the number of answer choices (up to 4): ");
+        int choices = scanner.nextInt();
+        scanner.nextLine();
+        ArrayList<String> answers = new ArrayList<>();
+        for (int i = 0; i < choices; i++) {
+          System.out.print("Enter answer choice " + (i + 1) + ": ");
+          answers.add(scanner.nextLine());
+        }
+        System.out.println("Enter the number of the correct answer: ");
+        int correctAnswer = scanner.nextInt();
+        scanner.nextLine();
+        Question quest = new Question(question, answers, correctAnswer);
+        questions.add(quest);
+        if (questions.size() < 5) {
+          System.out.println("Would you like to keep adding questions? (y/n) ");
+          if (scanner.nextLine().equals("n")) {
+            addingQuestions = false;
+          }
+        }
+        else {
+          System.out.println("5 Questions reached");
+          addingQuestions = false;
+        }
       }
-      System.out.println("Enter the number of the correct answer: ");
-      int correctAnswer = scanner.nextInt();
-      scanner.nextLine();
-      Question quest = new Question(question, answers, correctAnswer);
-      questions.add(quest);
       Assessment assessment = new Assessment(questions);
-      System.out.println("Would you like to add another Lesson? (y/n)");
+      System.out.println("Would you like to add another Module? (y/n)");
       if (scanner.nextLine().equals("n")) {
         addingModules = false;
       }
