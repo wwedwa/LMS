@@ -9,8 +9,29 @@ import org.json.simple.JSONObject;
 public class DataWriter extends DataConstants {
   
   public static void saveCourses(ArrayList<Course> courses) {
-    
+    JSONArray jsonCourses = new JSONArray();
+    for (int i = 0; i < courses.size(); ++i) {
+      jsonCourses.add(getCourseJSON(courses.get(i)));
+    }
+    try (FileWriter file = new FileWriter(COURSE_FILE_NAME)) {
+      file.write(jsonCourses.toJSONString());
+      file.flush();
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
   }
+
+  public static JSONObject getCourseJSON(Course course) {
+		JSONObject courseDetails = new JSONObject();
+		courseDetails.put(COURSE_ID, course.getCourseID().toString());
+		courseDetails.put(AUTHOR_ID, course.getAuthor().getId().toString());
+    courseDetails.put(RATING, course.getRating());
+		courseDetails.put(TITLE, course.getTitle());
+		courseDetails.put(DIFFICULTY, course.getDifficulty());
+		courseDetails.put(LANGUAGE, course.getLaunguage());
+    courseDetails.put(DESCRIPTION, course.getDescription());
+    return courseDetails;
+	}
 
 	public static void saveUsers(ArrayList<User> users) {
 		JSONArray jsonUsers = new JSONArray();

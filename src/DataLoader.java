@@ -20,7 +20,7 @@ public class DataLoader extends DataConstants {
 				JSONObject courseJSON = (JSONObject)coursesJSON.get(i);
 				UUID id = UUID.fromString((String)courseJSON.get(COURSE_ID));
         UUID authorId = UUID.fromString((String)courseJSON.get(AUTHOR_ID));
-        String rating = (String)courseJSON.get(RATING);
+        int rating = (Integer)courseJSON.get(RATING);
         String title = (String)courseJSON.get(TITLE);
         String difficulty = (String)courseJSON.get(DIFFICULTY);
         String language = (String)courseJSON.get(LANGUAGE);
@@ -43,6 +43,10 @@ public class DataLoader extends DataConstants {
     for (int i = 0; i < modulesJSON.size(); ++i) {
       JSONObject moduleJSON = (JSONObject)modulesJSON.get(i);
       String title = (String)moduleJSON.get(MODULE_TITLE);
+      JSONArray lessonsJSON = (JSONArray)moduleJSON.get(MODULE_LESSONS);
+      ArrayList<Lesson> lessons = loadLessons(lessonsJSON);
+      JSONArray questionsJSON = (JSONArray)moduleJSON.get(MODULE_QUIZ);
+      Assessment quiz = loadAssessment(questionsJSON);
     }
     return modules;
   }
@@ -50,6 +54,38 @@ public class DataLoader extends DataConstants {
   private static ArrayList<Comment> loadComments(JSONArray commentsJSON) {
     ArrayList<Comment> comments = new ArrayList<Comment>();
     return comments;
+  }
+
+  private static ArrayList<Lesson> loadLessons(JSONArray lessonsJSON) {
+    ArrayList<Lesson> lessons = new ArrayList<Lesson>();
+    for (int i = 0; i < lessonsJSON.size(); ++i) {
+      JSONObject lessonJSON = (JSONObject)lessonsJSON.get(i);
+      String title = (String)lessonJSON.get(LESSON_TITLE);
+      String content = (String)lessonJSON.get(LESSON_CONTENT);
+      lessons.add(new Lesson(title, content));
+    }
+    return lessons;
+  }
+
+  private static Assessment loadAssessment(JSONArray questionsJSON) {
+    ArrayList<Question> questions = new ArrayList<Question>();
+    for (int i = 0; i < questionsJSON.size(); ++i) {
+      JSONObject questionJSON = (JSONObject)questionsJSON.get(i);
+      String question = (String)questionJSON.get(QUIZ_QUESTION);
+      int answer = (Integer)questionJSON.get(QUIZ_ANSWER);
+      JSONArray choicesJSON = (JSONArray)questionJSON.get(MODULE_QUIZ);
+      ArrayList<String> choices = loadChoices(choicesJSON);
+      questions.add(new Question(question, choices, answer));
+    }
+    return new Assessment(questions);
+  }
+
+  private static ArrayList<String> loadChoices(JSONArray choicesJSON) {
+    ArrayList<String> choices = new ArrayList<String>();
+    for (int i = 0; i < choicesJSON.size(); ++i) {
+      choices.add((String)choicesJSON.get(i));
+    }
+    return choices;
   }
 
   public static ArrayList<User> loadUsers() {
