@@ -12,7 +12,8 @@ public class LMS {
   private UserList userList;
 
   public LMS() {
-    userList = new UserList();
+    userList = UserList.getInstance();
+    courseList = CourseList.getInstance();
   }
   public boolean login(String username, String password) {
     if (userList.getUser(username).getPassword().equals(password)) {

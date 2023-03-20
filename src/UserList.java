@@ -7,7 +7,7 @@ public class UserList {
   private ArrayList<User> users;
   private static UserList userList;
 
-  public UserList() {
+  private UserList() {
     users = DataLoader.loadUsers();
   }
 
