@@ -20,7 +20,7 @@ public class LMS {
     // }
     // TEST CASE REMOVE AFTER USER LIST WORKS
     if (username.equals("bob") && password.equals("bob")) {
-      user = new User("bob", "bob", "bob.email.com", "bob", "bob", "user");
+      user = new User("bob", "bob", "bob.email.com", "bob", "bob");
       return true;
     }
     // TEST CASE REMOVE AFTER USER LIST WORKS

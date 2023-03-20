@@ -122,16 +122,18 @@ public class LMSUI {
 
   private void createCourse() {
     System.out.print("\nEnter the name of the course: ");
-    String courseName = scnaner.nextLine();
+    String courseName = scanner.nextLine();
     System.out.println("\nEnter the course Description: ");
     String description = "";
+    String tempLine;
     do {
       tempLine = scanner.nextLine();
       description += tempLine;
     } while(tempLine != "");
     System.out.println("\nEnter the Course Difficulty: ");
+    Difficulty difficulty = null;
     try {
-      Difficulty difficulty = Difficulty.valueOf(scanner.nextLine());
+      difficulty = Difficulty.valueOf(scanner.nextLine());
     } catch(Exception e) {
       while(difficulty != Difficulty.EASY && difficulty != Difficulty.MEDIUM && difficulty != Difficulty.HARD) {
         try {
@@ -143,8 +145,24 @@ public class LMSUI {
     boolean addingModules = true;
     int moduleNum = 1;
     while(addingModules) {
-      System.out.println("Module 1");
+      System.out.println("Module " + moduleNum);
       System.out.println("Enter all text for the module (Enter a line with just (finished) to end):");
+      String moduleText = "";
+      tempLine = "";
+      do {
+        moduleText += tempLine;
+        tempLine = scanner.nextLine();
+      } while(tempLine != "finished");
+      System.out.println("You will now create a quiz for the lesson that consists of up to 5 questions");
+      System.out.print("Enter the question: ");
+      String question = scanner.nextLine();
+      System.out.print("Enter the number of answer choices (up to 4): ");
+      int choices = scanner.nextInt();
+      String[] answers = new String[choices];
+      for (int i = 0; i < choices; i++) {
+        System.out.print("Enter answer choice " + i + ": ");
+        answers[i] = scanner.nextLine();
+      }
       
     }
 
