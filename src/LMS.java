@@ -2,6 +2,7 @@ package src;
 
 import java.util.ArrayList;
 
+
 public class LMS {
   private User user;
   private Course currCourse;
@@ -11,19 +12,13 @@ public class LMS {
   private UserList userList;
 
   public LMS() {
-
+    userList = new UserList();
   }
   public boolean login(String username, String password) {
-    //if (userlist.getUser(username).password == password) {
-    //  user = userlist.getUser(username);
-    //  return true;
-    // }
-    // TEST CASE REMOVE AFTER USER LIST WORKS
-    if (username.equals("bob") && password.equals("bob")) {
-      user = new User("bob", "bob", "bob.email.com", "bob", "bob");
+    if (userList.getUser(username).getPassword().equals(password)) {
+      user = userList.getUser(username);
       return true;
     }
-    // TEST CASE REMOVE AFTER USER LIST WORKS
     else {
       return false;
     }
