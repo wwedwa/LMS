@@ -57,32 +57,36 @@ public class LMS {
   public Assessment getModuleQuiz() {
     return null;
   }
-  public void evaluateAssessment(Assessment assessment, ArrayList<Integer> answers) {
-    return;
+  public double evaluateAssessment(Assessment assessment, ArrayList<Integer> answers) {
+    return currModule.getAssessment().evaluateAssessment(answers);
   }
   public void updateGrade(int moduleNum, double grade) {
-    return;
+    user.updateCourseGrade(moduleNum, grade);
   }
   public void addCourseComment(String decription) {
-    return;
+    Comment comment = new Comment(user, decription);
+    currCourse.addComment(comment);
   }
   public void addModuleComment(String decription) {
-    return;
+    Comment comment = new Comment(user, decription);
+    currModule.addComment(comment);
   }
   public ArrayList<Comment> getCourseComments() {
-    return null;
+    return currCourse.getComments();
   }
   public ArrayList<Comment> getModuleComments() {
-    return null;
+    return currModule.getComments();
   }
   public void addReply(Comment comment, String decription) {
-    return;
+    Comment reply = new Comment(user, decription);
+    comment.addReply(reply);
   }
   public void addReview(String description, int rating) {
-    return;
+    Review review = new Review(user, rating, description);
+    currCourse.addReview(review);
   }
   public ArrayList<Review> getReviews() {
-    return null;
+    return currCourse.getReviews();
   }
   public User getUser() {
     return user;

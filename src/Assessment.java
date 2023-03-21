@@ -19,5 +19,17 @@ public class Assessment {
     public ArrayList<Question> getQuestions() {
         return questions;
     }
+    public double evaluateAssessment(ArrayList<Integer> answers) {
+        double score = 0;
+        for(int i = 0; i < questions.size(); i++) {
+            Integer correctAnswer = questions.get(i).getCorrectAnswer();
+            Integer userAnswer = answers.get(i);
+            if(userAnswer == correctAnswer) {
+                score++;
+            }
+        }
+        score /= questions.size();
+        return score;
+    }
 }
 
