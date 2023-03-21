@@ -11,7 +11,6 @@ public class DataLoader extends DataConstants {
 
   public static ArrayList<Course> loadCourses() {
     ArrayList<Course> courses = new ArrayList<Course>();
-    
 		try {
 			FileReader reader = new FileReader(COURSE_FILE_NAME);
 			JSONArray coursesJSON = (JSONArray)new JSONParser().parse(reader);
@@ -20,22 +19,22 @@ public class DataLoader extends DataConstants {
 				JSONObject courseJSON = (JSONObject)coursesJSON.get(i);
 				UUID id = UUID.fromString((String)courseJSON.get(COURSE_ID));
         UUID authorId = UUID.fromString((String)courseJSON.get(AUTHOR_ID));
-        int rating = (Integer)courseJSON.get(RATING);
+        double rating = ((Long)courseJSON.get(RATING)).doubleValue();
         String title = (String)courseJSON.get(TITLE);
-        String difficulty = (String)courseJSON.get(DIFFICULTY);
-        String language = (String)courseJSON.get(LANGUAGE);
+        Difficulty difficulty = Difficulty.valueOf((String)courseJSON.get(DIFFICULTY));
+        Language language = Language.valueOf((String)courseJSON.get(LANGUAGE));
         String description = (String)courseJSON.get(DESCRIPTION);
         UserList userList = UserList.getInstance();
         User author = userList.getUserByUUID(authorId);
         JSONArray modulesJSON = (JSONArray)courseJSON.get(MODULES);
         ArrayList<Module> modules = loadModules(modulesJSON);
-        //courses.add(new Course());
+        courses.add(new Course(title, rating, author, null, null, language, description, modules, difficulty, id));
 			}
 			return courses;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return null;
+		return courses;
   }
 
   private static ArrayList<Module> loadModules(JSONArray modulesJSON) {
@@ -47,6 +46,7 @@ public class DataLoader extends DataConstants {
       ArrayList<Lesson> lessons = loadLessons(lessonsJSON);
       JSONArray questionsJSON = (JSONArray)moduleJSON.get(MODULE_QUIZ);
       Assessment quiz = loadAssessment(questionsJSON);
+      modules.add(new Module(title, quiz, lessons));
     }
     return modules;
   }
@@ -72,8 +72,8 @@ public class DataLoader extends DataConstants {
     for (int i = 0; i < questionsJSON.size(); ++i) {
       JSONObject questionJSON = (JSONObject)questionsJSON.get(i);
       String question = (String)questionJSON.get(QUIZ_QUESTION);
-      int answer = (Integer)questionJSON.get(QUIZ_ANSWER);
-      JSONArray choicesJSON = (JSONArray)questionJSON.get(MODULE_QUIZ);
+      int answer = ((Long)questionJSON.get(QUIZ_ANSWER)).intValue();
+      JSONArray choicesJSON = (JSONArray)questionJSON.get(QUIZ_CHOICES);
       ArrayList<String> choices = loadChoices(choicesJSON);
       questions.add(new Question(question, choices, answer));
     }
@@ -116,5 +116,24 @@ public class DataLoader extends DataConstants {
 			e.printStackTrace();
 		}
 		return null;
+  }
+
+  public static void main(String[] args) {
+    ArrayList<Course> cs = loadCourses();
+    Course c = cs.get(0); 
+    System.out.println(c.getTitle());
+    System.out.println(c.getDescription());
+    System.out.println(c.getRating());
+    System.out.println(c.getLanguage());
+    ArrayList<Module> modules = c.getModules();
+    for (Module m : modules) {
+      System.out.println(m.getTitle());
+      ArrayList<Lesson> ls = m.getLessons();
+      for (Lesson l : ls) {
+        System.out.println(l.getTitle());
+        System.out.println(l.getContent());
+        System.out.println("--------------------------------------");
+      }
+    }
   }
 }

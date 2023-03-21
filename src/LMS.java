@@ -28,61 +28,65 @@ public class LMS {
     return;
   }
   public void addUser(String firstName, String lastName, String email, String username, String password) {
-    return;
+    this.user = new User(username, firstName, lastName, email, password);
   }
-  public void addCourse(String title, Language topic, String description, ArrayList<Module> modules, Difficulty difficulty) {
-    return;
+  public void addCourse(String title, Language language, String description, ArrayList<Module> modules, Difficulty difficulty) {
+    courseList.addCourse(new Course(title, this.user, language, description, modules, difficulty));
   }
   public ArrayList<Course> findCourses(String keyword) {
-    return null;
+    return courseList.getCoursesByKeyWord(keyword);
   }
   public ArrayList<Course> getAllCourses() {
     return null;
   }
   public ArrayList<Course> getRegisteredCourses() {
-    return null;
+    return this.user.getRegisteredCourses();
   }
   public ArrayList<Course> getCreatedCourses() {
-    return null;
+    return this.getCreatedCourses();
   }
   public ArrayList<Course> getCompletedCourses() {
-    return null;
+    return this.user.getCompletedCourses();
   }
   public boolean checkUsername(String username) {
-    return true;
+    return username.equals(this.user.getUsername());
   }
   public boolean checkCourseTitle(String title) {
-    return true;
+    return this.courseList.contains(title);
   }
   public Assessment getModuleQuiz() {
-    return null;
+    return this.currModule.getAssessment();
   }
-  public void evaluateAssessment(Assessment assessment, ArrayList<Integer> answers) {
-    return;
+  public double evaluateAssessment(Assessment assessment, ArrayList<Integer> answers) {
+    return currModule.getAssessment().evaluateAssessment(answers);
   }
   public void updateGrade(int moduleNum, double grade) {
-    return;
+    user.updateCourseGrade(moduleNum, grade);
   }
   public void addCourseComment(String decription) {
-    return;
+    Comment comment = new Comment(user, decription);
+    currCourse.addComment(comment);
   }
   public void addModuleComment(String decription) {
-    return;
+    Comment comment = new Comment(user, decription);
+    currModule.addComment(comment);
   }
   public ArrayList<Comment> getCourseComments() {
-    return null;
+    return currCourse.getComments();
   }
   public ArrayList<Comment> getModuleComments() {
-    return null;
+    return currModule.getComments();
   }
   public void addReply(Comment comment, String decription) {
-    return;
+    Comment reply = new Comment(user, decription);
+    comment.addReply(reply);
   }
   public void addReview(String description, int rating) {
-    return;
+    Review review = new Review(user, rating, description);
+    currCourse.addReview(review);
   }
   public ArrayList<Review> getReviews() {
-    return null;
+    return currCourse.getReviews();
   }
   public User getUser() {
     return user;

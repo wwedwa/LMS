@@ -27,9 +27,10 @@ public class Course {
         this.difficulty = difficulty;
         this.courseID = UUID.randomUUID();
     }
-    public Course(String title, User author, ArrayList<Comment> comments, ArrayList<Review> reviews, Language language, String description, ArrayList<Module> modules, Difficulty difficulty, UUID id) {
+    public Course(String title, double rating, User author, ArrayList<Comment> comments, ArrayList<Review> reviews, Language language, String description, ArrayList<Module> modules, Difficulty difficulty, UUID id) {
         this.title = title;
         this.author = author;
+        this.rating = rating;
         this.comments = comments;
         this.reviews = reviews;
         this.language = language;
@@ -78,7 +79,7 @@ public class Course {
     public ArrayList<Review> getReviews() {
         return reviews;
     }
-    public Language getLaunguage() {
+    public Language getLanguage() {
         return language;
     }
     public String getDescription() {
