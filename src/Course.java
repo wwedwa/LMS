@@ -47,7 +47,6 @@ public class Course {
     }
     public void addReview(Review review) {
         reviews.add(review);
-        updateRating(review.getRating());
     }
     public Module getModule(int index) {
         return modules.get(index);
