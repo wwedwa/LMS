@@ -55,7 +55,7 @@ public class LMS {
     return this.courseList.contains(title);
   }
   public Assessment getModuleQuiz() {
-    return this.currModule.getQuiz();
+    return this.currModule.getAssessment();
   }
   public double evaluateAssessment(Assessment assessment, ArrayList<Integer> answers) {
     return currModule.getAssessment().evaluateAssessment(answers);
