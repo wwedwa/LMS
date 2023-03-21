@@ -10,6 +10,9 @@ public class Review {
         this.rating = rating;
         this.description = description;
     }
+    public int getRating() {
+      return rating;
+    }
     public String toString() {
         return author.getUsername() +
             " says \"" + description + "\"" +
