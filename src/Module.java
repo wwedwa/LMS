@@ -20,4 +20,10 @@ public class Module {
     public void addLesson(Lesson lesson) {
         lessons.add(lesson);
     }
+    public Assessment getQuiz() {
+        return this.quiz;
+    }
+    public String getTitle() {
+        return this.getTitle();
+    }
 }
