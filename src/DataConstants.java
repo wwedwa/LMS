@@ -3,7 +3,7 @@ package src;
 public abstract class DataConstants {
   // Constants for user JSON file
   protected static final String USER_FILE_NAME = "json/users.json";
-  protected static final String COURSE_FILE_NAME = "json/courses.json";
+  protected static final String COURSE_FILE_NAME = "/Users/wwall/Programming/School/CSCE247/LMS/json/courses.json";
   protected static final String USER_ID = "id";
   protected static final String TYPE = "type";
   protected static final String USERNAME = "username";

@@ -26,13 +26,22 @@ public class CourseList {
   public ArrayList<Course> getCoursesByKeyWord(String word) {
     ArrayList<Course> foundCourses = new ArrayList<Course>();
     for (Course c : courses) {
-      if (c.getTitle().equals(word)) {
+      if (c.getTitle().contains(word)) {
         foundCourses.add(c);
       }
     }
     return foundCourses;
   }
   
+  public boolean contains(String title) {
+    for (Course c : courses) {
+      if (c.getTitle().equals(title)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   public void saveCourses() {
     DataWriter.saveCourses(courses);
   }

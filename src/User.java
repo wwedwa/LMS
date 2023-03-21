@@ -56,6 +56,12 @@ public class User {
     public String getType() {
         return "student";
     }
+    public ArrayList<Course> getRegisteredCourses() {
+        return this.registeredCourses;
+    }
+    public ArrayList<Course> getCompletedCourses() {
+        return this.completedCourses;
+    }
     public void registerCourse(Course course) {
         this.registeredCourses.add(course);
     }

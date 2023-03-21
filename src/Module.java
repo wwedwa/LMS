@@ -23,7 +23,15 @@ public class Module {
     public void addLesson(Lesson lesson) {
         lessons.add(lesson);
     }
+<<<<<<< HEAD
     public Assessment getAssessment() {
       return assessment;
+=======
+    public Assessment getQuiz() {
+        return this.quiz;
+    }
+    public String getTitle() {
+        return this.getTitle();
+>>>>>>> b5c61187912405462b72c0a337047a92b0f06cc3
     }
 }
