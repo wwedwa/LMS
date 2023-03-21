@@ -29,4 +29,7 @@ public class Module {
     public String getTitle() {
         return this.getTitle();
     }
+    public ArrayList<Lesson> getLessons() {
+      return lessons;
+    }
 }
