@@ -10,7 +10,10 @@ public class CourseInfo {
     private Course course;
     private double grade;
     private ArrayList<Double> moduleGrades;
-
+    /**
+    * CourseInfo constructor
+    *@param course
+    */
     public CourseInfo(Course course) {
         this.course = course;
         this.grade = 0;
@@ -19,9 +22,17 @@ public class CourseInfo {
             this.moduleGrades.set(i, -1.0);
         }
     }
+    /**
+    * returns a courseList
+    */
     public double getGrade() {
       return grade;
     }
+    /**
+     * this method updates the grade
+     * @param moduleNum
+     * @param grade
+     */
     public void updateGrade(int moduleNum, double grade) {
         if (moduleGrades.size() >= moduleNum) {
             this.moduleGrades.set(moduleNum, grade);
