@@ -37,7 +37,7 @@ public class LMS {
     return courseList.getCoursesByKeyWord(keyword);
   }
   public ArrayList<Course> getAllCourses() {
-    return null;
+    return this.courseList.getAllCourses();
   }
   public ArrayList<Course> getRegisteredCourses() {
     return this.user.getRegisteredCourses();
