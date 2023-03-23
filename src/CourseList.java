@@ -22,6 +22,9 @@ public class CourseList {
       courses.add(course);
     }
   }
+  public ArrayList<Course> getAllCourses() {
+    return courses;
+  }
 
   public ArrayList<Course> getCoursesByKeyWord(String word) {
     ArrayList<Course> foundCourses = new ArrayList<Course>();
