@@ -3,6 +3,10 @@ package src;
 import java.util.ArrayList;
 import java.util.UUID;
 
+/**
+ * course class
+ * @author The Lobsters
+ */
 public class Course {
     private UUID courseID;
     private double rating;

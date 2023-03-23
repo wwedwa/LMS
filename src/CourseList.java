@@ -2,6 +2,10 @@ package src;
 
 import java.util.ArrayList;
 
+/**
+ * course list class
+ * @author The Lobsters
+ */
 public class CourseList {
   private ArrayList<Course> courses;
   private static CourseList courseList;

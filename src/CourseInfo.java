@@ -2,6 +2,10 @@ package src;
 
 import java.util.ArrayList;
 
+/**
+ * course info class
+ * @author The Lobsters
+ */
 public class CourseInfo {
     private Course course;
     private double grade;

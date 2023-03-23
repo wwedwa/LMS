@@ -2,6 +2,10 @@ package src;
 
 import java.util.ArrayList;
 
+/**
+ * assessment class
+ * @author The Lobsters
+ */
 public class Assessment {
     private ArrayList<Question> questions;
 

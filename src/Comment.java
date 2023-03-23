@@ -3,6 +3,10 @@ package src;
 import java.util.ArrayList;
 import java.util.UUID;
 
+/**
+ * comment class
+ * @author The Lobsters
+ */
 public class Comment {
     private User author;
     private UUID commentid;

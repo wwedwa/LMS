@@ -3,6 +3,10 @@ package src;
 import java.util.ArrayList;
 import java.util.UUID;
 
+/**
+ * author class
+ * @author The Lobsters
+ */
 public class Author extends User {
     private ArrayList<Course> createdCourses;
     private double rating;
