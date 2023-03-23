@@ -1,5 +1,9 @@
 package src;
-
+/**
+ * Language enumeration that contains
+ * different programming languages
+ * @author The Lobsters
+ */
 public enum Language {
   PYTHON,
   JAVA_SCRIPT,
