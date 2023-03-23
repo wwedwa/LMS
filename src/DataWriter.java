@@ -28,7 +28,7 @@ public class DataWriter extends DataConstants {
     courseDetails.put(RATING, course.getRating());
 		courseDetails.put(TITLE, course.getTitle());
 		courseDetails.put(DIFFICULTY, course.getDifficulty());
-		courseDetails.put(LANGUAGE, course.getLaunguage());
+		courseDetails.put(LANGUAGE, course.getLanguage());
     courseDetails.put(DESCRIPTION, course.getDescription());
     return courseDetails;
 	}
