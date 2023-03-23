@@ -46,14 +46,14 @@ public class LMSUI {
   private void displayMainMenu() {
     System.out.println("Welcome " + application.getUser().getUsername());
     String welcomeScreen = """
-      Navigation:
+      Navigation:\n
         1. View Registered Courses
         2. Search for Courses
         3. View Account Details
         4. Create Course
         5. Logout
 
-        Enter where you want to go:  """;
+        Enter where you want to go: """;
     System.out.print(welcomeScreen);
     int choice = scanner.nextInt();
     scanner.nextLine();
@@ -102,6 +102,12 @@ public class LMSUI {
   }
 
   private void searchCourses() {
+    System.out.println("Enter a keyword to search for in the courses");
+    String keyword = scanner.nextLine();
+    ArrayList<Course> courses = application.findCourses(keyword);
+    for (int i = 0; i < courses.size(); i++) {
+      System.out.println(i+1 + ". " + courses.get(i));
+    }
 
   }
 
