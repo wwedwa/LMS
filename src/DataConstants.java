@@ -22,6 +22,7 @@ public abstract class DataConstants {
   protected static final String STUDENTS = "students";
   protected static final String GRADES = "moduleGrades";
   // Constants for reviews within courses
+  protected static final String REVIEWS = "userid";
   protected static final String WRITER_ID = "userid";
   protected static final String REVIEW_RATING = "rating";
   protected static final String REVIEW = "description";
