@@ -3,6 +3,10 @@ package src;
 import java.util.ArrayList;
 import java.util.UUID;
 
+/**
+ * course class
+ * @author The Lobsters
+ */
 public class Course {
     private UUID courseID;
     private double rating;
@@ -15,7 +19,15 @@ public class Course {
     private ArrayList<Module> modules;
     private Difficulty difficulty;
     private int moduleCount;
-
+    /**
+    * Course constructor
+    *@param title
+    *@param author
+    *@param langauge
+    *@param description
+    *@param modules
+    *@param difficulty
+    */
     public Course(String title, User author, Language language, String description, ArrayList<Module> modules, Difficulty difficulty) {
         this.title = title;
         this.author = author;
@@ -27,6 +39,19 @@ public class Course {
         this.difficulty = difficulty;
         this.courseID = UUID.randomUUID();
     }
+    /**
+    * Course constructor
+    *@param title
+    *@param rating
+    *@param author
+    *@param comments
+    *@param reviews
+    *@param langauge
+    *@param description
+    *@param modules
+    *@param difficulty
+    *@param id
+    */
     public Course(String title, double rating, User author, ArrayList<Comment> comments, ArrayList<Review> reviews, Language language, String description, ArrayList<Module> modules, Difficulty difficulty, UUID id) {
         this.title = title;
         this.author = author;
@@ -40,59 +65,115 @@ public class Course {
         this.courseID = id;
 
     }
+    /**
+    * add modules
+    *@param module
+    */
     public void addModules(Module module) {
         modules.add(module);
     }
+    /**
+    * add comment
+    *@param comment
+    */
     public void addComment(Comment comment) {
         comments.add(comment);
     }
+    /**
+    * add review
+    *@param review
+    */
     public void addReview(Review review) {
         reviews.add(review);
     }
+    /**
+    * returns module at index
+    *@param index
+    */
     public Module getModule(int index) {
         return modules.get(index);
     }
+    /**
+    * update rating
+    *@param rating
+    */
     private void updateRating(int rating) {
         // multiply out to use for average
         double total = this.rating*reviews.size();
         // find new average
         this.rating = (total + rating)/(reviews.size()+1);
     }
+    /**
+    * create certificate for the user
+    *@param user
+    */
     public void createCertificate(User user) {
         return;
     }
+    /**
+    * returns course id
+    */
     public UUID getCourseID() {
         return courseID;
     }
+    /**
+    * returns rating
+    */
     public double getRating() {
         return rating;
     }
+    /**
+    * returns title
+    */
     public String getTitle() {
         return title;
     }
+    /**
+    * returns author
+    */
     public User getAuthor() {
         return author;
     }
+    /**
+    * returns course comments
+    */
     public ArrayList<Comment> getComments() {
         return comments;
     }
+    /**
+    * returns course reviews
+    */
     public ArrayList<Review> getReviews() {
         return reviews;
     }
+    /**
+    * returns course language
+    */
     public Language getLanguage() {
         return language;
     }
+    /**
+    * returns course description
+    */
     public String getDescription() {
         return description;
     }
+    /**
+    * returns modules
+    */
     public ArrayList<Module> getModules() {
         return modules;
     }
+    /**
+    * returns difficulty
+    */
     public Difficulty getDifficulty() {
         return difficulty;
     }
+    /**
+    * returns the module index
+    */
     public int getModuleCount() {
         return moduleCount;
     }
-    
 }
