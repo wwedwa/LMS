@@ -31,6 +31,7 @@ public class DataWriter extends DataConstants {
 		courseDetails.put(LANGUAGE, course.getLanguage().toString());
     courseDetails.put(DESCRIPTION, course.getDescription());
     courseDetails.put(MODULES, getModulesJSON(course.getModules()));
+    courseDetails.put(REVIEWS, getReviewsJSON(course.getReviews()));
     return courseDetails;
 	}
 
@@ -40,6 +41,22 @@ public class DataWriter extends DataConstants {
       jsonModules.add(getModuleJSON(modules.get(i)));
     }
     return jsonModules;
+  }
+
+  public static JSONArray getReviewsJSON(ArrayList<Review> reviews) {
+    JSONArray jsonReviews = new JSONArray();
+    for (int i = 0; i < reviews.size(); ++i) {
+      jsonReviews.add(getReviewJSON(reviews.get(i)));
+    }
+    return jsonReviews;
+  }
+
+  public static JSONObject getReviewJSON(Review review) {
+    JSONObject reviewDetails = new JSONObject();
+    reviewDetails.put(WRITER_ID, review.getWriter().getId());
+    reviewDetails.put(RATING, review.getRating());
+    reviewDetails.put(REVIEW, review.getDescription());
+    return reviewDetails;
   }
 
   public static JSONObject getModuleJSON(Module module) {
