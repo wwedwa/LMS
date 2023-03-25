@@ -29,7 +29,9 @@ public class DataLoader extends DataConstants {
         User author = userList.getUserByUUID(authorId);
         JSONArray modulesJSON = (JSONArray)courseJSON.get(MODULES);
         ArrayList<Module> modules = loadModules(modulesJSON);
-        Course course = new Course(title, rating, author, null, null, language, description, modules, difficulty, id);
+        JSONArray reviewsJSON = (JSONArray)courseJSON.get(REVIEWS);
+        ArrayList<Review> reviews = loadReviews(reviewsJSON);
+        Course course = new Course(title, rating, author, null, reviews, language, description, modules, difficulty, id);
         courses.add(course);
         JSONArray studentsJSON = (JSONArray)courseJSON.get(STUDENTS);
         assignCourse(studentsJSON, course);
