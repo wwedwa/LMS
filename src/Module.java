@@ -27,7 +27,7 @@ public class Module {
       return assessment;
     }
     public String getTitle() {
-        return this.getTitle();
+        return this.title;
     }
     public ArrayList<Lesson> getLessons() {
       return lessons;
