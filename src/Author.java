@@ -21,6 +21,7 @@ public class Author extends User {
     */
     public Author(String firstName, String lastName, String email, String username, String password, String type) {
       super(username, firstName, lastName, email, password);
+      setType("author");
     }
     /**
     * Author constructor with id

@@ -1,5 +1,6 @@
 package src;
 
+import java.time.temporal.TemporalQuery;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -60,7 +61,7 @@ public class User {
     }
 
     public String getType() {
-        return "student";
+        return this.type;
     }
 
     public ArrayList<Course> getRegisteredCourses() {
@@ -73,7 +74,9 @@ public class User {
     public void setGrades(Course course, ArrayList<Double> grades) {
       gradeBook.add(new CourseInfo(course, grades));
     }
-
+    public void setType(String type) {
+      this.type = type;
+    }
     public void registerCourse(Course course) {
         this.registeredCourses.add(course);
     }
