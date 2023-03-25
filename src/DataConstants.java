@@ -19,6 +19,8 @@ public abstract class DataConstants {
   protected static final String DIFFICULTY = "difficulty";
   protected static final String LANGUAGE = "language";
   protected static final String DESCRIPTION = "description";
+  protected static final String STUDENTS = "students";
+  protected static final String GRADES = "moduleGrades";
   // Constants for modules within courses
   protected static final String MODULES = "modules";
   protected static final String MODULE_TITLE = "title";

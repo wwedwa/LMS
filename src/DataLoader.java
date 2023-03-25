@@ -2,12 +2,14 @@ package src;
 
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.UUID;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 public class DataLoader extends DataConstants {
+  static UserList userList = UserList.getInstance();
 
   public static ArrayList<Course> loadCourses() {
     ArrayList<Course> courses = new ArrayList<Course>();
@@ -24,17 +26,35 @@ public class DataLoader extends DataConstants {
         Difficulty difficulty = Difficulty.valueOf((String)courseJSON.get(DIFFICULTY));
         Language language = Language.valueOf((String)courseJSON.get(LANGUAGE));
         String description = (String)courseJSON.get(DESCRIPTION);
-        UserList userList = UserList.getInstance();
         User author = userList.getUserByUUID(authorId);
         JSONArray modulesJSON = (JSONArray)courseJSON.get(MODULES);
         ArrayList<Module> modules = loadModules(modulesJSON);
-        courses.add(new Course(title, rating, author, null, null, language, description, modules, difficulty, id));
+        Course course = new Course(title, rating, author, null, null, language, description, modules, difficulty, id);
+        courses.add(course);
+        JSONArray studentsJSON = (JSONArray)courseJSON.get(STUDENTS);
+        assignCourse(studentsJSON, course);
 			}
 			return courses;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return courses;
+  }
+
+  private static void assignCourse(JSONArray studentsJSON, Course course) {
+    for (int i = 0; i < studentsJSON.size(); ++i) {
+      JSONObject studentJSON = (JSONObject)studentsJSON.get(i);
+      UUID studentId = UUID.fromString((String)studentJSON.get(COURSE_ID));
+      User student = userList.getUserByUUID(studentId);
+      student.registerCourse(course);
+      JSONArray gradesJSON = (JSONArray)studentJSON.get(GRADES);
+      ArrayList<Double> grades = new ArrayList<Double>();
+      Iterator iterator = gradesJSON.iterator();
+      while (iterator.hasNext()) {
+        grades.add((Double)iterator.next());
+      }
+      student.setGrades(course, grades);
+    }
   }
 
   private static ArrayList<Module> loadModules(JSONArray modulesJSON) {
