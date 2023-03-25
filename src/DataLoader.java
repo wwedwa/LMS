@@ -71,6 +71,19 @@ public class DataLoader extends DataConstants {
     return modules;
   }
 
+  private static ArrayList<Review> loadReviews(JSONArray reviewsJSON) {
+    ArrayList<Review> reviews = new ArrayList<Review>();
+    for (int i = 0; i < reviewsJSON.size(); ++i) {
+      JSONObject reviewJSON = (JSONObject)reviewsJSON.get(i);
+      UUID userId = UUID.fromString((String)reviewJSON.get(WRITER_ID));
+      User user = userList.getUserByUUID(userId);
+      int rating = ((Long)reviewJSON.get(RATING)).intValue();
+      String title = (String)reviewJSON.get(TITLE);
+      reviews.add(new Review(user, rating, title));
+    }
+    return reviews;
+  }
+
   private static ArrayList<Comment> loadComments(JSONArray commentsJSON) {
     ArrayList<Comment> comments = new ArrayList<Comment>();
     return comments;
