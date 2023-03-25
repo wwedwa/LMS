@@ -1,21 +1,31 @@
 package src;
 
 public class Review {
-    private User author;
-    private int rating;
-    private String description;
+  private User writer;
+  private int rating;
+  private String description;
 
-    public Review(User author, int rating, String description) {
-        this.author = author;
-        this.rating = rating;
-        this.description = description;
-    }
-    public int getRating() {
-      return rating;
-    }
-    public String toString() {
-        return author.getUsername() +
-            " says \"" + description + "\"" +
-            "\nRating" + rating;
-    }
+  public Review(User writer, int rating, String description) {
+    this.writer = writer;
+    this.rating = rating;
+    this.description = description;
+  }
+  
+  public int getRating() {
+    return rating;
+  }
+
+  public User getWriter() {
+    return writer;
+  }
+
+  public String getDescription() {
+    return description;
+  }
+  
+  public String toString() {
+    return writer.getUsername() +
+    " says \"" + description + "\"" +
+    "\nRating: " + rating;
+  }
 }
