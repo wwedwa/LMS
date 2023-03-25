@@ -15,6 +15,21 @@ public class CourseInfo {
             this.moduleGrades.set(i, -1.0);
         }
     }
+
+    public CourseInfo(Course course, ArrayList<Double> moduleGrades) {
+      this.course = course;
+      this.moduleGrades = moduleGrades;
+      this.grade = 0;
+      int count = 0;
+      for(double grade : moduleGrades) {
+        grade += grade;
+        count++;
+      }
+      if (count > 0) {
+      grade /= count;
+      }
+  }
+
     public double getGrade() {
       return grade;
     }
