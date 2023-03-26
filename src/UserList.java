@@ -46,6 +46,15 @@ public class UserList {
     return null;
   }
 
+  public boolean contains(String username) {
+    for (User u : users) {
+      if (u.getUsername().equals(username)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   public void saveUsers() {
     DataWriter.saveUsers(users);
   }
