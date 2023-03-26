@@ -53,7 +53,7 @@ public class DataWriter extends DataConstants {
 
   public static JSONObject getReviewJSON(Review review) {
     JSONObject reviewDetails = new JSONObject();
-    reviewDetails.put(WRITER_ID, review.getWriter().getId());
+    reviewDetails.put(WRITER_ID, review.getWriter().getId().toString());
     reviewDetails.put(RATING, review.getRating());
     reviewDetails.put(REVIEW, review.getDescription());
     return reviewDetails;
@@ -133,8 +133,7 @@ public class DataWriter extends DataConstants {
 	}
 
   public static void main(String[] args) {
-    ArrayList<Course> courses = DataLoader.loadCourses();
-    saveCourses(courses);
-
+    ArrayList<Course> course = DataLoader.loadCourses();
+    saveCourses(course);
   }
 }
