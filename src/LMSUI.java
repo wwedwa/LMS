@@ -2,16 +2,20 @@ package src;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 public class LMSUI {
-  private static Scanner scanner;
-  private static LMS application;
+  private Scanner scanner;
+  private LMS application;
 
   public static void main(String[] args) {
     LMSUI ui = new LMSUI();
-    application = new LMS();
-    scanner = new Scanner(System.in);
     ui.run();
+  }
+
+  private LMSUI() {
+    scanner = new Scanner(System.in);
+    application = new LMS();
   }
 
   private void run() {
@@ -71,6 +75,10 @@ public class LMSUI {
         createCourse();
         break;
       case 5:
+        clearScreen();
+        System.out.println("Saving progess...");
+        sleep(500);
+        System.out.println("Goodbye!");
         application.logout();
         break;
 
@@ -282,5 +290,18 @@ public class LMSUI {
 
   private void createReview() {
 
+  }
+
+  private void clearScreen() {
+    System.out.print("\033[H\033[2J");
+    System.out.flush();
+  }
+
+  private void sleep(int milliseconds) {
+    try {
+      TimeUnit.MILLISECONDS.sleep(milliseconds);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
   }
 }
