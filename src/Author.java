@@ -19,8 +19,9 @@ public class Author extends User {
     *@param password
     *@param type
     */
-    public Author(String firstName, String lastName, String email, String username, String password, String type) {
+    public Author(String username, String firstName, String lastName, String email, String password) {
       super(username, firstName, lastName, email, password);
+      createdCourses = new ArrayList<Course>();
       setType("author");
     }
     /**
