@@ -10,6 +10,7 @@ public class CourseInfo {
   private Course course;
   private double grade;
   private ArrayList<Double> moduleGrades;
+
   /**
   * CourseInfo constructor
   *@param course
@@ -36,9 +37,15 @@ public class CourseInfo {
       grade /= count;
     }
   }
+
   public double getGrade() {
     return grade;
   }
+
+  public Course getCourse() {
+    return course;
+  }
+
   /**
    * this method updates the grade
    * @param moduleNum
