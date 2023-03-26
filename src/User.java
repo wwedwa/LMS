@@ -1,103 +1,119 @@
 package src;
 
-import java.time.temporal.TemporalQuery;
 import java.util.ArrayList;
 import java.util.UUID;
 
 public class User {
-    private String username;
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String password;
-    private String type;
-    private UUID userid;
-    private ArrayList<Course> registeredCourses;
-    private ArrayList<Course> completedCourses;
-    private ArrayList<CourseInfo> gradeBook;
-    private ArrayList<Author> favoriteAuthors;
+  private String username;
+  private String firstName;
+  private String lastName;
+  private String email;
+  private String password;
+  private String type;
+  private UUID userid;
+  private ArrayList<Course> registeredCourses;
+  private ArrayList<Course> completedCourses;
+  private ArrayList<CourseInfo> gradeBook;
+  private ArrayList<Author> favoriteAuthors;
 
-    public User(String username, String firstName, String lastName, String email, String password) {
-        this.username = username;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.password = password;
-        this.userid = UUID.randomUUID();
-        this.type = "student";
-    }
-    public User(String username, String firstName, String lastName, String email, String password, UUID userid) {
-        this.username = username;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.password = password;
-        this.userid = userid;
-        this.type = "student";
-    }
+  public User(String username, String firstName, String lastName, String email, String password) {
+    this.username = username;
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.email = email;
+    this.password = password;
+    this.userid = UUID.randomUUID();
+    this.type = "student";
+    registeredCourses = new ArrayList<Course>();
+    completedCourses = new ArrayList<Course>();
+    gradeBook = new ArrayList<CourseInfo>();
+    favoriteAuthors = new ArrayList<Author>();
+  }
 
-    public String getUsername() {
-        return this.username;
-    }
+  public User(String username, String firstName, String lastName, String email, String password, UUID userid) {
+    this.username = username;
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.email = email;
+    this.password = password;
+    this.userid = userid;
+    this.type = "student";
+    registeredCourses = new ArrayList<Course>();
+    completedCourses = new ArrayList<Course>();
+    gradeBook = new ArrayList<CourseInfo>();
+    favoriteAuthors = new ArrayList<Author>();
+  }
 
-    public String getFirstName() {
-        return this.firstName;
-    }
+  public String getUsername() {
+    return this.username;
+  }
 
-    public String getLastName() {
-        return this.lastName;
-    }
+  public String getFirstName() {
+    return this.firstName;
+  }
 
-    public String getEmail() {
-        return this.email;
-    }
+  public String getLastName() {
+    return this.lastName;
+  }
 
-    public String getPassword() {
-        return this.password;
-    }
+  public String getEmail() {
+    return this.email;
+  }
 
-    public UUID getId() {
-        return this.userid;
-    }
+  public String getPassword() {
+    return this.password;
+  }
 
-    public String getType() {
-        return this.type;
-    }
+  public UUID getId() {
+    return this.userid;
+  }
 
-    public ArrayList<Course> getRegisteredCourses() {
-        return this.registeredCourses;
-    }
+  public String getType() {
+    return this.type;
+  }
 
-    public ArrayList<Course> getCompletedCourses() {
-        return this.completedCourses;
-    }
-    public void setGrades(Course course, ArrayList<Double> grades) {
-      gradeBook.add(new CourseInfo(course, grades));
-    }
-    public void setType(String type) {
-      this.type = type;
-    }
-    public void registerCourse(Course course) {
-        this.registeredCourses.add(course);
-    }
+  public ArrayList<Course> getRegisteredCourses() {
+    return this.registeredCourses;
+  }
 
-    public void unregisterCourse(Course course) {
-        this.registeredCourses.remove(course);
-    }
+  public ArrayList<Course> getCompletedCourses() {
+    return this.completedCourses;
+  }
 
-    public void addCompletedCourse(Course course) {
-        this.completedCourses.add(course);
-    }
+  public void setGrades(Course course, ArrayList<Double> grades) {
+    gradeBook.add(new CourseInfo(course, grades));
+  }
 
-    public void addFavAuthor(Author author) {
-        this.favoriteAuthors.add(author);
-    }
+  public void setType(String type) {
+    this.type = type;
+  }
+  
+  public void registerCourse(Course course) {
+    this.registeredCourses.add(course);
+  }
 
-    public void removeFavAuthor(Author author) {
-        this.favoriteAuthors.remove(author);
-    }
+  public void unregisterCourse(Course course) {
+    this.registeredCourses.remove(course);
+  }
 
-    public void updateCourseGrade(int moduleNum, double grade) {
+  public void addCompletedCourse(Course course) {
+    this.completedCourses.add(course);
+  }
 
+  public void addFavAuthor(Author author) {
+    this.favoriteAuthors.add(author);
+  }
+
+  public void removeFavAuthor(Author author) {
+    this.favoriteAuthors.remove(author);
+  }
+
+  public void updateCourseGrade(int moduleNum, double grade, Course course) {
+    for (CourseInfo courseInfo : gradeBook) {
+      if (course.getCourseID().equals(courseInfo.getCourse().getCourseID())) {
+        courseInfo.updateGrade(moduleNum, grade);
+        return;
+      }
     }
+  }
 }
