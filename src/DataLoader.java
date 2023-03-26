@@ -21,7 +21,6 @@ public class DataLoader extends DataConstants {
 				JSONObject courseJSON = (JSONObject)coursesJSON.get(i);
 				UUID id = UUID.fromString((String)courseJSON.get(COURSE_ID));
         UUID authorId = UUID.fromString((String)courseJSON.get(AUTHOR_ID));
-        double rating = ((Long)courseJSON.get(RATING)).doubleValue();
         String title = (String)courseJSON.get(TITLE);
         Difficulty difficulty = Difficulty.valueOf((String)courseJSON.get(DIFFICULTY));
         Language language = Language.valueOf((String)courseJSON.get(LANGUAGE));
@@ -31,7 +30,7 @@ public class DataLoader extends DataConstants {
         ArrayList<Module> modules = loadModules(modulesJSON);
         JSONArray reviewsJSON = (JSONArray)courseJSON.get(REVIEWS);
         ArrayList<Review> reviews = loadReviews(reviewsJSON);
-        Course course = new Course(title, rating, author, null, reviews, language, description, modules, difficulty, id);
+        Course course = new Course(title, author, null, reviews, language, description, modules, difficulty, id);
         courses.add(course);
         JSONArray studentsJSON = (JSONArray)courseJSON.get(STUDENTS);
         assignCourse(studentsJSON, course);
@@ -46,14 +45,15 @@ public class DataLoader extends DataConstants {
   private static void assignCourse(JSONArray studentsJSON, Course course) {
     for (int i = 0; i < studentsJSON.size(); ++i) {
       JSONObject studentJSON = (JSONObject)studentsJSON.get(i);
-      UUID studentId = UUID.fromString((String)studentJSON.get(COURSE_ID));
+      UUID studentId = UUID.fromString((String)studentJSON.get(STUDENT_ID));
       User student = userList.getUserByUUID(studentId);
       student.registerCourse(course);
       JSONArray gradesJSON = (JSONArray)studentJSON.get(GRADES);
       ArrayList<Double> grades = new ArrayList<Double>();
       Iterator iterator = gradesJSON.iterator();
       while (iterator.hasNext()) {
-        grades.add((Double)iterator.next());
+        double grade = ((Long)iterator.next()).doubleValue();
+        grades.add(grade);
       }
       student.setGrades(course, grades);
     }
@@ -80,8 +80,8 @@ public class DataLoader extends DataConstants {
       UUID userId = UUID.fromString((String)reviewJSON.get(WRITER_ID));
       User user = userList.getUserByUUID(userId);
       int rating = ((Long)reviewJSON.get(RATING)).intValue();
-      String title = (String)reviewJSON.get(TITLE);
-      reviews.add(new Review(user, rating, title));
+      String description = (String)reviewJSON.get(REVIEW);
+      reviews.add(new Review(user, rating, description));
     }
     return reviews;
   }
@@ -141,9 +141,9 @@ public class DataLoader extends DataConstants {
 				String type = (String)personJSON.get(TYPE);
 
         if (type.equals("student")) {
-				  users.add(new User(firstName, lastName, email, username, password, id));
+				  users.add(new User(username, firstName, lastName, email, password, id));
         } else if (type.equals("author")) {
-          users.add(new Author(firstName, lastName, email, username, password, id));
+          users.add(new Author(username, firstName, lastName, email, password, id));
         }
 			}
 			return users;
@@ -154,6 +154,7 @@ public class DataLoader extends DataConstants {
   }
 
   public static void main(String[] args) {
+    UserList userList = UserList.getInstance();
     ArrayList<Course> cs = loadCourses();
     Course c = cs.get(0); 
     System.out.println(c.getTitle());
@@ -169,6 +170,9 @@ public class DataLoader extends DataConstants {
         System.out.println(l.getContent());
         System.out.println("--------------------------------------");
       }
+    }
+    for (Review r : c.getReviews()) {
+      System.out.println(r);
     }
   }
 }
