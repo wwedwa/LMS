@@ -117,6 +117,7 @@ public class User {
   
   public void registerCourse(Course course) {
     this.registeredCourses.add(course);
+    this.gradeBook.add(new CourseInfo(course));
   }
 
   public void unregisterCourse(Course course) {
@@ -142,5 +143,9 @@ public class User {
         return;
       }
     }
+  }
+
+  public ArrayList<Course> getCreatedCourses() {
+    return new ArrayList<Course>();
   }
 }
