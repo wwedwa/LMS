@@ -1,7 +1,6 @@
 package src;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * LMS class
@@ -9,6 +8,7 @@ import java.util.HashMap;
  */
 public class LMS {
   private User user;
+  private Author author;
   private Course currCourse;
   private Module currModule;
   private Lesson currLesson;
@@ -39,6 +39,9 @@ public class LMS {
     }
     if (userList.getUser(username).getPassword().equals(password)) {
       user = userList.getUser(username);
+      if (user.getType().equals("author")) {
+        author = (Author)user;
+      }
       return true;
     } else {
       return false;
@@ -49,9 +52,8 @@ public class LMS {
    * 
    */
   public void logout() {
-    // ***DONT UNCOMMENT TWO LINES BELOW, WILL BREAK CODE***
-    //courseList.saveCourses();
-    //userList.saveUsers();
+    courseList.saveCourses();
+    userList.saveUsers();
     System.exit(0);
   }
 
@@ -90,12 +92,17 @@ public class LMS {
   }
 
   public void moveToCourse(int choice) {
+    currCourse = courseList.getAllCourses().get(choice - 1);
+  }
+
+  public void moveToRegisteredCourse(int choice) {
     currCourse = user.getRegisteredCourses().get(choice - 1);
   }
 
   public void moveToModule(int choice) {
     currModule = currCourse.getModules().get(choice - 1);
   }
+
   /**
    * this method gets all courses in the list
    * @return list of all courses
@@ -112,9 +119,18 @@ public class LMS {
     return currCourse.getModules();
   }
 
+  public String getCourseDescription() {
+    return currCourse.getDescription();
+  }
+
   public double getCourseGrade() {
     return user.getCourseGrade(currCourse);
   }
+
+  public void register() {
+    user.registerCourse(currCourse);
+  }
+
   /**
    * this method gets the User's registered courses as strings
    * @return list of registered course strings
@@ -128,7 +144,7 @@ public class LMS {
     return courseStrings;
   }
 
-  public ArrayList<String> getModuleStrings() {
+  public ArrayList<String> getModuleGradeStrings() {
     ArrayList<Module> modules = currCourse.getModules();
     ArrayList<Double> grades = user.getGrades(currCourse);
     ArrayList<String> moduleStrings = new ArrayList<String>();
@@ -151,7 +167,7 @@ public class LMS {
    * @return
    */
   public ArrayList<Course> getCreatedCourses() {
-    return this.getCreatedCourses();
+    return user.getCreatedCourses();
   }
 
   /**
@@ -193,9 +209,10 @@ public class LMS {
    * @return
    */
   public double evaluateAssessment(ArrayList<Integer> answers) {
-    return currModule.getAssessment().evaluateAssessment(answers);
+    double grade = currModule.getAssessment().evaluateAssessment(answers);
+    user.updateCourseGrade(currCourse.getModules().indexOf(currModule), grade, currCourse);
+    return grade;
   }
-
   /**
    * 
    * @return
@@ -262,6 +279,16 @@ public class LMS {
    */
   public ArrayList<Review> getReviews() {
     return currCourse.getReviews();
+  }
+
+  public boolean hasReviewed() {
+    ArrayList<Review> reviews = currCourse.getReviews();
+    for (Review review : reviews) {
+      if (review.getWriter().getId().equals(user.getId())) {
+        return true;
+      }
+    }
+    return false;
   }
 
   /**
