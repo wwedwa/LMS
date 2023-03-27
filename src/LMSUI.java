@@ -483,7 +483,7 @@ public class LMSUI {
     clearScreen();
     System.out.println("Which course would you like to edit?");
     for (int i = 0; i < application.getCreatedCourses().size(); i++) {
-      System.out.println((i + 1) + application.getCreatedCourses().get(i).getTitle());
+      System.out.println((i + 1) + ": " + application.getCreatedCourses().get(i).getTitle());
     }
     System.out.println("Enter the number of the course you would like to edit: ");
     int choice = getUserChoice(application.getCreatedCourses().size());
@@ -496,6 +496,7 @@ public class LMSUI {
     }
     System.out.println("Please enter the number of the module you would like to edit: ");
     int moduleNum = getUserChoice(course.getModuleCount());
+    moduleNum -= 1;
     Module module = course.getModules().get(moduleNum); 
     System.out.println("Would you like to edit a lesson or quiz? (l/q)");
     String type = scanner.nextLine();
@@ -509,12 +510,14 @@ public class LMSUI {
   }
 
   private void editLesson(Module module) {
+    clearScreen();
     System.out.println("Choose the lesson you would like to edit");
     for (int i = 0; i < module.getLessons().size(); i++) {
       System.out.println("Lesson " + (i + 1) + ": " + module.getLessons().get(i));
     }
     System.out.println("Enter the number of the lesson you would like to edit: ");
     int choice = getUserChoice(module.getLessons().size());
+    choice -= 1;
     Lesson lesson = module.getLessons().get(choice);
     System.out.println("You will now re create this lesson.");
     System.out.println("Please enter the name of the lesson: ");
@@ -532,12 +535,14 @@ public class LMSUI {
   }
 
   private void editQuestion(Module module) {
+    clearScreen();
     System.out.println("Choose the question you would like to edit");
     for (int i = 0; i < module.getAssessment().getQuestions().size(); i++) {
       System.out.println("Question " + (i + 1) + ": " + module.getAssessment().getQuestions().get(i));
     }
     System.out.println("Enter the number of the Question you would like to edit: ");
     int choice = getUserChoice(module.getAssessment().getQuestions().size());
+    choice -=1;
     Question question = module.getAssessment().getQuestions().get(choice);
     System.out.println("You will now recrete the question");
     System.out.print("Enter the question: ");
