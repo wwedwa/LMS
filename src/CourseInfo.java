@@ -18,9 +18,9 @@ public class CourseInfo {
   public CourseInfo(Course course) {
     this.course = course;
     this.grade = 0;
-    this.moduleGrades = new ArrayList<Double>(course.getModuleCount());
+    this.moduleGrades = new ArrayList<Double>();
     for(int i = 0; i < course.getModuleCount(); i++) {
-      this.moduleGrades.set(i, -1.0);
+      this.moduleGrades.add(-1.0);
     }
   }
 
