@@ -30,11 +30,13 @@ public class CourseInfo {
     this.grade = 0;
     int count = 0;
     for(double grade : moduleGrades) {
-      grade += grade;
-      count++;
+      if (grade != -1) {
+        this.grade += grade;
+        count++;
+      }
     }
     if (count > 0) {
-      grade /= count;
+      this.grade /= count;
     }
   }
 
@@ -44,6 +46,10 @@ public class CourseInfo {
 
   public Course getCourse() {
     return course;
+  }
+
+  public ArrayList<Double> getGrades() {
+    return moduleGrades;
   }
 
   /**
