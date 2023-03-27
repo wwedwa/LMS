@@ -9,9 +9,9 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 public class DataLoader extends DataConstants {
-  static UserList userList = UserList.getInstance();
 
   public static ArrayList<Course> loadCourses() {
+    UserList userList = UserList.getInstance();
     ArrayList<Course> courses = new ArrayList<Course>();
 		try {
 			FileReader reader = new FileReader(COURSE_FILE_NAME);
@@ -43,6 +43,7 @@ public class DataLoader extends DataConstants {
   }
 
   private static void assignCourse(JSONArray studentsJSON, Course course) {
+    UserList userList = UserList.getInstance();
     for (int i = 0; i < studentsJSON.size(); ++i) {
       JSONObject studentJSON = (JSONObject)studentsJSON.get(i);
       UUID studentId = UUID.fromString((String)studentJSON.get(STUDENT_ID));
@@ -74,6 +75,7 @@ public class DataLoader extends DataConstants {
   }
 
   private static ArrayList<Review> loadReviews(JSONArray reviewsJSON) {
+    UserList userList = UserList.getInstance();
     ArrayList<Review> reviews = new ArrayList<Review>();
     for (int i = 0; i < reviewsJSON.size(); ++i) {
       JSONObject reviewJSON = (JSONObject)reviewsJSON.get(i);
@@ -154,7 +156,6 @@ public class DataLoader extends DataConstants {
   }
 
   public static void main(String[] args) {
-    UserList userList = UserList.getInstance();
     ArrayList<Course> cs = loadCourses();
     Course c = cs.get(0); 
     System.out.println(c.getTitle());

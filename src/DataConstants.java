@@ -16,6 +16,7 @@ public abstract class DataConstants {
   protected static final String AUTHOR_ID = "author";
   protected static final String RATING = "rating";
   protected static final String TITLE = "title";
+  protected static final String COMMENTS = "comments";
   protected static final String DIFFICULTY = "difficulty";
   protected static final String LANGUAGE = "language";
   protected static final String DESCRIPTION = "description";

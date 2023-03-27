@@ -3,6 +3,7 @@ package src;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -25,15 +26,34 @@ public class DataWriter extends DataConstants {
 		JSONObject courseDetails = new JSONObject();
 		courseDetails.put(COURSE_ID, course.getCourseID().toString());
 		courseDetails.put(AUTHOR_ID, course.getAuthor().getId().toString());
-    courseDetails.put(RATING, course.getRating());
 		courseDetails.put(TITLE, course.getTitle());
 		courseDetails.put(DIFFICULTY, course.getDifficulty().toString());
 		courseDetails.put(LANGUAGE, course.getLanguage().toString());
     courseDetails.put(DESCRIPTION, course.getDescription());
-    courseDetails.put(MODULES, getModulesJSON(course.getModules()));
+    courseDetails.put(STUDENTS, getStudentsJSON(course));
+    courseDetails.put(COMMENTS, new JSONArray());
     courseDetails.put(REVIEWS, getReviewsJSON(course.getReviews()));
+    courseDetails.put(MODULES, getModulesJSON(course.getModules()));
     return courseDetails;
 	}
+
+  public static JSONArray getStudentsJSON(Course course) {
+    UserList userList = UserList.getInstance();
+    JSONArray jsonStudents = new JSONArray();
+    for (User user : userList.getUsers()) {
+      if (user.isEnrolled(course)) {
+        jsonStudents.add(getStudentJSON(user, course));
+      }
+    }
+    return jsonStudents;
+  }
+
+  public static JSONObject getStudentJSON(User user, Course course) {
+    JSONObject studentDetails = new JSONObject();
+    studentDetails.put(STUDENT_ID, user.getId().toString());
+    studentDetails.put(GRADES, user.getGrades(course));
+    return studentDetails;
+  }
 
   public static JSONArray getModulesJSON(ArrayList<Module> modules) {
     JSONArray jsonModules = new JSONArray();
