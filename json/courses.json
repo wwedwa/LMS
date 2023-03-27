@@ -9,11 +9,11 @@
     "students": [
       {
         "studentid": "9d7251a2-ca51-403d-bcdf-52100291f5c2",
-        "moduleGrades":[90, -1, -1, 85, -1]
+        "moduleGrades":[90, -1]
       },
       {
         "studentid": "257f7426-37bb-4ac6-ae7e-2d990299e415",
-        "moduleGrades":[-1, 100, -1, 90, 87]
+        "moduleGrades":[100, 87]
       }
     ],
     "comments": [
