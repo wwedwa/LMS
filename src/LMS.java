@@ -39,9 +39,6 @@ public class LMS {
     }
     if (userList.getUser(username).getPassword().equals(password)) {
       user = userList.getUser(username);
-      if (user.getType().equals("author")) {
-        author = (Author)user;
-      }
       return true;
     } else {
       return false;
