@@ -15,6 +15,7 @@ public class CourseList {
   private CourseList() {
     courses = DataLoader.loadCourses();
   }
+  
   /**
     * returns a courseList
     */
@@ -24,6 +25,7 @@ public class CourseList {
     }
     return courseList;
   }
+
   /**
     * adds course to courseList
     */
@@ -32,12 +34,14 @@ public class CourseList {
       courses.add(course);
     }
   }
+
   /**
     * returns all courses
     */
   public ArrayList<Course> getAllCourses() {
     return courses;
   }
+
   /**
     * returns arraylist of courses with keyword
     @param word
@@ -45,12 +49,13 @@ public class CourseList {
   public ArrayList<Course> getCoursesByKeyWord(String word) {
     ArrayList<Course> foundCourses = new ArrayList<Course>();
     for (Course c : courses) {
-      if (c.getTitle().contains(word)) {
+      if (c.getTitle().toLowerCase().contains(word.toLowerCase())) {
         foundCourses.add(c);
       }
     }
     return foundCourses;
   }
+
   /**
     * returns true if the course contians that title else false
     */
@@ -62,6 +67,7 @@ public class CourseList {
     }
     return false;
   }
+
   /**
     * writes courses to datawriter to save them
     */
