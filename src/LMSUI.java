@@ -1,6 +1,7 @@
 package src;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
@@ -19,6 +20,7 @@ public class LMSUI {
   }
 
   private void run() {
+    clearScreen();
     System.out.print("Do you already have an account? (y/n): ");
     if (scanner.nextLine().toLowerCase().equals("y")) {
       displayLogin();
@@ -38,6 +40,8 @@ public class LMSUI {
     boolean success = application.login(username, password);
     if (success) {
       System.out.println("\nLogging in...");
+      sleep(500);
+      clearScreen();
       return;
     }
     else {
@@ -57,30 +61,40 @@ public class LMSUI {
         4. Create Course
         5. Logout
 
-        Enter where you want to go: """;
+        Enter number corresponding to where you want to go:  """;
     System.out.print(welcomeScreen);
-    int choice = scanner.nextInt();
-    scanner.nextLine();
-    switch(choice) {
-      case 1: 
-        displayRegisteredCourses();
-        break;
-      case 2:
-        searchCourses();
-        break;
-      case 3: 
-        displayUser();
-        break;
-      case 4:
-        createCourse();
-        break;
-      case 5:
+    boolean validChoice = false;
+    while (!validChoice) {
+      String choice = scanner.nextLine();
+      validChoice = true;
+      switch(choice) {
+        case "1": 
+          clearScreen();
+          displayRegisteredCourses();
+          break;
+        case "2":
+          clearScreen();
+          searchCourses();
+          break;
+        case "3": 
         clearScreen();
-        System.out.println("Saving progess...");
-        sleep(500);
-        System.out.println("Goodbye!");
-        application.logout();
-        break;
+          displayUser();
+          break;
+        case "4":
+          clearScreen();
+          createCourse();
+          break;
+        case "5":
+          clearScreen();
+          System.out.println("Saving progess...");
+          sleep(500);
+          System.out.println("Goodbye!");
+          application.logout();
+          break;
+        default:
+          validChoice = false;
+          System.out.print("Please enter a valid number: ");
+    }
 
     }
   }
@@ -102,7 +116,78 @@ public class LMSUI {
   }
 
   private void displayRegisteredCourses() {
+    clearScreen();
+    ArrayList<String> options = application.getRegisteredCourseStrings();
+    options.add("Return to Main Menu");
+    displayOptions(options);
+    System.out.print("Enter number to view a course or return to main menu: ");
+    int choice = getUserChoice(options);
+    if (choice <= application.getRegisteredCourses().size()) {
+      application.moveToCourse(choice);
+      displayRegisteredCourse();
+    } else {
+      displayMainMenu();
+    }
+  }
 
+  private void displayRegisteredCourse() {
+    clearScreen();
+    System.out.println(application.getCourse().getDescription() + "\n");
+    System.out.println("Grade: " + application.getCourseGrade() + "\n");
+    ArrayList<String> options = application.getModuleStrings();
+    options.add("Return to Registered Courses");
+    options.add("Return to Main Menu");
+    displayOptions(options);
+    System.out.print("Enter number to view module lessons or return to another menu: ");
+    int choice = getUserChoice(options);
+    if (choice <= application.getModules().size()) {
+      application.moveToModule(choice);
+      displayModule();
+    } else if (choice == options.size() - 2) {
+      displayRegisteredCourses();
+    } else if (choice == options.size() - 1) {
+      displayMainMenu();
+    }
+  }
+
+  private void displayModule() {
+    clearScreen();
+    ArrayList<Lesson> lessons = application.getLessons();
+    String[] options = {"Take Module Quiz", "Return to Modules", "Return to Registered Courses", "Return to Main Menu"};
+    for (Lesson lesson : lessons) {
+      System.out.println(lesson + "\n");
+    }
+    displayOptions(options);
+    int choice = getUserChoice(options);
+    switch (choice) {
+      case 1:
+        performAssessment();
+      case 2:
+        displayRegisteredCourse();
+      case 3:
+        displayRegisteredCourses();
+      case 4:
+        displayMainMenu();
+    }
+  }
+
+  private void performAssessment() {
+    clearScreen();
+    Assessment quiz = application.getQuiz();
+    ArrayList<Integer> answers = new ArrayList<Integer>();
+    for (Question question : quiz.getQuestions()) {
+      System.out.println(question.getQuestion());
+      displayOptions(question.getAnswerChoices());
+      int choice = getUserChoice(question.getAnswerChoices());
+      answers.add(choice - 1);
+    }
+    double score = application.evaluateAssessment(answers);
+    displayScore(score);
+  }
+
+  private void displayScore(double score) {
+    clearScreen();
+    System.out.println("You scored a " + score);
   }
 
   private void displayAllCourses() {
@@ -110,13 +195,10 @@ public class LMSUI {
   }
 
   private void searchCourses() {
-    System.out.println("Enter a keyword to search for in the courses");
+    System.out.println("Enter a keyword to search for (or press ENTER to see all courses): ");
     String keyword = scanner.nextLine();
     ArrayList<Course> courses = application.findCourses(keyword);
-    for (int i = 0; i < courses.size(); i++) {
-      System.out.println(i+1 + ". " + courses.get(i));
-    }
-
+    displayCourses(courses);
   }
 
   private void navigateCourse() {
@@ -127,26 +209,21 @@ public class LMSUI {
 
   }
 
-  private void performAssessment(Assessment assessment) {
-
-  }
-
   private void createAccount() {
-    System.out.println("Please enter your email address: ");
+    System.out.print("Please enter your email address: ");
     String email = scanner.nextLine();
-    System.out.println("Please enter your first name: ");
+    System.out.print("Please enter your first name: ");
     String firstName = scanner.nextLine();
-    System.out.println("Please enter your last name: ");
+    System.out.print("Please enter your last name: ");
     String lastName = scanner.nextLine();
-    System.out.println("Please enter a username: ");
+    System.out.print("Please enter a username: ");
     String username = scanner.nextLine();
-    System.out.println("Please enter a password: ");
+    System.out.print("Please enter a password: ");
     String password = scanner.nextLine();
+    clearScreen();
     System.out.println("Thank you for creating an account\nLogging in...");
-    User user = new User(username, firstName, lastName, email, password);
-    ArrayList<User> users = new ArrayList<>();
-    users.add(user);
-    DataWriter.saveUsers(users);
+    application.addUser(firstName, lastName, email, username, password);
+    sleep(500);
   }
 
   private void createCourse() {
@@ -303,5 +380,61 @@ public class LMSUI {
     } catch (InterruptedException e) {
       e.printStackTrace();
     }
+  }
+
+  private void displayCourses(ArrayList<Course> courses) {
+    for (int i = 0; i < courses.size(); i++) {
+      System.out.println((i + 1) + ". " + courses.get(i));
+    }
+  }
+
+  private void displayOptions(ArrayList<String> options) {
+    for (int i = 0; i < options.size(); i++) {
+      System.out.println((i + 1) + ". " + options.get(i));
+    }
+  }
+
+  private int getUserChoice(ArrayList<String> options) {
+    boolean validChoice = false;
+    int numChoice = -1;
+    while (!validChoice) {
+      validChoice = true;
+      String choice = scanner.nextLine();
+      try {
+        numChoice = Integer.parseInt(choice);
+      } catch (NumberFormatException e) {
+        numChoice = -1;
+      }
+      if (numChoice <= 0 && numChoice > options.size()) {
+        validChoice = false;
+        System.out.print("Please enter a valid number: ");
+      }
+    }
+    return numChoice;
+  }
+
+  private void displayOptions(String[] options) {
+    for (int i = 0; i < options.length; i++) {
+      System.out.println((i + 1) + ". " + options[i]);
+    }
+  }
+
+  private int getUserChoice(String[] options) {
+    boolean validChoice = false;
+    int numChoice = -1;
+    while (!validChoice) {
+      validChoice = true;
+      String choice = scanner.nextLine();
+      try {
+        numChoice = Integer.parseInt(choice);
+      } catch (NumberFormatException e) {
+        numChoice = -1;
+      }
+      if (numChoice <= 0 && numChoice > options.length) {
+        validChoice = false;
+        System.out.print("Please enter a valid number: ");
+      }
+    }
+    return numChoice;
   }
 }

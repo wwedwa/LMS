@@ -1,6 +1,7 @@
 package src;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * LMS class
@@ -20,6 +21,10 @@ public class LMS {
   public LMS() {
     userList = UserList.getInstance();
     courseList = CourseList.getInstance();
+  }
+
+  public Course getCourse() {
+    return currCourse;
   }
 
   /**
@@ -60,6 +65,7 @@ public class LMS {
    */
   public void addUser(String firstName, String lastName, String email, String username, String password) {
     this.user = new User(username, firstName, lastName, email, password);
+    userList.addUser(user);
   }
 
   /**
@@ -83,6 +89,13 @@ public class LMS {
     return courseList.getCoursesByKeyWord(keyword);
   }
 
+  public void moveToCourse(int choice) {
+    currCourse = user.getRegisteredCourses().get(choice - 1);
+  }
+
+  public void moveToModule(int choice) {
+    currModule = currCourse.getModules().get(choice - 1);
+  }
   /**
    * this method gets all courses in the list
    * @return list of all courses
@@ -91,14 +104,48 @@ public class LMS {
     return this.courseList.getAllCourses();
   }
 
-  /**
-   * this method gets the User's registered courses
-   * @return list of registered courses
-   */
   public ArrayList<Course> getRegisteredCourses() {
-    return this.user.getRegisteredCourses();
+    return user.getRegisteredCourses();
   }
 
+  public ArrayList<Module> getModules() {
+    return currCourse.getModules();
+  }
+
+  public double getCourseGrade() {
+    return user.getCourseGrade(currCourse);
+  }
+  /**
+   * this method gets the User's registered courses as strings
+   * @return list of registered course strings
+   */
+  public ArrayList<String> getRegisteredCourseStrings() {
+    ArrayList<Course> courses = user.getRegisteredCourses();
+    ArrayList<String> courseStrings = new ArrayList<String>();
+    for (int i = 0; i < courses.size(); i++) {
+      courseStrings.add(courses.get(i).toString());
+    }
+    return courseStrings;
+  }
+
+  public ArrayList<String> getModuleStrings() {
+    ArrayList<Module> modules = currCourse.getModules();
+    ArrayList<Double> grades = user.getGrades(currCourse);
+    ArrayList<String> moduleStrings = new ArrayList<String>();
+    for (int i = 0; i < modules.size(); i++) {
+      String grade = (grades.get(i) == -1) ? "Not taken" : grades.get(i).toString();
+      moduleStrings.add(modules.get(i) + " - Quiz Grade: " + grade);
+    }
+    return moduleStrings;
+  }
+
+  public ArrayList<Lesson> getLessons() {
+    return currModule.getLessons();
+  }
+
+  public Assessment getQuiz() {
+    return currModule.getAssessment();
+  }
   /**
    * this method gets the User's registered courses
    * @return
@@ -145,7 +192,7 @@ public class LMS {
    * @param answers
    * @return
    */
-  public double evaluateAssessment(Assessment assessment, ArrayList<Integer> answers) {
+  public double evaluateAssessment(ArrayList<Integer> answers) {
     return currModule.getAssessment().evaluateAssessment(answers);
   }
 
