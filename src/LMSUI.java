@@ -52,7 +52,7 @@ public class LMSUI {
 
   private void displayMainMenu() {
     System.out.println("Welcome " + application.getUser().getUsername());
-    String[] welcomeOptions = {"View Registered Courses", "View Created Courses", "Search for Courses", "View Account Details", "Create Course", "Logout"};
+    String[] welcomeOptions = {"View Registered Courses", "View Created Courses", "Search for Courses", "View Account Details", "Create Course","Edit Course", "Logout"};
     displayOptions(welcomeOptions);
     System.out.println("Enter number corresponding to where you want to go: ");
     int choice = getUserChoice(welcomeOptions.length);
@@ -68,6 +68,8 @@ public class LMSUI {
       case 5:
         createCourse();
       case 6:
+        editCourse();
+      case 7:
         clearScreen();
         System.out.println("Saving progess...");
         sleep(500);
@@ -475,5 +477,84 @@ public class LMSUI {
       }
     }
     return numChoice;
+  }
+
+  private void editCourse() {
+    clearScreen();
+    System.out.println("Which course would you like to edit?");
+    for (int i = 0; i < application.getCreatedCourses().size(); i++) {
+      System.out.println((i + 1) + application.getCreatedCourses().get(i).getTitle());
+    }
+    System.out.println("Enter the number of the course you would like to edit: ");
+    int choice = getUserChoice(application.getCreatedCourses().size());
+    choice -= 1;
+    Course course = application.getCreatedCourses().get(choice);
+    System.out.println(course.getTitle());
+    System.out.println(course.getDescription());
+    for (int i = 0; i < course.getModuleCount(); i++) {
+      System.out.println("Module " + (i + 1) + ": " + course.getModules().get(i).getTitle());
+    }
+    System.out.println("Please enter the number of the module you would like to edit: ");
+    int moduleNum = getUserChoice(course.getModuleCount());
+    Module module = course.getModules().get(moduleNum); 
+    System.out.println("Would you like to edit a lesson or quiz? (l/q)");
+    String type = scanner.nextLine();
+    if (type.equals("q")) {
+      editQuestion(module);
+    }
+    else {
+      editLesson(module);
+    }
+    displayMainMenu();
+  }
+
+  private void editLesson(Module module) {
+    System.out.println("Choose the lesson you would like to edit");
+    for (int i = 0; i < module.getLessons().size(); i++) {
+      System.out.println("Lesson " + (i + 1) + ": " + module.getLessons().get(i));
+    }
+    System.out.println("Enter the number of the lesson you would like to edit: ");
+    int choice = getUserChoice(module.getLessons().size());
+    Lesson lesson = module.getLessons().get(choice);
+    System.out.println("You will now re create this lesson.");
+    System.out.println("Please enter the name of the lesson: ");
+    String lessonName = scanner.nextLine();
+    System.out.println("Enter all text for the module (Enter a line with just (finished) to end):");
+    String moduleText = "";
+    String tempLine = "";
+    do {
+      moduleText += tempLine;
+      tempLine = scanner.nextLine();
+    } while(!tempLine.equals("finished"));
+    lesson = new Lesson(lessonName, moduleText);
+    module.getLessons().set(choice, lesson);
+    System.out.println("Lesson successfully edited, returning to main menu. ");
+  }
+
+  private void editQuestion(Module module) {
+    System.out.println("Choose the question you would like to edit");
+    for (int i = 0; i < module.getAssessment().getQuestions().size(); i++) {
+      System.out.println("Question " + (i + 1) + ": " + module.getAssessment().getQuestions().get(i));
+    }
+    System.out.println("Enter the number of the Question you would like to edit: ");
+    int choice = getUserChoice(module.getAssessment().getQuestions().size());
+    Question question = module.getAssessment().getQuestions().get(choice);
+    System.out.println("You will now recrete the question");
+    System.out.print("Enter the question: ");
+      String questionContent = scanner.nextLine();
+      System.out.print("Enter the number of answer choices (up to 4): ");
+      int choices = getUserChoice(4);
+      scanner.nextLine();
+      ArrayList<String> answers = new ArrayList<>();
+      for (int i = 0; i < choices; i++) {
+        System.out.print("Enter answer choice " + (i + 1) + ": ");
+        answers.add(scanner.nextLine());
+      }
+      System.out.println("Enter the number of the correct answer: ");
+      int correctAnswer = scanner.nextInt();
+      scanner.nextLine();
+      Question quest = new Question(questionContent, answers, correctAnswer - 1);
+      module.getAssessment().getQuestions().set(choice, quest);
+      System.out.println("Question successfully edited, returning to main menu");
   }
 }
