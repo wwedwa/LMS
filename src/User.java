@@ -80,6 +80,33 @@ public class User {
     return this.completedCourses;
   }
 
+  public ArrayList<Double> getGrades(Course course) {
+    for (CourseInfo courseInfo : gradeBook) {
+      if (course.getCourseID().equals(courseInfo.getCourse().getCourseID())) {
+        return courseInfo.getGrades();
+      }
+    }
+    return new ArrayList<Double>();
+  }
+
+  public double getCourseGrade(Course course) {
+    for (CourseInfo courseInfo : gradeBook) {
+      if (course.getCourseID().equals(courseInfo.getCourse().getCourseID())) {
+        return courseInfo.getGrade();
+      }
+    }
+    return -1;
+  }
+
+  public boolean isEnrolled(Course course) {
+    for (Course c : registeredCourses) {
+      if (c.getCourseID().equals(course.getCourseID())) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   public void setGrades(Course course, ArrayList<Double> grades) {
     gradeBook.add(new CourseInfo(course, grades));
   }
