@@ -9,7 +9,6 @@ import java.util.UUID;
  */
 public class Comment {
     private User author;
-    private UUID commentid;
     private String description;
     private ArrayList<Comment> replies;
     /**
@@ -32,11 +31,43 @@ public class Comment {
         this.author = author;
         this.description = description;
     }
+
+    public User getWriter() {
+      return author;
+    }
+
+    public String getComment() {
+      return description;
+    }
+
+    public ArrayList<Comment> getReplies() {
+      return replies;
+    }
     /**
     * add reply comment
     *@param comment
     */
     public void addReply(Comment comment) {
         replies.add(comment);
+    }
+
+    public String toString() {
+      String toReturn = author.getUsername() + " says: " + description + "\n";
+      for (Comment reply : replies) {
+        toReturn += reply.toString(1);
+      }
+      return toReturn;
+    }
+
+    public String toString(int depth) {
+      String tabs = "";
+      for (int i = 0; i < depth; i++) {
+        tabs += "\t";
+      }
+      String toReturn = tabs + author.getUsername() + " replies: " + description + "\n";
+      for (Comment reply : replies) {
+        toReturn += reply.toString(depth + 1);
+      }
+      return toReturn;
     }
 }

@@ -30,7 +30,9 @@ public class DataLoader extends DataConstants {
         ArrayList<Module> modules = loadModules(modulesJSON);
         JSONArray reviewsJSON = (JSONArray)courseJSON.get(REVIEWS);
         ArrayList<Review> reviews = loadReviews(reviewsJSON);
-        Course course = new Course(title, author, null, reviews, language, description, modules, difficulty, id);
+        JSONArray commentsJSON = (JSONArray)courseJSON.get(COMMENTS);
+        ArrayList<Comment> comments = loadComments(commentsJSON);
+        Course course = new Course(title, author, comments, reviews, language, description, modules, difficulty, id);
         courses.add(course);
         JSONArray studentsJSON = (JSONArray)courseJSON.get(STUDENTS);
         assignCourse(studentsJSON, course);
@@ -89,7 +91,17 @@ public class DataLoader extends DataConstants {
   }
 
   private static ArrayList<Comment> loadComments(JSONArray commentsJSON) {
+    UserList userList = UserList.getInstance();
     ArrayList<Comment> comments = new ArrayList<Comment>();
+    for (int i = 0; i < commentsJSON.size(); i++) {
+      JSONObject commentJSON = (JSONObject)commentsJSON.get(i);
+      UUID userId = UUID.fromString((String)commentJSON.get(WRITER_ID));
+      User user = userList.getUserByUUID(userId);
+      String comment = (String)commentJSON.get(COMMENT);
+      JSONArray repliesJSON = (JSONArray)commentJSON.get(REPLIES);
+      ArrayList<Comment> replies = loadComments(repliesJSON);
+      comments.add(new Comment(user, comment, replies));
+    }
     return comments;
   }
 
@@ -156,6 +168,10 @@ public class DataLoader extends DataConstants {
   }
 
   public static void main(String[] args) {
+    ArrayList<User> users = loadUsers();
+    for (User u : users) {
+      System.out.println(u.getUsername());
+    }
     ArrayList<Course> cs = loadCourses();
     Course c = cs.get(0); 
     System.out.println(c.getTitle());
@@ -174,6 +190,9 @@ public class DataLoader extends DataConstants {
     }
     for (Review r : c.getReviews()) {
       System.out.println(r);
+    }
+    for (Comment comment : c.getComments()) {
+      System.out.println(comment);
     }
   }
 }

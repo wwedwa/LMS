@@ -1,1 +1,97 @@
-[{"difficulty":"EASY","comments":[],"reviews":[{"rating":4,"description":"Great course!","userid":"9d7251a2-ca51-403d-bcdf-52100291f5c2"}],"author":"da6abb4c-eba4-41ef-a49b-158d6f295691","description":"Python introduction for novices in coding","students":[{"studentid":"9d7251a2-ca51-403d-bcdf-52100291f5c2","moduleGrades":[-1.0,-1.0]},{"studentid":"257f7426-37bb-4ac6-ae7e-2d990299e415","moduleGrades":[-1.0,-1.0]}],"language":"PYTHON","id":"33189195-6b2b-4eed-be23-7a82d7bca444","title":"Intro to Python","modules":[{"quiz":[{"answerChoices":["Something","Something else","The correct answer","The wrong answer"],"question":"What is a variable?","correctAnswer":2},{"answerChoices":["Yes","No"],"question":"Is this the proper way to assign a variable: \"x == 2\"?","correctAnswer":1}],"title":"variables","lessons":[{"title":"Types of variables","content":"ints, strings, booleans, doubles, longs, and more!"},{"title":"Creating a variable","content":"Like this: x = \"Hello World!\" (yes, python is that easy)"}]},{"quiz":[],"title":"Conditionals","lessons":[{"title":"If Statements","content":"Do something if stamenet evaluates to true"},{"title":"If\/Else Statements","content":"Adding an else will allow you to execute another bit of code if the original statement is false"}]}]}]
+[
+  {
+    "id": "33189195-6b2b-4eed-be23-7a82d7bca444",
+    "author": "da6abb4c-eba4-41ef-a49b-158d6f295691",
+    "title": "Intro to Python",
+    "difficulty": "EASY",
+    "language": "PYTHON",
+    "description": "Python introduction for novices in coding",
+    "students": [
+      {
+        "studentid": "9d7251a2-ca51-403d-bcdf-52100291f5c2",
+        "moduleGrades":[90, -1]
+      },
+      {
+        "studentid": "257f7426-37bb-4ac6-ae7e-2d990299e415",
+        "moduleGrades":[100, 87]
+      }
+    ],
+    "comments": [
+      {
+        "userid": "257f7426-37bb-4ac6-ae7e-2d990299e415",
+        "comment": "How do I retake quizzes?",
+        "replies": [
+          {
+            "userid": "da6abb4c-eba4-41ef-a49b-158d6f295691",
+            "comment": "Just click the button that says retake",
+            "replies": [
+              {
+                "userid": "257f7426-37bb-4ac6-ae7e-2d990299e415",
+                "comment": "thanks!",
+                "replies": []
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "reviews": [
+      {
+        "userid": "9d7251a2-ca51-403d-bcdf-52100291f5c2",
+        "rating": 4,
+        "review": "Great course!"
+      }
+    ],
+    "modules": [
+      {
+        "title": "variables",
+        "comments": [],
+        "lessons": [
+          {
+            "title": "Types of variables",
+            "content": "ints, strings, booleans, doubles, longs, and more!"
+          },
+          {
+            "title": "Creating a variable",
+            "content": "Like this: x = \"Hello World!\" (yes, python is that easy)"
+          }
+        ],
+        "quiz": [
+          {
+            "question": "What is a variable?",
+            "answerChoices": [
+              "Something",
+              "Something else",
+              "The correct answer",
+              "The wrong answer"
+            ],
+            "correctAnswer": 2
+          },
+          {
+            "question": "Is this the proper way to assign a variable: \"x == 2\"?",
+            "answerChoices": [
+              "Yes",
+              "No"
+            ],
+            "correctAnswer": 1
+          }
+        ]
+      },
+      {
+        "title": "Conditionals",
+        "comments": [],
+        "lessons": [
+          {
+            "title": "If Statements",
+            "content": "Do something if stamenet evaluates to true"
+          },
+          {
+            "title": "If/Else Statements",
+            "content": "Adding an else will allow you to execute another bit of code if the original statement is false"
+          }
+        ],
+        "quiz": []
+      }
+    ]
+  }
+]
