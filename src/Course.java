@@ -18,7 +18,6 @@ public class Course {
   private String description;
   private ArrayList<Module> modules;
   private Difficulty difficulty;
-  private int moduleCount;
 
   /**
   * Course constructor
@@ -204,7 +203,7 @@ public class Course {
   * returns the module index
   */
   public int getModuleCount() {
-    return moduleCount;
+    return modules.size();
   }
 
   public String toString() {
