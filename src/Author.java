@@ -50,6 +50,7 @@ public class Author extends User {
   /**
   * returns all created courses
   */
+  @Override
   public ArrayList<Course> getCreatedCourses() {
     return this.createdCourses;
   }
