@@ -62,7 +62,7 @@ public class LMS {
    * @param username
    * @param password
    */
-  public void addUser(String firstName, String lastName, String email, String username, String password) {
+  public void addUser(String username, String firstName, String lastName, String email, String password) {
     this.user = new User(username, firstName, lastName, email, password);
     userList.addUser(user);
   }

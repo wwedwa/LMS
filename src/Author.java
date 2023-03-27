@@ -35,7 +35,7 @@ public class Author extends User {
   *@param password
   *@param id
   */
-  public Author(String firstName, String lastName, String email, String username, String password, UUID id) {
+  public Author(String username, String firstName, String lastName, String email, String password, UUID id) {
     super(username, firstName, lastName, email, password, id);
   }
 

@@ -252,7 +252,7 @@ public class LMSUI {
     String password = scanner.nextLine();
     clearScreen();
     System.out.println("Thank you for creating an account\nLogging in...");
-    application.addUser(firstName, lastName, email, username, password);
+    application.addUser(username, firstName, lastName, email, password);
     sleep(500);
   }
 
