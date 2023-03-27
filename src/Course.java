@@ -206,4 +206,14 @@ public class Course {
   public int getModuleCount() {
     return moduleCount;
   }
+
+  public String toString() {
+    String toReturn = title;
+    if (reviews.size() > 0) {
+      toReturn += " - Rating: " + rating + "(" + reviews.size() + " reviews)";
+    } else {
+      toReturn += " - no reviews";
+    }
+    return toReturn;
+  }
 }
