@@ -1,11 +1,17 @@
 package src;
 
+<<<<<<< HEAD
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+=======
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
+>>>>>>> e71d4dbf88c0c27acbd15a4eacb6b0a61687b981
 import java.util.ArrayList;
 
 /**
@@ -310,5 +316,17 @@ public class LMS {
    */
   public User getUser() {
     return user;
+  }
+  public void saveModule() throws Exception{
+    String fileName = currModule.getTitle() + ".txt";
+    File file = new File(fileName);
+    file.createNewFile();
+    FileWriter writer = new FileWriter(fileName);
+    writer.write(currModule.getTitle() + "\n");
+    for (int i = 0; i < currModule.getLessons().size(); i++) {
+      String currLesson = currModule.getLessons().get(i).toString();
+      writer.write("\n" + currLesson + "\n");
+    }
+    writer.close();
   }
 }
