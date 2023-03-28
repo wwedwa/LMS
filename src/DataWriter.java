@@ -73,7 +73,7 @@ public class DataWriter extends DataConstants {
 
   public static JSONObject getCommentJSON(Comment comment) {
     JSONObject commentDetails = new JSONObject();
-    commentDetails.put(WRITER_ID, comment.getWriter().getId().toString());
+    commentDetails.put(WRITER_ID, comment.getAuthor().getId().toString());
     commentDetails.put(COMMENT, comment.getComment());
     commentDetails.put(REPLIES, getCommentsJSON(comment.getReplies()));
     return commentDetails;

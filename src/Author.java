@@ -9,7 +9,6 @@ import java.util.UUID;
  */
 public class Author extends User {
   private ArrayList<Course> createdCourses;
-  private double rating;
 
   /**
   * Author constructor with type
@@ -37,14 +36,6 @@ public class Author extends User {
   */
   public Author(String username, String firstName, String lastName, String email, String password, UUID id) {
     super(username, firstName, lastName, email, password, id);
-  }
-
-  /**
-  * update rating
-  *@param rating
-  */
-  public void updateRating(int rating) {
-    this.rating = rating;
   }
 
   /**

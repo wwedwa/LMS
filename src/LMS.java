@@ -1,5 +1,8 @@
 package src;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -294,5 +297,17 @@ public class LMS {
    */
   public User getUser() {
     return user;
+  }
+  public void saveModule() throws Exception{
+    String fileName = currModule.getTitle() + ".txt";
+    File file = new File(fileName);
+    file.createNewFile();
+    FileWriter writer = new FileWriter(fileName);
+    writer.write(currModule.getTitle() + "\n");
+    for (int i = 0; i < currModule.getLessons().size(); i++) {
+      String currLesson = currModule.getLessons().get(i).toString();
+      writer.write("\n" + currLesson + "\n");
+    }
+    writer.close();
   }
 }

@@ -32,7 +32,7 @@ public class Comment {
         this.comment = comment;
     }
 
-    public User getWriter() {
+    public User getAuthor() {
       return author;
     }
 
