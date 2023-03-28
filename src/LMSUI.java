@@ -118,11 +118,11 @@ public class LMSUI {
     while (true) {
       clearScreen();
       System.out.println(application.getCourse().getDescription() + "\n");
-      System.out.println("Grade: " + application.getCourseGrade() + "\n");
+      System.out.println("Grade: " + application.getCourseGrade() + "%\n");
       displayOptions(options);
       System.out.print("Enter number to view module lessons or return to previous menu: ");
       int choice = getUserChoice(options.size());
-      if (choice < application.getModules().size()) {
+      if (choice < options.size()) {
         application.moveToModule(choice);
         displayModule();
       } else if (choice == options.size()) {
@@ -135,6 +135,7 @@ public class LMSUI {
   }
 
   private void displayModule() {
+    clearScreen();
     ArrayList<Lesson> lessons = application.getLessons();
     String[] options = {"Take Module Quiz", "Return to Module List"};
     for (Lesson lesson : lessons) {
@@ -174,7 +175,7 @@ public class LMSUI {
 
   private void displayScore(double score) {
     clearScreen();
-    System.out.println("You scored a " + (score * 100) + "%");
+    System.out.println("You scored a " + score + "%");
     String[] options = {"Take Quiz Again", "Return to List of Modules"};
     displayOptions(options);
     int choice = getUserChoice(options.length);
@@ -272,7 +273,7 @@ public class LMSUI {
   }
 
   private void createCourse() {
-    ArrayList<Module> modules = new ArrayList<>();
+    ArrayList<Module> modules = new ArrayList<Module>();
     System.out.println("\nEnter the name of the course: ");
     String courseName = scanner.nextLine();
     System.out.println("\nEnter the course Description (Enter a blank line to end): ");
@@ -344,14 +345,12 @@ public class LMSUI {
     boolean addingModules = true;
     int moduleNum = 1;
     while(addingModules) {
-    ArrayList<Lesson> lessons = new ArrayList<>();
+    ArrayList<Lesson> lessons = new ArrayList<Lesson>();
       System.out.println("Module " + moduleNum);
-      boolean addingLessons = true;
       createLessons(lessons);
-      ArrayList<Question> questions = new ArrayList<>();
+      ArrayList<Question> questions = new ArrayList<Question>();
       System.out.println("You will now create a quiz for the lesson that consists of up to 5 questions");
       createQuestions(questions);
-      
       Assessment assessment = new Assessment(questions);
       System.out.println("Would you like to add another Module? (y/n)");
       String choice = getYesNoChoice();

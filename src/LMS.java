@@ -79,7 +79,7 @@ public class LMS {
    * @param difficulty
    */
   public boolean addCourse(String title, Language language, String description, ArrayList<Module> modules, Difficulty difficulty) {
-    return false;
+    return courseList.addCourse(title, user, language, description, modules, difficulty);
   }
 
   /**
@@ -206,7 +206,7 @@ public class LMS {
    * @return
    */
   public double evaluateAssessment(ArrayList<Integer> answers) {
-    double grade = currModule.getAssessment().evaluateAssessment(answers);
+    double grade = currModule.getAssessment().evaluateAssessment(answers) * 100;
     user.updateCourseGrade(currCourse.getModules().indexOf(currModule), grade, currCourse);
     return grade;
   }
