@@ -14,6 +14,13 @@ public class Module {
     comments = new ArrayList<Comment>();
     this.lessons = lessons;
   }
+
+  public Module(String title, Assessment assessment, ArrayList<Lesson> lessons, ArrayList<Comment> comments) {
+    this.title = title;
+    this.assessment = assessment;
+    this.lessons = lessons;
+    this.comments = comments;
+  }
   
   public ArrayList<Comment> getComments() {
     return comments;

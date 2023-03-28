@@ -107,14 +107,15 @@ public class User {
     return false;
   }
 
-  public void setGrades(Course course, ArrayList<Double> grades) {
-    gradeBook.add(new CourseInfo(course, grades));
-  }
-
   public void setType(String type) {
     this.type = type;
   }
-  
+
+  public void registerCourse(Course course, ArrayList<Double> grades) {
+    this.registeredCourses.add(course);
+    this.gradeBook.add(new CourseInfo(course, grades));
+  }
+
   public void registerCourse(Course course) {
     this.registeredCourses.add(course);
     this.gradeBook.add(new CourseInfo(course));
