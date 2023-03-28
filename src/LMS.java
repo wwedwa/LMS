@@ -1,8 +1,17 @@
 package src;
 
+<<<<<<< HEAD
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+=======
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
+>>>>>>> e71d4dbf88c0c27acbd15a4eacb6b0a61687b981
 import java.util.ArrayList;
 
 /**
@@ -237,6 +246,12 @@ public class LMS {
   public void addModuleComment(String decription) {
     Comment comment = new Comment(user, decription);
     currModule.addComment(comment);
+  }
+
+  public void createCertificate() throws IOException {
+    try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(currCourse.getTitle()+".txt"), "utf-8"))) {
+      writer.write("Congratulations "+user.getFirstName()+" you completed "+currCourse.getTitle()+"!");
+    }
   }
 
   /**
