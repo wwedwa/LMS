@@ -62,9 +62,12 @@ public class LMS {
    * @param username
    * @param password
    */
-  public void addUser(String username, String firstName, String lastName, String email, String password) {
-    this.user = new User(username, firstName, lastName, email, password);
-    userList.addUser(user);
+  public boolean addUser(String username, String firstName, String lastName, String email, String password) {
+    boolean wasAdded = userList.addUser(username, firstName, lastName, email, password);
+    if (wasAdded) {
+      user = userList.getUser(username);
+    }
+    return wasAdded;
   }
 
   /**
@@ -75,8 +78,8 @@ public class LMS {
    * @param modules
    * @param difficulty
    */
-  public void addCourse(String title, Language language, String description, ArrayList<Module> modules, Difficulty difficulty) {
-    courseList.addCourse(new Course(title, this.user, language, description, modules, difficulty));
+  public boolean addCourse(String title, Language language, String description, ArrayList<Module> modules, Difficulty difficulty) {
+    return false;
   }
 
   /**
@@ -178,14 +181,6 @@ public class LMS {
    */
   public ArrayList<Course> getCompletedCourses() {
     return this.user.getCompletedCourses();
-  }
-
-  /**
-   * 
-   * @return
-   */
-  public boolean checkUsername(String username) {
-    return username.equals(this.user.getUsername());
   }
 
   /**
