@@ -18,10 +18,12 @@ public class UserList {
     return userList;
   }
 
-  public void addUser(User user) {
-    if (user != null) {
-      users.add(user);
+  public boolean addUser(String username, String firstName, String lastName, String email, String password) {
+    if (contains(username)) {
+      return false;
     }
+    users.add(new User(username, firstName, lastName, email, password));
+    return true;
   }
 
   public User getUser(String username) {
