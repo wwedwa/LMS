@@ -9,27 +9,27 @@ import java.util.UUID;
  */
 public class Comment {
     private User author;
-    private String description;
+    private String comment;
     private ArrayList<Comment> replies;
     /**
     * Comment constructor with replies
     *@param author
-    *@param description
+    *@param comment
     *@param replies
     */
-    public Comment(User author, String description, ArrayList<Comment> replies) {
+    public Comment(User author, String comment, ArrayList<Comment> replies) {
         this.author = author;
-        this.description = description;
+        this.comment = comment;
         this.replies = replies;
     }
     /**
     * Comment constructor
     *@param author
-    *@param description
+    *@param comment
     */
     public Comment(User author, String description) {
         this.author = author;
-        this.description = description;
+        this.comment = comment;
     }
 
     public User getWriter() {
@@ -37,7 +37,7 @@ public class Comment {
     }
 
     public String getComment() {
-      return description;
+      return comment;
     }
 
     public ArrayList<Comment> getReplies() {
@@ -52,7 +52,7 @@ public class Comment {
     }
 
     public String toString() {
-      String toReturn = author.getUsername() + " says: " + description + "\n";
+      String toReturn = author.getUsername() + " says: " + comment + "\n";
       for (Comment reply : replies) {
         toReturn += reply.toString(1);
       }
@@ -64,7 +64,7 @@ public class Comment {
       for (int i = 0; i < depth; i++) {
         tabs += "\t";
       }
-      String toReturn = tabs + author.getUsername() + " replies: " + description + "\n";
+      String toReturn = tabs + author.getUsername() + " replies: " + comment + "\n";
       for (Comment reply : replies) {
         toReturn += reply.toString(depth + 1);
       }
