@@ -242,6 +242,10 @@ public class LMS {
     currModule.addComment(comment);
   }
 
+  /**
+   * creates a certificate for a specific course for the user
+   * @throws IOException
+   */
   public void createCertificate() throws IOException {
     try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(currCourse.getTitle()+".txt"), "utf-8"))) {
       writer.write("Congratulations "+user.getFirstName()+" you completed "+currCourse.getTitle()+"!");
