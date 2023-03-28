@@ -88,7 +88,7 @@ public class LMS {
    * @param difficulty
    */
   public boolean addCourse(String title, Language language, String description, ArrayList<Module> modules, Difficulty difficulty) {
-    return false;
+    return courseList.addCourse(title, user, language, description, modules, difficulty);
   }
 
   /**
@@ -215,7 +215,7 @@ public class LMS {
    * @return
    */
   public double evaluateAssessment(ArrayList<Integer> answers) {
-    double grade = currModule.getAssessment().evaluateAssessment(answers);
+    double grade = currModule.getAssessment().evaluateAssessment(answers) * 100;
     user.updateCourseGrade(currCourse.getModules().indexOf(currModule), grade, currCourse);
     return grade;
   }
@@ -245,6 +245,10 @@ public class LMS {
     currModule.addComment(comment);
   }
 
+  /**
+   * creates a certificate for a specific course for the user
+   * @throws IOException
+   */
   public void createCertificate() throws IOException {
     try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(currCourse.getTitle()+".txt"), "utf-8"))) {
       writer.write("Congratulations "+user.getFirstName()+" you completed "+currCourse.getTitle()+"!");

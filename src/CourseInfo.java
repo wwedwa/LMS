@@ -58,15 +58,15 @@ public class CourseInfo {
    * @param grade
    */
   public void updateGrade(int moduleNum, double grade) {
-    if (moduleGrades.size() >= moduleNum) {
-      this.moduleGrades.set(moduleNum, grade);
-    }
+    this.moduleGrades.set(moduleNum, grade);
     int gradedModules = 0;
+    int total = 0;
     for(int i = 0; i < moduleGrades.size(); i++) {
       if(moduleGrades.get(i) != -1) {
         gradedModules++;
+        total += moduleGrades.get(i);
       }
     }
-    this.grade = ((this.grade + grade)/gradedModules);
+    this.grade = total/gradedModules;
   }
 }
