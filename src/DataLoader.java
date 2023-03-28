@@ -50,7 +50,6 @@ public class DataLoader extends DataConstants {
       JSONObject studentJSON = (JSONObject)studentsJSON.get(i);
       UUID studentId = UUID.fromString((String)studentJSON.get(STUDENT_ID));
       User student = userList.getUserByUUID(studentId);
-      student.registerCourse(course);
       JSONArray gradesJSON = (JSONArray)studentJSON.get(GRADES);
       ArrayList<Double> grades = new ArrayList<Double>();
       Iterator iterator = gradesJSON.iterator();
@@ -58,7 +57,7 @@ public class DataLoader extends DataConstants {
         double grade = ((Long)iterator.next()).doubleValue();
         grades.add(grade);
       }
-      student.setGrades(course, grades);
+      student.registerCourse(course, grades);
     }
   }
 
@@ -69,9 +68,11 @@ public class DataLoader extends DataConstants {
       String title = (String)moduleJSON.get(MODULE_TITLE);
       JSONArray lessonsJSON = (JSONArray)moduleJSON.get(MODULE_LESSONS);
       ArrayList<Lesson> lessons = loadLessons(lessonsJSON);
+      JSONArray commentsJSON = (JSONArray)moduleJSON.get(COMMENTS);
+      ArrayList<Comment> comments = loadComments(commentsJSON);
       JSONArray questionsJSON = (JSONArray)moduleJSON.get(MODULE_QUIZ);
       Assessment quiz = loadAssessment(questionsJSON);
-      modules.add(new Module(title, quiz, lessons));
+      modules.add(new Module(title, quiz, lessons, comments));
     }
     return modules;
   }

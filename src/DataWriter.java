@@ -98,6 +98,7 @@ public class DataWriter extends DataConstants {
   public static JSONObject getModuleJSON(Module module) {
     JSONObject moduleDetails = new JSONObject();
     moduleDetails.put(MODULE_TITLE, module.getTitle());
+    moduleDetails.put(COMMENTS, getCommentsJSON(module.getComments()));
     moduleDetails.put(MODULE_LESSONS, getLessonsJSON(module.getLessons()));
     moduleDetails.put(MODULE_QUIZ, getQuizJSON(module.getAssessment()));
     return moduleDetails;
