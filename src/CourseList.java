@@ -29,10 +29,12 @@ public class CourseList {
   /**
     * adds course to courseList
     */
-  public void addCourse(Course course) {
-    if (course != null) {
-      courses.add(course);
+  public boolean addCourse(String title, User author, Language language, String description, ArrayList<Module> modules, Difficulty difficulty) {
+    if (contains(title)) {
+      return false;
     }
+    courses.add(new Course(title, author, language, description, modules, difficulty));
+    return true;
   }
 
   /**
