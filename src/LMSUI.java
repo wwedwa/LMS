@@ -7,6 +7,8 @@ import java.util.concurrent.TimeUnit;
 public class LMSUI {
   private Scanner scanner;
   private LMS application;
+  String[] welcomeOptions = {"View Registered Courses", "Rate Registered Courses", "View Created Courses", "Register for Courses", 
+  "View Account Details", "Create Course", "Logout"};
 
   public static void main(String[] args) {
     LMSUI ui = new LMSUI();
@@ -21,7 +23,8 @@ public class LMSUI {
   private void run() {
     clearScreen();
     System.out.print("Do you already have an account? (y/n): ");
-    if (scanner.nextLine().toLowerCase().equals("y")) {
+    String choice = getYesNoChoice();
+    if (choice.equals("y")) {
       displayLogin();
     }
     else {
@@ -51,28 +54,37 @@ public class LMSUI {
   }
 
   private void displayMainMenu() {
-    System.out.println("Welcome " + application.getUser().getUsername());
-    String[] welcomeOptions = {"View Registered Courses", "View Created Courses", "Search for Courses", "View Account Details", "Create Course", "Logout"};
-    displayOptions(welcomeOptions);
-    System.out.println("Enter number corresponding to where you want to go: ");
-    int choice = getUserChoice(welcomeOptions.length);
-    switch(choice) {
-      case 1: 
-        displayRegisteredCourses();
-      case 2:
-        displayCreatedCourses();
-      case 3:
-        searchCourses();
-      case 4: 
-        displayUser();
-      case 5:
-        createCourse();
-      case 6:
-        clearScreen();
-        System.out.println("Saving progess...");
-        sleep(500);
-        System.out.println("Goodbye!");
-        application.logout();
+    while (true) {
+      clearScreen();
+      System.out.println("Welcome " + application.getUser().getUsername());
+      displayOptions(welcomeOptions);
+      System.out.println("Enter number corresponding to what you want to do: ");
+      int choice = getUserChoice(welcomeOptions.length);
+      switch(choice) {
+        case 1: 
+          displayRegisteredCourses();
+          break;
+        case 2:
+          rateRegisteredCourses();
+          break;
+        case 3:
+          displayCreatedCourses();
+          break;
+        case 4: 
+          searchCourses();
+          break;
+        case 5:
+          displayUser();
+          break;
+        case 6:
+          createCourse();
+          break;
+        case 7:
+          System.out.println("Saving progess...");
+          sleep(500);
+          System.out.println("Goodbye!");
+          application.logout();
+      }
     }
   }
 
@@ -81,62 +93,56 @@ public class LMSUI {
   }
 
   private void displayRegisteredCourses() {
-    clearScreen();
     ArrayList<String> options = application.getRegisteredCourseStrings();
     options.add("Return to Main Menu");
-    displayOptions(options);
-    System.out.print("Enter number to view a course or return to main menu: ");
-    int choice = getUserChoice(options.size());
-    if (choice <= application.getRegisteredCourses().size()) {
-      application.moveToRegisteredCourse(choice);
-      displayRegisteredCourse();
-    } else {
-      displayMainMenu();
+    while (true) {
+      clearScreen();
+      displayOptions(options);
+      System.out.print("Enter number to view a course or return to main menu: ");
+      int choice = getUserChoice(options.size());
+      if (choice < options.size()) {
+        application.moveToRegisteredCourse(choice);
+        displayRegisteredCourse();
+      } else if (choice == options.size()) {
+        return;
+      }
     }
   }
 
   private void displayRegisteredCourse() {
-    clearScreen();
-    System.out.println(application.getCourse().getDescription() + "\n");
-    System.out.println("Grade: " + application.getCourseGrade() + "\n");
     ArrayList<String> options = application.getModuleGradeStrings();
-    options.add("Write Review");
     options.add("Return to Registered Courses");
-    options.add("Return to Main Menu");
-    displayOptions(options);
-    System.out.print("Enter number to view module lessons or return to another menu: ");
-    int choice = getUserChoice(options.size());
-    if (choice <= application.getModules().size()) {
-      application.moveToModule(choice);
-      displayModule();
-    } else if (choice == options.size() - 2) {
-      createReview();
-    } else if (choice == options.size() - 1) {
-      displayRegisteredCourses();
-    } else if (choice == options.size()) {
-      displayMainMenu();
+    while (true) {
+      clearScreen();
+      System.out.println(application.getCourse().getDescription() + "\n");
+      System.out.println("Grade: " + application.getCourseGrade() + "\n");
+      displayOptions(options);
+      System.out.print("Enter number to view module lessons or return to previous menu: ");
+      int choice = getUserChoice(options.size());
+      if (choice < application.getModules().size()) {
+        application.moveToModule(choice);
+        displayModule();
+      } else if (choice == options.size()) {
+        return;
+      }
+      // Recreate options incase changes to grades
+      options = application.getModuleGradeStrings();
+      options.add("Return to Registered Courses");
     }
   }
 
   private void displayModule() {
-    clearScreen();
     ArrayList<Lesson> lessons = application.getLessons();
-    String[] options = {"Take Module Quiz", "Return to Modules", "Return to Registered Courses", "Return to Main Menu"};
+    String[] options = {"Take Module Quiz", "Return to Module List"};
     for (Lesson lesson : lessons) {
       System.out.println(lesson + "\n");
     }
     displayOptions(options);
     int choice = getUserChoice(options.length);
-    switch (choice) {
-      case 1:
-        performAssessment();
-      case 2:
-        displayRegisteredCourse();
-      case 3:
-        displayRegisteredCourses();
-      case 4:
-        displayMainMenu();
+    if (choice == 1) {
+      performAssessment();
     }
+    return;
   }
 
   private void performAssessment() {
@@ -144,18 +150,11 @@ public class LMSUI {
     Assessment quiz = application.getQuiz();
     if (quiz.getQuestions().size() == 0) {
       System.out.println("No quiz for this module!\n");
-      String[] options = {"Return to Lessons", "Return to Modules", "Return to Registered Courses", "Return to Main Menu"};
+      String[] options = {"Return to Lessons"};
       displayOptions(options);
       int choice = getUserChoice(options.length);
-      switch (choice) {
-        case 1:
-          displayModule();
-        case 2:
-          displayRegisteredCourse();
-        case 3:
-          displayRegisteredCourses();
-        case 4:
-          displayMainMenu();
+      if (choice == 1) {
+        return;
       }
     } else {
       ArrayList<Integer> answers = new ArrayList<Integer>();
@@ -173,20 +172,15 @@ public class LMSUI {
   private void displayScore(double score) {
     clearScreen();
     System.out.println("You scored a " + (score * 100) + "%");
-    String[] options = {"Take Quiz Again", "Return to Lessons", "Return to Modules", "Return to Registered Courses", "Return to Main Menu"};
+    String[] options = {"Take Quiz Again", "Return to List of Modules"};
     displayOptions(options);
     int choice = getUserChoice(options.length);
     switch (choice) {
       case 1:
         performAssessment();
+        break;
       case 2:
-        displayModule();
-      case 3:
-        displayRegisteredCourse();
-      case 4:
-        displayRegisteredCourses();
-      case 5:
-        displayMainMenu();
+        return;
     }
   }
 
@@ -203,38 +197,52 @@ public class LMSUI {
     for (Course course : courses) {
       options.add(course.toString());
     }
-    options.add("Return to Search");
     options.add("Return to Main Menu");
     displayOptions(options);
     int choice = getUserChoice(options.size());
-    if (choice <= options.size() - 2) {
+    if (choice < options.size()) {
       application.moveToCourse(choice);
       displayCourse();
-    } else if (choice == options.size() - 1) {
-      searchCourses();
     } else if (choice == options.size()) {
-      displayMainMenu();
+      return;
     }
   }
 
   private void displayCourse() {
-    clearScreen();
     String description = application.getCourseDescription();
-    System.out.println("----- " + application.getCourse() + " -----\n" + description + "\n");
-    String[] options = {"View Reviews", "Register for Course", "Return to Search", "Return to Main Menu"};
+    String[] options = {"View Reviews", "Register for Course", "Return to Main Menu"};
+    while (true) {
+      clearScreen();
+      System.out.println("----- " + application.getCourse() + " -----\n" + description + "\n");
+      displayOptions(options);
+      int choice = getUserChoice(options.length);
+      switch (choice) {
+        case 1:
+          displayReviews();
+          break;
+        case 2:
+          application.register();
+          System.out.println("You are registered!");
+          sleep(1000);
+          return;
+        case 3:
+          return;
+      }
+    }
+  }
+
+  private void rateRegisteredCourses() {
+    ArrayList<String> options = application.getRegisteredCourseStrings();
+    options.add("Return to Main Menu");
+    clearScreen();
     displayOptions(options);
-    int choice = getUserChoice(options.length);
-    switch (choice) {
-      case 1:
-        displayReviews();
-      case 2:
-        application.register();
-        System.out.println("You are registered!");
-        sleep(1000);
-      case 3:
-        searchCourses();
-      case 4:
-        displayMainMenu();
+    System.out.print("Enter number to rate a course or return to main menu: ");
+    int choice = getUserChoice(options.size());
+    if (choice < options.size()) {
+      application.moveToRegisteredCourse(choice);
+      createReview();
+    } else if (choice == options.size()) {
+      return;
     }
   }
 
@@ -311,7 +319,8 @@ public class LMSUI {
       Lesson lesson = new Lesson(lessonName, moduleText);
       lessons.add(lesson);
       System.out.println("Would you like to add another lesson? (y/n)");
-      if (scanner.nextLine().equals("n")) {
+      String choice = getYesNoChoice();
+      if (choice.equals("n")) {
         addingLessons = false;
       }
     }
@@ -333,7 +342,8 @@ public class LMSUI {
       
       Assessment assessment = new Assessment(questions);
       System.out.println("Would you like to add another Module? (y/n)");
-      if (scanner.nextLine().equals("n")) {
+      String choice = getYesNoChoice();
+      if (choice.equals("n")) {
         addingModules = false;
       }
       else {
@@ -364,7 +374,8 @@ public class LMSUI {
       questions.add(quest);
       if (questions.size() < 5) {
         System.out.println("Would you like to keep adding questions? (y/n) ");
-        if (scanner.nextLine().equals("n")) {
+        String choice = getYesNoChoice();
+        if (choice.equals("n")) {
           addingQuestions = false;
         }
       }
@@ -385,16 +396,11 @@ public class LMSUI {
     for (Review review : reviews) {
       System.out.println(review);
     }
-    String[] options = {"Return to Course Description", "Return to Search", "Return to Main Menu"};
+    String[] options = {"Return to Course Description"};
     displayOptions(options);
     int choice = getUserChoice(options.length);
-    switch (choice) {
-      case 1:
-        displayCourse();
-      case 2:
-        searchCourses();
-      case 3:
-        displayMainMenu();
+    if (choice == 1) {
+      return;
     }
   }
 
@@ -422,14 +428,11 @@ public class LMSUI {
       application.addReview(review, rating);
       System.out.println("Thank you for the review!\n");
     }
-    String[] options = {"Return to Modules", "Return to Main Menu"};
+    String[] options = {"Return to Modules"};
     displayOptions(options);
     int choice = getUserChoice(options.length);
-    switch (choice) {
-      case 1:
-        displayCourse();
-      case 2:
-        displayMainMenu();
+    if (choice == 1) {
+      return;
     }
   }
 
@@ -475,5 +478,19 @@ public class LMSUI {
       }
     }
     return numChoice;
+  }
+
+  private String getYesNoChoice() {
+    boolean validChoice = false;
+    String choice = "";
+    while (!validChoice) {
+      validChoice = true;
+      choice = scanner.nextLine().toLowerCase();
+      if (!choice.equals("y") && !choice.equals("n")) {
+        validChoice = false;
+        System.out.print("Please enter a valid number: ");
+      }
+    }
+    return choice;
   }
 }
