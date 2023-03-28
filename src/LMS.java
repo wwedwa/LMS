@@ -1,5 +1,14 @@
 package src;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.util.ArrayList;
 
 /**
@@ -237,6 +246,16 @@ public class LMS {
   }
 
   /**
+   * creates a certificate for a specific course for the user
+   * @throws IOException
+   */
+  public void createCertificate() throws IOException {
+    try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(currCourse.getTitle()+".txt"), "utf-8"))) {
+      writer.write("Congratulations "+user.getFirstName()+" you completed "+currCourse.getTitle()+"!");
+    }
+  }
+
+  /**
    * 
    * @return
    */
@@ -294,5 +313,17 @@ public class LMS {
    */
   public User getUser() {
     return user;
+  }
+  public void saveModule() throws Exception{
+    String fileName = currModule.getTitle() + ".txt";
+    File file = new File(fileName);
+    file.createNewFile();
+    FileWriter writer = new FileWriter(fileName);
+    writer.write(currModule.getTitle() + "\n");
+    for (int i = 0; i < currModule.getLessons().size(); i++) {
+      String currLesson = currModule.getLessons().get(i).toString();
+      writer.write("\n" + currLesson + "\n");
+    }
+    writer.close();
   }
 }
