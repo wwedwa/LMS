@@ -111,14 +111,22 @@ public class User {
     this.type = type;
   }
 
-  public void registerCourse(Course course, ArrayList<Double> grades) {
+  public boolean registerCourse(Course course, ArrayList<Double> grades) {
+    if (isEnrolled(course)) {
+      return false;
+    }
     this.registeredCourses.add(course);
     this.gradeBook.add(new CourseInfo(course, grades));
+    return true;
   }
 
-  public void registerCourse(Course course) {
+  public boolean registerCourse(Course course) {
+    if (isEnrolled(course)) {
+      return false;
+    }
     this.registeredCourses.add(course);
     this.gradeBook.add(new CourseInfo(course));
+    return true;
   }
 
   public void unregisterCourse(Course course) {
