@@ -62,7 +62,7 @@ public class LMSUI {
       int choice = getUserChoice(welcomeOptions.length);
       switch(choice) {
         case 1: 
-          displayRegisteredCourses();
+          exploreRegisteredCourses();
           break;
         case 2:
           rateRegisteredCourses();
@@ -95,7 +95,7 @@ public class LMSUI {
     clearScreen();
   }
 
-  private void displayRegisteredCourses() {
+  private void exploreRegisteredCourses() {
     ArrayList<String> options = application.getRegisteredCourseStrings();
     options.add("Return to Main Menu");
     while (true) {
@@ -236,9 +236,9 @@ public class LMSUI {
   }
 
   private void rateRegisteredCourses() {
+    clearScreen();
     ArrayList<String> options = application.getRegisteredCourseStrings();
     options.add("Return to Main Menu");
-    clearScreen();
     displayOptions(options);
     System.out.print("Enter number to rate a course or return to main menu: ");
     int choice = getUserChoice(options.size());
@@ -442,6 +442,7 @@ public class LMSUI {
     }
     String[] options = {"Return to Modules"};
     displayOptions(options);
+    System.out.println("Enter number corresponding to what you want to do: ");
     int choice = getUserChoice(options.length);
     if (choice == 1) {
       return;
@@ -508,12 +509,14 @@ public class LMSUI {
 
   private void editCourse() {
     clearScreen();
-    System.out.println("Which course would you like to edit?");
-    for (int i = 0; i < application.getCreatedCourses().size(); i++) {
-      System.out.println((i + 1) + ": " + application.getCreatedCourses().get(i).getTitle());
+    ArrayList<Course> courses = application.getCreatedCourses();
+    ArrayList<String> options = new ArrayList<String>();
+    for (Course course : courses) {
+      options.add(course.getTitle());
     }
+    displayOptions(options);
     System.out.println("Enter the number of the course you would like to edit: ");
-    int choice = getUserChoice(application.getCreatedCourses().size());
+    int choice = getUserChoice(options.size());
     choice -= 1;
     Course course = application.getCreatedCourses().get(choice);
     System.out.println(course.getTitle());
