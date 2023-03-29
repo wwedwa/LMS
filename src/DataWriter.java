@@ -160,7 +160,7 @@ public class DataWriter extends DataConstants {
 	
 	public static JSONObject getUserJSON(User user) {
 		JSONObject userDetails = new JSONObject();
-    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");  
+    SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");  
 		userDetails.put(USER_ID, user.getId().toString());
 		userDetails.put(USERNAME, user.getUsername());
     userDetails.put(PASSWORD, user.getPassword());

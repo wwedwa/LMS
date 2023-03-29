@@ -367,9 +367,9 @@ public class LMSUI {
   }
 
   private String getType() {
-    System.out.print("Do you want to be an author or student (A/S): ");
+    System.out.print("Do you want to be an (a)uthor or (s)tudent (Enter \"a\" or \"s\"): ");
     String type = scanner.nextLine();
-    while (!type.toLowerCase().equals("a") || !type.toLowerCase().equals("s")) {
+    while (!type.toLowerCase().equals("a") && !type.toLowerCase().equals("s")) {
       System.out.print("Invalid choice. Choose \"a\" or \"s\": ");
       type = scanner.nextLine();
     }
@@ -411,9 +411,9 @@ public class LMSUI {
   private void createLessons(ArrayList<Lesson> lessons) {
     boolean addingLessons = true;
     while (addingLessons) {
-      System.out.println("Please enter the name of the lesson: ");
+      System.out.print("Please enter the name of the lesson: ");
       String lessonName = scanner.nextLine();
-      System.out.println("Enter all text for the module (Enter a line with just (finished) to end):");
+      System.out.println("Enter all text for the lesson (Enter a line with just (finished) to end):");
       String moduleText = "";
       String tempLine = "";
       do {
@@ -451,18 +451,19 @@ public class LMSUI {
       options.add(difficulty.toString());
     }
     displayOptions(options);
-    System.out.print("Please select the number corresponding to the difficulty your course is: ");
+    System.out.print("Please select the number corresponding to the difficulty of your course: ");
     int choice = getUserChoice(options.size());
     return difficulties[choice - 1];
   }
 
   private void createModules(ArrayList<Module> modules) {
-    System.out.println("Enter the module Title: ");
-    String moduleTitle = scanner.nextLine();
+    clearScreen();
+    System.out.print("You will now create modules for your course. Add as many as you want.");
     boolean addingModules = true;
     int moduleNum = 1;
     while(addingModules) {
-    ArrayList<Lesson> lessons = new ArrayList<Lesson>();
+      String moduleTitle = getField("Enter title for module: ");
+      ArrayList<Lesson> lessons = new ArrayList<Lesson>();
       System.out.println("Module " + moduleNum);
       createLessons(lessons);
       ArrayList<Question> questions = new ArrayList<Question>();
@@ -489,7 +490,6 @@ public class LMSUI {
       String question = scanner.nextLine();
       System.out.print("Enter the number of answer choices (up to 4): ");
       int choices = getUserChoice(4);
-      scanner.nextLine();
       ArrayList<String> answers = new ArrayList<String>();
       for (int i = 0; i < choices; i++) {
         System.out.print("Enter answer choice " + (i + 1) + ": ");
@@ -540,7 +540,7 @@ public class LMSUI {
       application.addReview(review, rating);
       System.out.println("Thank you for the review!\n");
     }
-    String[] options = {"Return to Modules"};
+    String[] options = {"Return to Menu"};
     displayOptions(options);
     System.out.println("Enter number corresponding to what you want to do: ");
     int choice = getUserChoice(options.length);
@@ -666,7 +666,8 @@ public class LMSUI {
     } while(!tempLine.equals("finished"));
     lesson = new Lesson(lessonName, moduleText);
     module.getLessons().set(choice, lesson);
-    System.out.println("Lesson successfully edited, returning to main menu. ");
+    System.out.println("Lesson successfully edited, returning to main menu...");
+    sleep(1000);
   }
 
   private void editQuestion(Module module) {
@@ -694,6 +695,7 @@ public class LMSUI {
     scanner.nextLine();
     Question quest = new Question(questionContent, answers, correctAnswer - 1);
     module.getAssessment().getQuestions().set(choice, quest);
-    System.out.println("Question successfully edited, returning to main menu");
+    System.out.println("Question successfully edited, returning to main menu...");
+    sleep(1000);
   }
 }

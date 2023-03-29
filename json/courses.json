@@ -1,51 +1,77 @@
 [
   {
-    "id": "33189195-6b2b-4eed-be23-7a82d7bca444",
-    "author": "da6abb4c-eba4-41ef-a49b-158d6f295691",
-    "title": "Intro to Python",
     "difficulty": "EASY",
-    "language": "PYTHON",
-    "description": "Python introduction for novices in coding",
-    "students": [
-      {
-        "studentid": "9d7251a2-ca51-403d-bcdf-52100291f5c2",
-        "moduleGrades":[90, -1]
-      },
-      {
-        "studentid": "257f7426-37bb-4ac6-ae7e-2d990299e415",
-        "moduleGrades":[100, 87]
-      }
-    ],
     "comments": [
       {
-        "userid": "257f7426-37bb-4ac6-ae7e-2d990299e415",
-        "comment": "How do I retake quizzes?",
         "replies": [
           {
-            "userid": "da6abb4c-eba4-41ef-a49b-158d6f295691",
-            "comment": "Just click the button that says retake",
             "replies": [
               {
-                "userid": "257f7426-37bb-4ac6-ae7e-2d990299e415",
+                "replies": [],
                 "comment": "thanks!",
-                "replies": []
+                "userid": "257f7426-37bb-4ac6-ae7e-2d990299e415"
               }
-            ]
+            ],
+            "comment": "Just click the button that says retake",
+            "userid": "da6abb4c-eba4-41ef-a49b-158d6f295691"
           }
-        ]
+        ],
+        "comment": "How do I retake quizzes?",
+        "userid": "257f7426-37bb-4ac6-ae7e-2d990299e415"
       }
     ],
     "reviews": [
       {
-        "userid": "9d7251a2-ca51-403d-bcdf-52100291f5c2",
+        "review": "Great course!",
         "rating": 4,
-        "review": "Great course!"
+        "userid": "9d7251a2-ca51-403d-bcdf-52100291f5c2"
       }
     ],
+    "author": "da6abb4c-eba4-41ef-a49b-158d6f295691",
+    "description": "Python introduction for novices in coding",
+    "students": [
+      {
+        "studentid": "9d7251a2-ca51-403d-bcdf-52100291f5c2",
+        "moduleGrades": [
+          90,
+          -1
+        ]
+      },
+      {
+        "studentid": "257f7426-37bb-4ac6-ae7e-2d990299e415",
+        "moduleGrades": [
+          100,
+          87
+        ]
+      }
+    ],
+    "language": "PYTHON",
+    "id": "33189195-6b2b-4eed-be23-7a82d7bca444",
+    "title": "Intro to Python",
     "modules": [
       {
-        "title": "variables",
+        "quiz": [
+          {
+            "answerChoices": [
+              "Something",
+              "Something else",
+              "The correct answer",
+              "The wrong answer"
+            ],
+            "question": "What is a variable?",
+            "correctAnswer": 2
+          },
+          {
+            "answerChoices": [
+              "Yes",
+              "No"
+            ],
+            "question": "Is this the proper way to assign a variable: \"x == 2\"?",
+            "correctAnswer": 1
+          }
+        ],
         "comments": [],
+        "title": "variables",
         "lessons": [
           {
             "title": "Types of variables",
@@ -55,31 +81,21 @@
             "title": "Creating a variable",
             "content": "Like this: x = \"Hello World!\" (yes, python is that easy)"
           }
-        ],
+        ]
+      },
+      {
         "quiz": [
           {
-            "question": "What is a variable?",
-            "answerChoices": [
-              "Something",
-              "Something else",
-              "The correct answer",
-              "The wrong answer"
-            ],
-            "correctAnswer": 2
-          },
-          {
-            "question": "Is this the proper way to assign a variable: \"x == 2\"?",
             "answerChoices": [
               "Yes",
               "No"
             ],
-            "correctAnswer": 1
+            "question": "Did you enjoy this module?",
+            "correctAnswer": 0
           }
-        ]
-      },
-      {
-        "title": "Conditionals",
+        ],
         "comments": [],
+        "title": "Conditionals",
         "lessons": [
           {
             "title": "If Statements",
@@ -89,15 +105,87 @@
             "title": "If/Else Statements",
             "content": "Adding an else will allow you to execute another bit of code if the original statement is false"
           }
-        ],
+        ]
+      }
+    ]
+  },
+  {
+    "difficulty": "EASY",
+    "comments": [],
+    "reviews": [
+      {
+        "review": "5",
+        "rating": 5,
+        "userid": "72e19b9d-2d72-4072-99ee-0273fd91d86a"
+      }
+    ],
+    "author": "72e19b9d-2d72-4072-99ee-0273fd91d86a",
+    "description": "This is a great course to learn JavaScript, a powerful language for all uses. If you want to get into web design or just want to learn a new skill, this course is great for you!",
+    "students": [
+      {
+        "studentid": "72e19b9d-2d72-4072-99ee-0273fd91d86a",
+        "moduleGrades": [
+          -1,
+          -1
+        ]
+      }
+    ],
+    "language": "JAVA_SCRIPT",
+    "id": "fe507baf-bf95-4da8-8f21-a68fdf302b46",
+    "title": "Introduction to JavaScript",
+    "modules": [
+      {
         "quiz": [
           {
-            "question": "Did you enjoy this module?",
             "answerChoices": [
-              "Yes",
-              "No"
+              "The correct choice",
+              "The incorrect choice"
             ],
+            "question": "How do you create a variable in JavaScript",
             "correctAnswer": 0
+          },
+          {
+            "answerChoices": [
+              "A",
+              "B",
+              "C"
+            ],
+            "question": "Choose A",
+            "correctAnswer": 0
+          }
+        ],
+        "comments": [],
+        "title": "Variables in JavaScript",
+        "lessons": [
+          {
+            "title": "Primitive data types in JavaScript",
+            "content": "EXAMPLE LESSON TEXT"
+          },
+          {
+            "title": "How to create a variable in JavaScript",
+            "content": "EXAMPLE LESSON TEXT"
+          }
+        ]
+      },
+      {
+        "quiz": [
+          {
+            "answerChoices": [
+              "Incorrect answer",
+              "Correct answer",
+              "Incorrect answer",
+              "Incorrect answer"
+            ],
+            "question": "Example question",
+            "correctAnswer": 1
+          }
+        ],
+        "comments": [],
+        "title": "Loops in JavaScript",
+        "lessons": [
+          {
+            "title": "While Loops",
+            "content": "EXAMPLE LESSON TEXT"
           }
         ]
       }

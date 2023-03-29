@@ -3,40 +3,50 @@
     "firstName": "William",
     "lastName": "Edwards",
     "password": "cAtdOgHoRse159",
+    "dob": "03/14/2003",
     "id": "9d7251a2-ca51-403d-bcdf-52100291f5c2",
     "type": "student",
     "email": "wwe1@email.sc.edu",
-    "username": "wedwa",
-    "dob": "03/14/2003"
+    "username": "wedwa"
   },
   {
     "firstName": "Casey",
     "lastName": "Fainberg",
     "password": "123mYpaSsWoRD321",
+    "dob": "08/09/1999",
     "id": "257f7426-37bb-4ac6-ae7e-2d990299e415",
     "type": "student",
     "email": "fainberg@email.sc.edu",
-    "username": "cfainber12",
-    "dob": "09/08/1999"
+    "username": "cfainber12"
   },
   {
     "firstName": "Noah",
     "lastName": "Parker",
     "password": "author!5478",
+    "dob": "02/10/2001",
     "id": "c3305b1c-0abc-48aa-812e-348b8aaeaf8a",
     "type": "student",
     "email": "nhparker@email.sc.edu",
-    "username": "nparker",
-    "dob": "10/02/2001"
+    "username": "nparker"
   },
   {
     "firstName": "Austin",
     "lastName": "Sanza",
     "password": "passworddrowssap",
+    "dob": "04/28/1997",
     "id": "da6abb4c-eba4-41ef-a49b-158d6f295691",
     "type": "student",
     "email": "wsanza@email.sc.edu",
-    "username": "sanza",
-    "dob": "04/28/1997"
+    "username": "sanza"
+  },
+  {
+    "firstName": "Bob",
+    "lastName": "Jones",
+    "password": "password",
+    "dob": "03/14/2003",
+    "id": "72e19b9d-2d72-4072-99ee-0273fd91d86a",
+    "type": "author",
+    "email": "bobby@email.com",
+    "username": "bobbyboy"
   }
 ]
