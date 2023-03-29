@@ -237,8 +237,11 @@ public class LMSUI {
           viewModuleForum();
           break;
         case 3:
-          application.saveModule();
-          System.out.println("The module has been downloaded!");
+          if (application.saveModule()) {
+            System.out.println("The module has been downloaded!");
+          } else {
+            System.out.println("There was a problem downloading the module. Please try again later.");
+          }
           sleep(1000);
           break;
         case 4:
@@ -413,7 +416,7 @@ public class LMSUI {
     while (addingLessons) {
       System.out.print("Please enter the name of the lesson: ");
       String lessonName = scanner.nextLine();
-      System.out.println("Enter all text for the lesson (Enter a line with just (finished) to end):");
+      System.out.println("Enter all text for the lesson (Enter a line with just \"finished\" to end):");
       String moduleText = "";
       String tempLine = "";
       do {
