@@ -291,10 +291,6 @@ public class LMSUI {
     }
   }
 
-  private void displayCreatedCourses() {
-
-  }
-
   private void searchCourses() {
     clearScreen();
     System.out.print("Enter a keyword to search for (or press ENTER to see all courses): ");
@@ -482,7 +478,7 @@ public class LMSUI {
       System.out.print("Enter the number of answer choices (up to 4): ");
       int choices = getUserChoice(4);
       scanner.nextLine();
-      ArrayList<String> answers = new ArrayList<>();
+      ArrayList<String> answers = new ArrayList<String>();
       for (int i = 0; i < choices; i++) {
         System.out.print("Enter answer choice " + (i + 1) + ": ");
         answers.add(scanner.nextLine());
@@ -506,10 +502,6 @@ public class LMSUI {
     }
   }
 
-  private void displayComments(ArrayList<Comment> comments) {
-
-  }
-
   private void displayReviews() {
     clearScreen();
     ArrayList<Review> reviews = application.getReviews();
@@ -522,18 +514,6 @@ public class LMSUI {
     if (choice == 1) {
       return;
     }
-  }
-
-  private void createReply(Comment comment) {
-
-  }
-
-  private void createModuleComment() {
-
-  }
-
-  private void createCourseComment() {
-
   }
 
   private void createReview() {
@@ -681,14 +661,13 @@ public class LMSUI {
     System.out.println("Enter the number of the Question you would like to edit: ");
     int choice = getUserChoice(module.getAssessment().getQuestions().size());
     choice -=1;
-    Question question = module.getAssessment().getQuestions().get(choice);
     System.out.println("You will now recrete the question");
     System.out.print("Enter the question: ");
     String questionContent = scanner.nextLine();
     System.out.print("Enter the number of answer choices (up to 4): ");
     int choices = getUserChoice(4);
     scanner.nextLine();
-    ArrayList<String> answers = new ArrayList<>();
+    ArrayList<String> answers = new ArrayList<String>();
     for (int i = 0; i < choices; i++) {
       System.out.print("Enter answer choice " + (i + 1) + ": ");
       answers.add(scanner.nextLine());
