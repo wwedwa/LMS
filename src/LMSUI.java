@@ -657,7 +657,7 @@ public class LMSUI {
     System.out.println("You will now re create this lesson.");
     System.out.println("Please enter the name of the lesson: ");
     String lessonName = scanner.nextLine();
-    System.out.println("Enter all text for the module (Enter a line with just (finished) to end):");
+    System.out.println("Enter all text for the lesson (Enter a line with just (finished) to end):");
     String moduleText = "";
     String tempLine = "";
     do {
@@ -679,7 +679,7 @@ public class LMSUI {
     System.out.println("Enter the number of the Question you would like to edit: ");
     int choice = getUserChoice(module.getAssessment().getQuestions().size());
     choice -=1;
-    System.out.println("You will now recrete the question");
+    System.out.println("You will now recreate the question");
     System.out.print("Enter the question: ");
     String questionContent = scanner.nextLine();
     System.out.print("Enter the number of answer choices (up to 4): ");
