@@ -353,7 +353,7 @@ public class LMS {
     return user.isCourseCompleted(currCourse);
   }
 
-  public void saveModule() {
+  public boolean saveModule() {
     String fileName = currModule.getTitle() + ".txt";
     File file = new File(fileName);
     try {
@@ -366,7 +366,8 @@ public class LMS {
       }
       writer.close();
     } catch (IOException e) {
-      e.printStackTrace();
+      return false;
     }
+    return true;
   }
 }
