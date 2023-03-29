@@ -157,4 +157,17 @@ public class User {
   public ArrayList<Course> getCreatedCourses() {
     return new ArrayList<Course>();
   }
+
+  public boolean isCourseCompleted(Course course) {
+    if (!isEnrolled(course)) {
+      return false;
+    }
+    ArrayList<Double> grades = getGrades(course);
+    for (double grade : grades) {
+      if (grade < 0) {
+        return false;
+      }
+    }
+    return true;
+  }
 }

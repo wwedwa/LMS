@@ -71,8 +71,8 @@ public class LMS {
    * @param username
    * @param password
    */
-  public boolean addUser(String username, String firstName, String lastName, String email, String password) {
-    boolean wasAdded = userList.addUser(username, firstName, lastName, email, password);
+  public boolean addUser(String username, String firstName, String lastName, String email, String password, String type) {
+    boolean wasAdded = userList.addUser(username, firstName, lastName, email, password, type);
     if (wasAdded) {
       user = userList.getUser(username);
     }
@@ -208,6 +208,47 @@ public class LMS {
     return this.currModule.getAssessment();
   }
 
+  public ArrayList<String> generateComments(ArrayList<Comment> comments) {
+    ArrayList<String> options = new ArrayList<String>();
+    for (Comment comment : comments) {
+      options.add(comment.toString());
+      for (Comment reply : comment.getReplies()) {
+        generateComments(reply, 1, options);
+      }
+    }
+    return options;
+  }
+
+  private void generateComments(Comment comment, int depth, ArrayList<String> options) {
+    String tabs = "";
+    for (int i = 0; i < depth; i++) {
+      tabs += "\t";
+    }
+    options.add(tabs + comment);
+    for (Comment reply : comment.getReplies()) {
+      generateComments(reply, depth + 1, options);
+    }
+    return;
+  }
+
+  private ArrayList<Comment> generateCommentList(ArrayList<Comment> comments) {
+    ArrayList<Comment> commentList = new ArrayList<Comment>();
+    for (Comment comment : comments) {
+      commentList.add(comment);
+      for (Comment reply : comment.getReplies()) {
+        generateCommentList(reply, commentList);
+      }
+    }
+    return commentList;
+  }
+
+  private void generateCommentList(Comment comment, ArrayList<Comment> commentList) {
+    commentList.add(comment);
+    for (Comment reply : comment.getReplies()) {
+      generateCommentList(reply, commentList);
+    }
+    return;
+  }
   /**
    * 
    * @param assessment
@@ -231,27 +272,19 @@ public class LMS {
    * 
    * @return
    */
-  public void addCourseComment(String decription) {
-    Comment comment = new Comment(user, decription);
-    currCourse.addComment(comment);
-  }
-
-  /**
-   * 
-   * @return
-   */
   public void addModuleComment(String decription) {
-    Comment comment = new Comment(user, decription);
-    currModule.addComment(comment);
+    currModule.addComment(new Comment(user, decription));
   }
 
   /**
    * creates a certificate for a specific course for the user
    * @throws IOException
    */
-  public void createCertificate() throws IOException {
+  public void createCertificate() {
     try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(currCourse.getTitle()+".txt"), "utf-8"))) {
       writer.write("Congratulations "+user.getFirstName()+" you completed "+currCourse.getTitle()+"!");
+    } catch (IOException e) {
+      e.printStackTrace();
     }
   }
 
@@ -275,9 +308,13 @@ public class LMS {
    * 
    * @return
    */
-  public void addReply(Comment comment, String decription) {
+  public void addReply(int commentNum, String decription, ArrayList<Comment> comments) {
     Comment reply = new Comment(user, decription);
-    comment.addReply(reply);
+    generateCommentList(comments).get(commentNum - 1).addReply(reply);
+  }
+
+  public void addCourseComment(String description) {
+    currCourse.addComment(new Comment(user, description));
   }
 
   /**
@@ -314,16 +351,25 @@ public class LMS {
   public User getUser() {
     return user;
   }
-  public void saveModule() throws Exception{
+
+  public boolean isCourseCompleted() {
+    return user.isCourseCompleted(currCourse);
+  }
+
+  public void saveModule() {
     String fileName = currModule.getTitle() + ".txt";
     File file = new File(fileName);
-    file.createNewFile();
-    FileWriter writer = new FileWriter(fileName);
-    writer.write(currModule.getTitle() + "\n");
-    for (int i = 0; i < currModule.getLessons().size(); i++) {
-      String currLesson = currModule.getLessons().get(i).toString();
-      writer.write("\n" + currLesson + "\n");
+    try {
+      file.createNewFile();
+      FileWriter writer = new FileWriter(fileName);
+      writer.write(currModule.getTitle() + "\n");
+      for (int i = 0; i < currModule.getLessons().size(); i++) {
+        String currLesson = currModule.getLessons().get(i).toString();
+        writer.write("\n" + currLesson + "\n");
+      }
+      writer.close();
+    } catch (IOException e) {
+      e.printStackTrace();
     }
-    writer.close();
   }
 }

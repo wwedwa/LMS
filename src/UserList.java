@@ -18,11 +18,15 @@ public class UserList {
     return userList;
   }
 
-  public boolean addUser(String username, String firstName, String lastName, String email, String password) {
+  public boolean addUser(String username, String firstName, String lastName, String email, String password, String type) {
     if (contains(username)) {
       return false;
     }
-    users.add(new User(username, firstName, lastName, email, password));
+    if (type.equals("author")) {
+    users.add(new Author(username, firstName, lastName, email, password));
+    } else {
+      users.add(new User(username, firstName, lastName, email, password));
+    }
     return true;
   }
 

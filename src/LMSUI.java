@@ -7,8 +7,10 @@ import java.util.concurrent.TimeUnit;
 public class LMSUI {
   private Scanner scanner;
   private LMS application;
-  String[] welcomeOptions = {"View Registered Courses", "Rate Registered Courses", "View Created Courses", "Register for Courses", 
+  String[] welcomeAuthorOptions = {"Explore Registered Courses", "Rate Registered Courses", "Register for Courses", 
   "View Account Details", "Create Course", "Edit Created Courses", "Logout"};
+  String[] welcomeStudentOptions = {"Explore Registered Courses", "Rate Registered Courses", "Register for Courses", 
+  "View Account Details", "Logout"};
 
   public static void main(String[] args) {
     LMSUI ui = new LMSUI();
@@ -30,7 +32,11 @@ public class LMSUI {
     else {
       createAccount();
     }
-    displayMainMenu();
+    if (application.getUser().getType().equals("author")) {
+      displayAuthorMainMenu();
+    } else {
+      displayStudentMainMenu();
+    }
 
   }
 
@@ -53,13 +59,13 @@ public class LMSUI {
 
   }
 
-  private void displayMainMenu() {
+  private void displayStudentMainMenu() {
     while (true) {
       clearScreen();
       System.out.println("Welcome " + application.getUser().getUsername());
-      displayOptions(welcomeOptions);
+      displayOptions(welcomeStudentOptions);
       System.out.print("Enter number corresponding to what you want to do: ");
-      int choice = getUserChoice(welcomeOptions.length);
+      int choice = getUserChoice(welcomeStudentOptions.length);
       switch(choice) {
         case 1: 
           exploreRegisteredCourses();
@@ -67,22 +73,48 @@ public class LMSUI {
         case 2:
           rateRegisteredCourses();
           break;
-        case 3:
-          displayCreatedCourses();
-          break;
-        case 4: 
+        case 3: 
           searchCourses();
           break;
-        case 5:
+        case 4:
           displayUser();
           break;
-        case 6:
+        case 5:
+          System.out.println("Saving progess...");
+          sleep(500);
+          System.out.println("Goodbye!");
+          application.logout();
+      }
+    }
+  }
+
+  private void displayAuthorMainMenu() {
+    while (true) {
+      clearScreen();
+      System.out.println("Welcome " + application.getUser().getUsername());
+      displayOptions(welcomeAuthorOptions);
+      System.out.print("Enter number corresponding to what you want to do: ");
+      int choice = getUserChoice(welcomeAuthorOptions.length);
+      switch(choice) {
+        case 1: 
+          exploreRegisteredCourses();
+          break;
+        case 2:
+          rateRegisteredCourses();
+          break;
+        case 3: 
+          searchCourses();
+          break;
+        case 4:
+          displayUser();
+          break;
+        case 5:
           createCourse();
           break;
-        case 7:
+        case 6:
           editCourse();
           break;
-        case 8:
+        case 7:
           System.out.println("Saving progess...");
           sleep(500);
           System.out.println("Goodbye!");
@@ -93,6 +125,52 @@ public class LMSUI {
 
   private void displayUser() {
     clearScreen();
+  }
+
+  private void viewCourseForum() {
+    ArrayList<String> options = new ArrayList<String>();
+    while (true) {
+      clearScreen();
+      displayOptions(options);
+      System.out.println("\n" + (options.size() + 1) + ". Add Comment");
+      System.out.println("\n" + (options.size() + 2) + ". Return to Course Information");
+      System.out.print("Choose a comment to reply to, create a comment, or return to previous menu: ");
+      int choice = getUserChoice(options.size() + 1);
+      if (choice <= options.size()) {
+        System.out.println("Enter reply: ");
+        String reply = scanner.nextLine();
+        application.addReply(choice, reply, application.getCourseComments());
+      } else if (choice == options.size() + 1) {
+        System.out.println("Enter comment: ");
+        String comment = scanner.nextLine();
+        application.addCourseComment(comment);
+      } else if (choice == options.size() + 2) {
+        return;
+      }
+    }
+  }
+
+  private void viewModuleForum() {
+    ArrayList<String> options = new ArrayList<String>();
+    while (true) {
+      clearScreen();
+      displayOptions(options);
+      System.out.println("\n" + (options.size() + 1) + ". Add Comment");
+      System.out.println("\n" + (options.size() + 2) + ". Return to Module");
+      System.out.print("Choose a comment to reply to, create a comment, or return to previous menu: ");
+      int choice = getUserChoice(options.size() + 1);
+      if (choice <= options.size()) {
+        System.out.println("Enter reply: ");
+        String reply = scanner.nextLine();
+        application.addReply(choice, reply, application.getModuleComments());
+      } else if (choice == options.size() + 1) {
+        System.out.println("Enter comment: ");
+        String comment = scanner.nextLine();
+        application.addModuleComment(comment);
+      } else if (choice == options.size() + 2) {
+        return;
+      }
+    }
   }
 
   private void exploreRegisteredCourses() {
@@ -114,6 +192,8 @@ public class LMSUI {
 
   private void displayRegisteredCourse() {
     ArrayList<String> options = application.getModuleGradeStrings();
+    options.add("View Course Comments");
+    options.add("Download Certificate of Completion");
     options.add("Return to Registered Courses");
     while (true) {
       clearScreen();
@@ -122,9 +202,19 @@ public class LMSUI {
       displayOptions(options);
       System.out.print("Enter number to view module lessons or return to previous menu: ");
       int choice = getUserChoice(options.size());
-      if (choice < options.size()) {
+      if (choice < options.size() - 1) {
         application.moveToModule(choice);
         displayModule();
+      } else if (choice == options.size() - 2) {
+        viewCourseForum();
+      } else if (choice == options.size() - 1) {
+        if (application.isCourseCompleted()) {
+          application.createCertificate();
+          System.out.println("Your certificate has been downloaded!");
+        } else {
+          System.out.println("Please complete the course first.");
+        }
+        sleep(1000);
       } else if (choice == options.size()) {
         return;
       }
@@ -135,18 +225,31 @@ public class LMSUI {
   }
 
   private void displayModule() {
-    clearScreen();
     ArrayList<Lesson> lessons = application.getLessons();
-    String[] options = {"Take Module Quiz", "Return to Module List"};
-    for (Lesson lesson : lessons) {
-      System.out.println(lesson + "\n");
+    String[] options = {"Take Module Quiz", "View Module Comments", "Download Module Content", "Return to Course Information"};
+    while (true) {
+      clearScreen();
+      for (Lesson lesson : lessons) {
+        System.out.println(lesson + "\n");
+      }
+      displayOptions(options);
+      int choice = getUserChoice(options.length);
+      switch (choice) {
+        case 1:
+          performAssessment();
+          return;
+        case 2:
+          viewModuleForum();
+          break;
+        case 3:
+          application.saveModule();
+          System.out.println("The module has been downloaded!");
+          sleep(1000);
+          break;
+        case 4:
+          return;
+      }
     }
-    displayOptions(options);
-    int choice = getUserChoice(options.length);
-    if (choice == 1) {
-      performAssessment();
-    }
-    return;
   }
 
   private void performAssessment() {
@@ -176,7 +279,7 @@ public class LMSUI {
   private void displayScore(double score) {
     clearScreen();
     System.out.println("You scored a " + score + "%");
-    String[] options = {"Take Quiz Again", "Return to List of Modules"};
+    String[] options = {"Take Quiz Again", "Return to Course Information"};
     displayOptions(options);
     int choice = getUserChoice(options.length);
     switch (choice) {
@@ -263,8 +366,15 @@ public class LMSUI {
     String username = scanner.nextLine();
     System.out.print("Please enter a password: ");
     String password = scanner.nextLine();
+    System.out.print("Do you want to be an author or student (A/S): ");
+    String type = scanner.nextLine();
+    while (!type.toLowerCase().equals("a") || !type.toLowerCase().equals("s")) {
+      System.out.print("Invalid choice. Choose \"a\" or \"s\": ");
+      type = scanner.nextLine();
+    }
+    type =(type.equals("a") ? "author" : "student");
     clearScreen();
-    while (!application.addUser(username, firstName, lastName, email, password)) {
+    while (!application.addUser(username, firstName, lastName, email, password, type)) {
       System.out.print("Username is taken. Please enter new username: ");
       username = scanner.nextLine();
     }
@@ -314,7 +424,6 @@ public class LMSUI {
       System.out.print("Course title is taken. Please enter new title for your course: ");
       courseName = scanner.nextLine();
     }
-    displayMainMenu();
   }
 
   private void createLessons(ArrayList<Lesson> lessons) {
@@ -535,7 +644,7 @@ public class LMSUI {
     else {
       editLesson(module);
     }
-    displayMainMenu();
+    return;
   }
 
   private void editLesson(Module module) {

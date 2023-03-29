@@ -90,7 +90,16 @@
             "content": "Adding an else will allow you to execute another bit of code if the original statement is false"
           }
         ],
-        "quiz": []
+        "quiz": [
+          {
+            "question": "Did you enjoy this module?",
+            "answerChoices": [
+              "Yes",
+              "No"
+            ],
+            "correctAnswer": 0
+          }
+        ]
       }
     ]
   }
