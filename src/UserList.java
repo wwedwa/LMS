@@ -1,6 +1,7 @@
 package src;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.UUID;
 
 public class UserList {
@@ -18,14 +19,14 @@ public class UserList {
     return userList;
   }
 
-  public boolean addUser(String username, String firstName, String lastName, String email, String password, String type) {
+  public boolean addUser(String username, String firstName, String lastName, String email, String password, String type, Date birthday) {
     if (contains(username)) {
       return false;
     }
     if (type.equals("author")) {
-    users.add(new Author(username, firstName, lastName, email, password));
+    users.add(new Author(username, firstName, lastName, email, password, birthday));
     } else {
-      users.add(new User(username, firstName, lastName, email, password));
+      users.add(new User(username, firstName, lastName, email, password, birthday));
     }
     return true;
   }

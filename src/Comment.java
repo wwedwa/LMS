@@ -30,6 +30,7 @@ public class Comment {
   public Comment(User author, String comment) {
     this.author = author;
     this.comment = comment;
+    this.replies = new ArrayList<Comment>();
   }
 
   public User getAuthor() {

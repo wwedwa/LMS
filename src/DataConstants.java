@@ -11,6 +11,7 @@ public abstract class DataConstants {
   protected static final String FIRST_NAME = "firstName";
   protected static final String LAST_NAME = "lastName";
   protected static final String EMAIL = "email";
+  protected static final String USER_DOB = "dob";
   // Constants for course JSON file
   protected static final String COURSE_ID = "id";
   protected static final String AUTHOR_ID = "author";

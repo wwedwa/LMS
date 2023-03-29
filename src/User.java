@@ -1,6 +1,7 @@
 package src;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.UUID;
 
 public class User {
@@ -10,19 +11,21 @@ public class User {
   private String email;
   private String password;
   private String type;
+  private Date birthday;
   private UUID userid;
   private ArrayList<Course> registeredCourses;
   private ArrayList<Course> completedCourses;
   private ArrayList<CourseInfo> gradeBook;
   private ArrayList<Author> favoriteAuthors;
 
-  public User(String username, String firstName, String lastName, String email, String password) {
+  public User(String username, String firstName, String lastName, String email, String password, Date birthday) {
     this.username = username;
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
     this.password = password;
     this.userid = UUID.randomUUID();
+    this.birthday = birthday;
     this.type = "student";
     registeredCourses = new ArrayList<Course>();
     completedCourses = new ArrayList<Course>();
@@ -30,13 +33,14 @@ public class User {
     favoriteAuthors = new ArrayList<Author>();
   }
 
-  public User(String username, String firstName, String lastName, String email, String password, UUID userid) {
+  public User(String username, String firstName, String lastName, String email, String password, UUID userid, Date birthday) {
     this.username = username;
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
     this.password = password;
     this.userid = userid;
+    this.birthday = birthday;
     this.type = "student";
     registeredCourses = new ArrayList<Course>();
     completedCourses = new ArrayList<Course>();
@@ -70,6 +74,10 @@ public class User {
 
   public String getType() {
     return this.type;
+  }
+
+  public Date getBirthday() {
+    return birthday;
   }
 
   public ArrayList<Course> getRegisteredCourses() {

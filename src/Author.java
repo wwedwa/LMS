@@ -1,6 +1,7 @@
 package src;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.UUID;
 
 /**
@@ -19,8 +20,8 @@ public class Author extends User {
   *@param password
   *@param type
   */
-  public Author(String username, String firstName, String lastName, String email, String password) {
-    super(username, firstName, lastName, email, password);
+  public Author(String username, String firstName, String lastName, String email, String password, Date birthday) {
+    super(username, firstName, lastName, email, password, birthday);
     createdCourses = new ArrayList<Course>();
     setType("author");
   }
@@ -34,8 +35,8 @@ public class Author extends User {
   *@param password
   *@param id
   */
-  public Author(String username, String firstName, String lastName, String email, String password, UUID id) {
-    super(username, firstName, lastName, email, password, id);
+  public Author(String username, String firstName, String lastName, String email, String password, UUID id, Date birthday) {
+    super(username, firstName, lastName, email, password, id, birthday);
   }
 
   /**

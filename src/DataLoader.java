@@ -1,7 +1,9 @@
 package src;
 
 import java.io.FileReader;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.UUID;
 import org.json.simple.JSONArray;
@@ -140,7 +142,6 @@ public class DataLoader extends DataConstants {
 
   public static ArrayList<User> loadUsers() {
 		ArrayList<User> users = new ArrayList<User>();
-    
 		try {
 			FileReader reader = new FileReader(USER_FILE_NAME);
 			JSONArray peopleJSON = (JSONArray)new JSONParser().parse(reader);
@@ -148,6 +149,7 @@ public class DataLoader extends DataConstants {
 			for(int i = 0; i < peopleJSON.size(); ++i) {
 				JSONObject personJSON = (JSONObject)peopleJSON.get(i);
 				UUID id = UUID.fromString((String)personJSON.get(USER_ID));
+        Date birthday = new SimpleDateFormat("MM/dd/yyyy").parse((String)personJSON.get(USER_DOB));
 				String username = (String)personJSON.get(USERNAME);
         String password = (String)personJSON.get(PASSWORD);
 				String firstName = (String)personJSON.get(FIRST_NAME);
@@ -156,9 +158,9 @@ public class DataLoader extends DataConstants {
 				String type = (String)personJSON.get(TYPE);
 
         if (type.equals("student")) {
-				  users.add(new User(username, firstName, lastName, email, password, id));
+				  users.add(new User(username, firstName, lastName, email, password, id, birthday));
         } else if (type.equals("author")) {
-          users.add(new Author(username, firstName, lastName, email, password, id));
+          users.add(new Author(username, firstName, lastName, email, password, id, birthday));
         }
 			}
 			return users;

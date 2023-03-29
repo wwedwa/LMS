@@ -8,6 +8,7 @@ import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * LMS class
@@ -67,8 +68,8 @@ public class LMS {
    * @param username
    * @param password
    */
-  public boolean addUser(String username, String firstName, String lastName, String email, String password, String type) {
-    boolean wasAdded = userList.addUser(username, firstName, lastName, email, password, type);
+  public boolean addUser(String username, String firstName, String lastName, String email, String password, String type, Date birthday) {
+    boolean wasAdded = userList.addUser(username, firstName, lastName, email, password, type, birthday);
     if (wasAdded) {
       user = userList.getUser(username);
     }
