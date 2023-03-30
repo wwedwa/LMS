@@ -31,15 +31,24 @@ public class Comment {
     this.comment = comment;
     this.replies = new ArrayList<Comment>();
   }
-
+  /**
+   * author accessor
+   * @return author
+   */
   public User getAuthor() {
     return author;
   }
-
+  /**
+   * comment accessor
+   * @return comment
+   */
   public String getComment() {
     return comment;
   }
-
+  /**
+   * replies accessor
+   * @return replies
+   */
   public ArrayList<Comment> getReplies() {
     return replies;
   }
@@ -50,7 +59,10 @@ public class Comment {
   public void addReply(Comment comment) {
     replies.add(comment);
   }
-
+  /**
+   * toString method
+   * @return String
+   */
   public String toString() {
     return author.getUsername() + " says: " + comment;
   }
