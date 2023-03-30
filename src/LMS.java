@@ -95,15 +95,24 @@ public class LMS {
   public ArrayList<Course> findCourses(String keyword) {
     return courseList.getCoursesByKeyWord(keyword);
   }
-
+  /**
+   * moves current course to a new course
+   * @param choice
+   */
   public void moveToCourse(int choice) {
     currCourse = courseList.getAllCourses().get(choice - 1);
   }
-
+  /**
+   * moves current course to a new course
+   * @param choice
+   */
   public void moveToRegisteredCourse(int choice) {
     currCourse = user.getRegisteredCourses().get(choice - 1);
   }
-
+  /**
+   * moves current module to a new module
+   * @param choice
+   */
   public void moveToModule(int choice) {
     currModule = currCourse.getModules().get(choice - 1);
   }
@@ -115,23 +124,33 @@ public class LMS {
   public ArrayList<Course> getAllCourses() {
     return this.courseList.getAllCourses();
   }
-
+  /**
+   * returns arraylist of registered courses
+   */
   public ArrayList<Course> getRegisteredCourses() {
     return user.getRegisteredCourses();
   }
-
+  /**
+   * returns the current module
+   */
   public ArrayList<Module> getModules() {
     return currCourse.getModules();
   }
-
+  /**
+   * returns the current course description
+   */
   public String getCourseDescription() {
     return currCourse.getDescription();
   }
-
+  /**
+   * returns the current course grade of the user
+   */
   public double getCourseGrade() {
     return user.getCourseGrade(currCourse);
   }
-
+  /**
+   * registers user to new course
+   */
   public void register() {
     user.registerCourse(currCourse);
   }
@@ -148,7 +167,9 @@ public class LMS {
     }
     return courseStrings;
   }
-
+  /**
+   * gets the users current grades
+   */
   public ArrayList<String> getModuleGradeStrings() {
     ArrayList<Module> modules = currCourse.getModules();
     ArrayList<Double> grades = user.getGrades(currCourse);
@@ -159,11 +180,15 @@ public class LMS {
     }
     return moduleStrings;
   }
-
+  /**
+   * gets the current modules lessons
+   */
   public ArrayList<Lesson> getLessons() {
     return currModule.getLessons();
   }
-
+  /**
+   * gets the current modules quiz
+   */
   public Assessment getQuiz() {
     return currModule.getAssessment();
   }
@@ -176,21 +201,21 @@ public class LMS {
   }
 
   /**
-   * 
-   * @return
+   * returns the course list titles
    */
   public boolean checkCourseTitle(String title) {
     return this.courseList.contains(title);
   }
 
   /**
-   * 
-   * @return
+   * returns the current modules quiz
    */
   public Assessment getModuleQuiz() {
     return this.currModule.getAssessment();
   }
-
+  /**
+   * creates the comments 
+   */
   public ArrayList<String> generateComments(ArrayList<Comment> comments) {
     ArrayList<String> options = new ArrayList<String>();
     for (Comment comment : comments) {
@@ -201,7 +226,9 @@ public class LMS {
     }
     return options;
   }
-
+  /**
+   * generates the comments 
+   */
   private void generateComments(Comment comment, int depth, ArrayList<String> options) {
     String tabs = "";
     for (int i = 0; i < depth; i++) {
@@ -213,7 +240,9 @@ public class LMS {
     }
     return;
   }
-
+  /**
+   * generates a list of comments and returns them
+   */
   private ArrayList<Comment> generateCommentList(ArrayList<Comment> comments) {
     ArrayList<Comment> commentList = new ArrayList<Comment>();
     for (Comment comment : comments) {
@@ -224,7 +253,9 @@ public class LMS {
     }
     return commentList;
   }
-
+  /**
+   * generates a list of comments
+   */
   private void generateCommentList(Comment comment, ArrayList<Comment> commentList) {
     commentList.add(comment);
     for (Comment reply : comment.getReplies()) {
@@ -233,7 +264,7 @@ public class LMS {
     return;
   }
   /**
-   * 
+   * evaluates the users assessment 
    * @param assessment
    * @param answers
    * @return
@@ -244,16 +275,14 @@ public class LMS {
     return grade;
   }
   /**
-   * 
-   * @return
+   * updates the users grade
    */
   public void updateGrade(int moduleNum, double grade) {
     user.updateCourseGrade(moduleNum, grade, currCourse);
   }
 
   /**
-   * 
-   * @return
+   * adds a comment to the current module 
    */
   public void addModuleComment(String decription) {
     currModule.addComment(new Comment(user, decription));
@@ -276,24 +305,21 @@ public class LMS {
   }
 
   /**
-   * 
-   * @return
+   * returns the current course comments
    */
   public ArrayList<Comment> getCourseComments() {
     return currCourse.getComments();
   }
 
   /**
-   * 
-   * @return
+   * returns the current modules comments
    */
   public ArrayList<Comment> getModuleComments() {
     return currModule.getComments();
   }
 
   /**
-   * 
-   * @return
+   * adds a reply to a comment
    */
   public void addReply(int commentNum, String decription, ArrayList<Comment> comments) {
     Comment reply = new Comment(user, decription);
@@ -305,8 +331,7 @@ public class LMS {
   }
 
   /**
-   * 
-   * @return
+   * adds a review to the current course
    */
   public void addReview(String description, int rating) {
     Review review = new Review(user, rating, description);
@@ -314,13 +339,14 @@ public class LMS {
   }
 
   /**
-   * 
-   * @return
+   * returns the reviews of a current course
    */
   public ArrayList<Review> getReviews() {
     return currCourse.getReviews();
   }
-
+  /**
+   * retursn true if the current course has reviews else false
+   */
   public boolean hasReviewed() {
     ArrayList<Review> reviews = currCourse.getReviews();
     for (Review review : reviews) {
@@ -332,17 +358,20 @@ public class LMS {
   }
 
   /**
-   * 
-   * @return
+   * returns the current user
    */
   public User getUser() {
     return user;
   }
-
+  /**
+   * returns true is the users current course is completed else false
+   */
   public boolean isCourseCompleted() {
     return user.isCourseCompleted(currCourse);
   }
-
+  /**
+   * saves a module to a file
+   */
   public boolean saveModule() {
     String fileName = currModule.getTitle() + ".txt";
     File file = new File(fileName);
