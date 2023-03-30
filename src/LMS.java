@@ -180,14 +180,6 @@ public class LMS {
   }
 
   /**
-   * this method returns a list of completed courses
-   * @return list of courses
-   */
-  public ArrayList<Course> getCompletedCourses() {
-    return this.user.getCompletedCourses();
-  }
-
-  /**
    * 
    * @return
    */
