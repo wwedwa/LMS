@@ -172,11 +172,39 @@
         "quiz": [
           {
             "answerChoices": [
-              "Correct answer",
-              "Wrong answer"
+              "True",
+              "False"
             ],
-            "question": "Example question",
+            "question": "True or false: \"for i in range(6):\" is the proper way to start a for loop in Python.",
             "correctAnswer": 0
+          },
+          {
+            "answerChoices": [
+              "True",
+              "False"
+            ],
+            "question": "True or false: \"for i in range(6):\" will count up to and include 6.",
+            "correctAnswer": 1
+          },
+          {
+            "answerChoices": [
+              "for i in range(listOfNumbers):",
+              "for i in range(len(listOfNumbers)):",
+              "for every element in listOfNumbers:",
+              "for i in listOfNumbers:"
+            ],
+            "question": "How do you loop through a list named listOfNumbers?",
+            "correctAnswer": 0
+          },
+          {
+            "answerChoices": [
+              "To only execute code if a given conditional is true",
+              "To get user input",
+              "To repeat a section of code multiple times",
+              "To pause a program for a given number of seconds"
+            ],
+            "question": "What is the purpose of for loops?",
+            "correctAnswer": 2
           }
         ],
         "comments": [
@@ -191,6 +219,10 @@
           {
             "title": "For Loops",
             "content": "In Python, for loops are used to loop through a section of code a given number of times. The syntax for these loops is as follows: \nfor i in range(5):\n\tprint(i)\n\nThe output of the above code is:\n0\n1\n2\n3\n4\n\nNote that counting begins at 0 and does not include the upper limit."
+          },
+          {
+            "title": "Looping Through a List",
+            "content": "We can also loop through every element in a list if we need to print out a list or perform operations on the elements.\nThe syntax for these loops is as follows: \nexampleList = [1, 3, 5, 7]\nfor num in exampleList:\n\tprint(num + 2)\n\nThe output of the above code is:\n3\n5\n7\n9\n\nThese loops come in handy when we want a short way to operate on every element in a list."
           }
         ]
       },
