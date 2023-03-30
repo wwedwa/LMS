@@ -26,7 +26,7 @@ public class UserList {
     if (type.equals("author")) {
     users.add(new Author(username, firstName, lastName, email, password, birthday));
     } else {
-      users.add(new User(username, firstName, lastName, email, password, birthday));
+      users.add(new Student(username, firstName, lastName, email, password, birthday));
     }
     return true;
   }
