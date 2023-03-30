@@ -714,6 +714,7 @@ public class LMSUI {
   }
 
   /** 
+   * Gets answer to given questions
    * @param question
    * @return String
    */
@@ -757,6 +758,7 @@ public class LMSUI {
   }
 
   /** 
+   * Allows user to edit a lesson in a module
    * @param module
    */
   private void editLesson(Module module) {
@@ -801,6 +803,7 @@ public class LMSUI {
   }
 
   /** 
+   * Allows user to edit a question in a module assessment
    * @param module
    */
   private void editQuestion(Module module) {
@@ -842,6 +845,10 @@ public class LMSUI {
     } while (running);
   }
 
+  /**
+   * Allows user to make a new lesson for a module
+   * @return Lesson
+   */
   private Lesson makeLesson() {
     System.out.println("Please enter the name of the lesson: ");
       String lessonName = scanner.nextLine();
@@ -856,19 +863,23 @@ public class LMSUI {
       return new Lesson(lessonName, moduleText);
     }
 
-    private Question makeQuestion() {
-      System.out.print("Enter the question: ");
-      String questionContent = scanner.nextLine();
-      System.out.print("Enter the number of answer choices (up to 4): ");
-      int choices = getUserChoice(4);
-      ArrayList<String> answers = new ArrayList<String>();
-      for (int i = 0; i < choices; i++) {
-        System.out.print("Enter answer choice " + (i + 1) + ": ");
-        answers.add(scanner.nextLine());
-      }
-      System.out.println("Enter the number of the correct answer: ");
-      int correctAnswer = scanner.nextInt();
-      scanner.nextLine();
-      return new Question(questionContent, answers, correctAnswer - 1);
+  /**
+   * Allows user to make a question for a module assessment
+   * @return
+   */
+  private Question makeQuestion() {
+    System.out.print("Enter the question: ");
+    String questionContent = scanner.nextLine();
+    System.out.print("Enter the number of answer choices (up to 4): ");
+    int choices = getUserChoice(4);
+    ArrayList<String> answers = new ArrayList<String>();
+    for (int i = 0; i < choices; i++) {
+      System.out.print("Enter answer choice " + (i + 1) + ": ");
+      answers.add(scanner.nextLine());
     }
+    System.out.println("Enter the number of the correct answer: ");
+    int correctAnswer = scanner.nextInt();
+    scanner.nextLine();
+    return new Question(questionContent, answers, correctAnswer - 1);
+  }
 }
