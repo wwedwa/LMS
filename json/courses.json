@@ -197,21 +197,12 @@
             ],
             "question": "What is the purpose of for loops?",
             "correctAnswer": 2
-          },
-          {
-            "answerChoices": [
-              "Infinitely many",
-              "Until the conditional is false",
-              "It will keep looping and only stop if you use break"
-            ],
-            "question": "How many times does a while loop iterate",
-            "correctAnswer": 1
           }
         ],
         "comments": [
           {
             "replies": [],
-            "comment": "These are throwing me for a loop�€� hehehe",
+            "comment": "These are throwing me for a loop... hehehe",
             "userid": "9048a0f8-2627-4af1-aed6-d64c706649e7"
           }
         ],
@@ -220,10 +211,6 @@
           {
             "title": "For Loops",
             "content": "In Python, for loops are used to loop through a section of code a given number of times. The syntax for these loops is as follows: \nfor i in range(5):\n\tprint(i)\n\nThe output of the above code is:\n0\n1\n2\n3\n4\n\nNote that counting begins at 0 and does not include the upper limit."
-          },
-          {
-            "title": "While Loops",
-            "content": "The while loop allows you to loop through a section of code as long as a condition is true\nIn python, the while loop can be seen implemented like this\n\nx = 0\nwhile x < 5:\n    print(x)\n    x += 1\n\nThis code will print the value of x, and then increase the value by 1. Then, as long as\nthe value of x is less than 5, the while loop will run again, printing and incrementing\nx until it is no longer less than 5. "
           },
           {
             "title": "Looping Through a List",
