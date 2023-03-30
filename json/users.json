@@ -42,7 +42,7 @@
   {
     "firstName": "Scout",
     "lastName": "Solace",
-    "password": "password",
+    "password": "MyPassword!",
     "dob": "08/22/2000",
     "id": "598e1aa0-1db7-4135-b626-dc623b6b465a",
     "type": "student",

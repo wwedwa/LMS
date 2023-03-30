@@ -191,7 +191,7 @@ public class LMSUI {
     while (true) {
       clearScreen();
       System.out.println(application.getCourse().getDescription() + "\n");
-      System.out.println("Grade: " + application.getCourseGrade() + "%\n");
+      System.out.println("Grade: " + String.format("%.2f", application.getCourseGrade()) + "%\n");
       displayOptions(options);
       System.out.print("\nEnter number to view module lessons or return to previous menu: ");
       int choice = getUserChoice(options.size());
