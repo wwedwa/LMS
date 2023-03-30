@@ -227,8 +227,11 @@ public class LMSUI {
         viewCourseForum();
       } else if (choice == options.size() - 1) {
         if (application.isCourseCompleted()) {
-          application.createCertificate();
-          System.out.println("Your certificate has been downloaded!");
+          if (application.createCertificate()) {
+            System.out.println("The certificate has been downloaded!");
+          } else {
+            System.out.println("There was a problem downloading the certificate. Please try again later.");
+          }
         } else {
           System.out.println("Please complete the course first.");
         }

@@ -1,5 +1,8 @@
 package src;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -84,5 +87,27 @@ public class Module {
    */
   public String toString() {
     return this.title;
+  }
+
+  /**
+   * saves a module to a file
+   * @return true or false if module is saved
+   */
+  public boolean saveModule() {
+    String fileName = title + ".txt";
+    File file = new File(fileName);
+    try {
+      file.createNewFile();
+      FileWriter writer = new FileWriter(fileName);
+      writer.write(title + "\n");
+      for (int i = 0; i < lessons.size(); i++) {
+        String currLesson = lessons.get(i).toString();
+        writer.write("\n" + currLesson + "\n");
+      }
+      writer.close();
+    } catch (IOException e) {
+      return false;
+    }
+    return true;
   }
 }

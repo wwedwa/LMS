@@ -1,5 +1,8 @@
 package src;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -124,14 +127,6 @@ public class Course {
   }
 
   /**
-  * create certificate for the user
-  * @param user
-  */
-  public void createCertificate(User user) {
-    return;
-  }
-
-  /**
   * @return course id
   */
   public UUID getCourseID() {
@@ -216,5 +211,23 @@ public class Course {
       toReturn += " - no reviews";
     }
     return toReturn;
+  }
+
+  /**
+   * creates a certificate for a specific course for the user
+   * @throws IOException
+   */
+  public boolean createCertificate(User user) {
+    String fileName = title + ".txt";
+    File file = new File(fileName);
+    try {
+      file.createNewFile();
+      FileWriter writer = new FileWriter(fileName);
+      writer.write("Congratulations "+ user.getFirstName()+" you completed "+ title +"!");
+      writer.close();
+    } catch (IOException e) {
+      return false;
+    }
+    return true;
   }
 }

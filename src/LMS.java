@@ -1,7 +1,5 @@
 package src;
 
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -292,16 +290,8 @@ public class LMS {
    * creates a certificate for a specific course for the user
    * @throws IOException
    */
-  public void createCertificate() {String fileName = currCourse.getTitle() + ".txt";
-    File file = new File(fileName);
-    try {
-      file.createNewFile();
-      FileWriter writer = new FileWriter(fileName);
-      writer.write("Congratulations "+user.getFirstName()+" you completed "+currCourse.getTitle()+"!");
-      writer.close();
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+  public boolean createCertificate() {
+    return currCourse.createCertificate(user);
   }
 
   /**
@@ -374,20 +364,6 @@ public class LMS {
    * @return true or false if module is saved
    */
   public boolean saveModule() {
-    String fileName = currModule.getTitle() + ".txt";
-    File file = new File(fileName);
-    try {
-      file.createNewFile();
-      FileWriter writer = new FileWriter(fileName);
-      writer.write(currModule.getTitle() + "\n");
-      for (int i = 0; i < currModule.getLessons().size(); i++) {
-        String currLesson = currModule.getLessons().get(i).toString();
-        writer.write("\n" + currLesson + "\n");
-      }
-      writer.close();
-    } catch (IOException e) {
-      return false;
-    }
-    return true;
+    return currModule.saveModule();
   }
 }
