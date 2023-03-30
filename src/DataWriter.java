@@ -2,6 +2,7 @@ package src;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import org.json.simple.JSONArray;
@@ -159,6 +160,7 @@ public class DataWriter extends DataConstants {
 	
 	public static JSONObject getUserJSON(User user) {
 		JSONObject userDetails = new JSONObject();
+    SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");  
 		userDetails.put(USER_ID, user.getId().toString());
 		userDetails.put(USERNAME, user.getUsername());
     userDetails.put(PASSWORD, user.getPassword());
@@ -166,6 +168,7 @@ public class DataWriter extends DataConstants {
 		userDetails.put(LAST_NAME, user.getLastName());
 		userDetails.put(EMAIL, user.getEmail());
     userDetails.put(TYPE, user.getType());
+    userDetails.put(USER_DOB, formatter.format(user.getBirthday()));
     return userDetails;
 	}
 

@@ -3,13 +3,8 @@ package src;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.io.Writer;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * LMS class
@@ -17,10 +12,8 @@ import java.util.ArrayList;
  */
 public class LMS {
   private User user;
-  private Author author;
   private Course currCourse;
   private Module currModule;
-  private Lesson currLesson;
   private CourseList courseList;
   private UserList userList;
 
@@ -71,8 +64,8 @@ public class LMS {
    * @param username
    * @param password
    */
-  public boolean addUser(String username, String firstName, String lastName, String email, String password) {
-    boolean wasAdded = userList.addUser(username, firstName, lastName, email, password);
+  public boolean addUser(String username, String firstName, String lastName, String email, String password, String type, Date birthday) {
+    boolean wasAdded = userList.addUser(username, firstName, lastName, email, password, type, birthday);
     if (wasAdded) {
       user = userList.getUser(username);
     }
@@ -88,7 +81,10 @@ public class LMS {
    * @param difficulty
    */
   public boolean addCourse(String title, Language language, String description, ArrayList<Module> modules, Difficulty difficulty) {
-    return courseList.addCourse(title, user, language, description, modules, difficulty);
+    System.out.println("Current size of course list: " + getAllCourses().size());
+    boolean toReturn = courseList.addCourse(title, user, language, description, modules, difficulty);
+    System.out.println("Current size of course list: " + getAllCourses().size());
+    return toReturn;
   }
 
   /**
@@ -99,15 +95,24 @@ public class LMS {
   public ArrayList<Course> findCourses(String keyword) {
     return courseList.getCoursesByKeyWord(keyword);
   }
-
+  /**
+   * moves current course to a new course
+   * @param choice
+   */
   public void moveToCourse(int choice) {
     currCourse = courseList.getAllCourses().get(choice - 1);
   }
-
+  /**
+   * moves current course to a new course
+   * @param choice
+   */
   public void moveToRegisteredCourse(int choice) {
     currCourse = user.getRegisteredCourses().get(choice - 1);
   }
-
+  /**
+   * moves current module to a new module
+   * @param choice
+   */
   public void moveToModule(int choice) {
     currModule = currCourse.getModules().get(choice - 1);
   }
@@ -119,23 +124,33 @@ public class LMS {
   public ArrayList<Course> getAllCourses() {
     return this.courseList.getAllCourses();
   }
-
+  /**
+   * returns arraylist of registered courses
+   */
   public ArrayList<Course> getRegisteredCourses() {
     return user.getRegisteredCourses();
   }
-
+  /**
+   * returns the current module
+   */
   public ArrayList<Module> getModules() {
     return currCourse.getModules();
   }
-
+  /**
+   * returns the current course description
+   */
   public String getCourseDescription() {
     return currCourse.getDescription();
   }
-
+  /**
+   * returns the current course grade of the user
+   */
   public double getCourseGrade() {
     return user.getCourseGrade(currCourse);
   }
-
+  /**
+   * registers user to new course
+   */
   public void register() {
     user.registerCourse(currCourse);
   }
@@ -152,7 +167,9 @@ public class LMS {
     }
     return courseStrings;
   }
-
+  /**
+   * gets the users current grades
+   */
   public ArrayList<String> getModuleGradeStrings() {
     ArrayList<Module> modules = currCourse.getModules();
     ArrayList<Double> grades = user.getGrades(currCourse);
@@ -163,11 +180,15 @@ public class LMS {
     }
     return moduleStrings;
   }
-
+  /**
+   * gets the current modules lessons
+   */
   public ArrayList<Lesson> getLessons() {
     return currModule.getLessons();
   }
-
+  /**
+   * gets the current modules quiz
+   */
   public Assessment getQuiz() {
     return currModule.getAssessment();
   }
@@ -176,40 +197,74 @@ public class LMS {
    * @return
    */
   public ArrayList<Course> getCreatedCourses() {
-    ArrayList<Course> courses = new ArrayList<>();
-    for (Course c : getAllCourses())
-    if (c.getAuthor().equals(getUser())) {
-      courses.add(c);
-    }
-    return courses;
+    return user.getCreatedCourses();
   }
 
   /**
-   * this method returns a list of completed courses
-   * @return list of courses
-   */
-  public ArrayList<Course> getCompletedCourses() {
-    return this.user.getCompletedCourses();
-  }
-
-  /**
-   * 
-   * @return
+   * returns the course list titles
    */
   public boolean checkCourseTitle(String title) {
     return this.courseList.contains(title);
   }
 
   /**
-   * 
-   * @return
+   * returns the current modules quiz
    */
   public Assessment getModuleQuiz() {
     return this.currModule.getAssessment();
   }
-
   /**
-   * 
+   * creates the comments 
+   */
+  public ArrayList<String> generateComments(ArrayList<Comment> comments) {
+    ArrayList<String> options = new ArrayList<String>();
+    for (Comment comment : comments) {
+      options.add(comment.toString());
+      for (Comment reply : comment.getReplies()) {
+        generateComments(reply, 1, options);
+      }
+    }
+    return options;
+  }
+  /**
+   * generates the comments 
+   */
+  private void generateComments(Comment comment, int depth, ArrayList<String> options) {
+    String tabs = "";
+    for (int i = 0; i < depth; i++) {
+      tabs += "\t";
+    }
+    options.add(tabs + comment);
+    for (Comment reply : comment.getReplies()) {
+      generateComments(reply, depth + 1, options);
+    }
+    return;
+  }
+  /**
+   * generates a list of comments and returns them
+   */
+  private ArrayList<Comment> generateCommentList(ArrayList<Comment> comments) {
+    ArrayList<Comment> commentList = new ArrayList<Comment>();
+    for (Comment comment : comments) {
+      commentList.add(comment);
+      for (Comment reply : comment.getReplies()) {
+        generateCommentList(reply, commentList);
+      }
+    }
+    return commentList;
+  }
+  /**
+   * generates a list of comments
+   */
+  private void generateCommentList(Comment comment, ArrayList<Comment> commentList) {
+    commentList.add(comment);
+    for (Comment reply : comment.getReplies()) {
+      generateCommentList(reply, commentList);
+    }
+    return;
+  }
+  /**
+   * evaluates the users assessment 
    * @param assessment
    * @param answers
    * @return
@@ -220,69 +275,63 @@ public class LMS {
     return grade;
   }
   /**
-   * 
-   * @return
+   * updates the users grade
    */
   public void updateGrade(int moduleNum, double grade) {
     user.updateCourseGrade(moduleNum, grade, currCourse);
   }
 
   /**
-   * 
-   * @return
-   */
-  public void addCourseComment(String decription) {
-    Comment comment = new Comment(user, decription);
-    currCourse.addComment(comment);
-  }
-
-  /**
-   * 
-   * @return
+   * adds a comment to the current module 
    */
   public void addModuleComment(String decription) {
-    Comment comment = new Comment(user, decription);
-    currModule.addComment(comment);
+    currModule.addComment(new Comment(user, decription));
   }
 
   /**
    * creates a certificate for a specific course for the user
    * @throws IOException
    */
-  public void createCertificate() throws IOException {
-    try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(currCourse.getTitle()+".txt"), "utf-8"))) {
+  public void createCertificate() {String fileName = currCourse.getTitle() + ".txt";
+    File file = new File(fileName);
+    try {
+      file.createNewFile();
+      FileWriter writer = new FileWriter(fileName);
       writer.write("Congratulations "+user.getFirstName()+" you completed "+currCourse.getTitle()+"!");
+      writer.close();
+    } catch (IOException e) {
+      e.printStackTrace();
     }
   }
 
   /**
-   * 
-   * @return
+   * returns the current course comments
    */
   public ArrayList<Comment> getCourseComments() {
     return currCourse.getComments();
   }
 
   /**
-   * 
-   * @return
+   * returns the current modules comments
    */
   public ArrayList<Comment> getModuleComments() {
     return currModule.getComments();
   }
 
   /**
-   * 
-   * @return
+   * adds a reply to a comment
    */
-  public void addReply(Comment comment, String decription) {
+  public void addReply(int commentNum, String decription, ArrayList<Comment> comments) {
     Comment reply = new Comment(user, decription);
-    comment.addReply(reply);
+    generateCommentList(comments).get(commentNum - 1).addReply(reply);
+  }
+
+  public void addCourseComment(String description) {
+    currCourse.addComment(new Comment(user, description));
   }
 
   /**
-   * 
-   * @return
+   * adds a review to the current course
    */
   public void addReview(String description, int rating) {
     Review review = new Review(user, rating, description);
@@ -290,13 +339,14 @@ public class LMS {
   }
 
   /**
-   * 
-   * @return
+   * returns the reviews of a current course
    */
   public ArrayList<Review> getReviews() {
     return currCourse.getReviews();
   }
-
+  /**
+   * retursn true if the current course has reviews else false
+   */
   public boolean hasReviewed() {
     ArrayList<Review> reviews = currCourse.getReviews();
     for (Review review : reviews) {
@@ -308,22 +358,35 @@ public class LMS {
   }
 
   /**
-   * 
-   * @return
+   * returns the current user
    */
   public User getUser() {
     return user;
   }
-  public void saveModule() throws Exception{
+  /**
+   * returns true is the users current course is completed else false
+   */
+  public boolean isCourseCompleted() {
+    return user.isCourseCompleted(currCourse);
+  }
+  /**
+   * saves a module to a file
+   */
+  public boolean saveModule() {
     String fileName = currModule.getTitle() + ".txt";
     File file = new File(fileName);
-    file.createNewFile();
-    FileWriter writer = new FileWriter(fileName);
-    writer.write(currModule.getTitle() + "\n");
-    for (int i = 0; i < currModule.getLessons().size(); i++) {
-      String currLesson = currModule.getLessons().get(i).toString();
-      writer.write("\n" + currLesson + "\n");
+    try {
+      file.createNewFile();
+      FileWriter writer = new FileWriter(fileName);
+      writer.write(currModule.getTitle() + "\n");
+      for (int i = 0; i < currModule.getLessons().size(); i++) {
+        String currLesson = currModule.getLessons().get(i).toString();
+        writer.write("\n" + currLesson + "\n");
+      }
+      writer.close();
+    } catch (IOException e) {
+      return false;
     }
-    writer.close();
+    return true;
   }
 }

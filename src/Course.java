@@ -64,7 +64,9 @@ public class Course {
     this.modules = modules;
     this.difficulty = difficulty;
     this.courseID = id;
-    calculateRating();
+    if (reviews.size() > 0) {
+      calculateRating();
+    }
   }
 
   /**

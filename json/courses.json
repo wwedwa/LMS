@@ -1,51 +1,98 @@
 [
   {
-    "id": "33189195-6b2b-4eed-be23-7a82d7bca444",
-    "author": "da6abb4c-eba4-41ef-a49b-158d6f295691",
-    "title": "Intro to Python",
     "difficulty": "EASY",
-    "language": "PYTHON",
-    "description": "Python introduction for novices in coding",
-    "students": [
-      {
-        "studentid": "9d7251a2-ca51-403d-bcdf-52100291f5c2",
-        "moduleGrades":[90, -1]
-      },
-      {
-        "studentid": "257f7426-37bb-4ac6-ae7e-2d990299e415",
-        "moduleGrades":[100, 87]
-      }
-    ],
     "comments": [
       {
-        "userid": "257f7426-37bb-4ac6-ae7e-2d990299e415",
-        "comment": "How do I retake quizzes?",
         "replies": [
           {
-            "userid": "da6abb4c-eba4-41ef-a49b-158d6f295691",
-            "comment": "Just click the button that says retake",
             "replies": [
               {
-                "userid": "257f7426-37bb-4ac6-ae7e-2d990299e415",
-                "comment": "thanks!",
-                "replies": []
+                "replies": [],
+                "comment": "Nah, I just started on the second module",
+                "userid": "257f7426-37bb-4ac6-ae7e-2d990299e415"
               }
-            ]
+            ],
+            "comment": "I know! Its helped me so much. Have you completed it?",
+            "userid": "da6abb4c-eba4-41ef-a49b-158d6f295691"
           }
-        ]
+        ],
+        "comment": "This is an awesome course! Very helpful",
+        "userid": "257f7426-37bb-4ac6-ae7e-2d990299e415"
       }
     ],
     "reviews": [
       {
-        "userid": "9d7251a2-ca51-403d-bcdf-52100291f5c2",
+        "review": "Great course!",
         "rating": 4,
-        "review": "Great course!"
+        "userid": "9d7251a2-ca51-403d-bcdf-52100291f5c2"
       }
     ],
+    "author": "b76646f2-aa35-41c6-9187-425ca9b87562",
+    "description": "This course is an introduction to the basic of Python. By the end, I hope you have a solid foundation in programming and Python",
+    "students": [
+      {
+        "studentid": "9d7251a2-ca51-403d-bcdf-52100291f5c2",
+        "moduleGrades": [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ]
+      },
+      {
+        "studentid": "598e1aa0-1db7-4135-b626-dc623b6b465a",
+        "moduleGrades": [
+          95,
+          100,
+          90,
+          85,
+          -1,
+          80,
+          95,
+          90,
+          100,
+          100
+        ]
+      },
+      {
+        "studentid": "9048a0f8-2627-4af1-aed6-d64c706649e7",
+        "moduleGrades": [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ]
+      }
+    ],
+    "language": "PYTHON",
+    "id": "33189195-6b2b-4eed-be23-7a82d7bca444",
+    "title": "Intro to Python",
     "modules": [
       {
-        "title": "variables",
+        "quiz": [
+          {
+            "answerChoices": [
+              "Correct answer",
+              "Wrong answer"
+            ],
+            "question": "Example question",
+            "correctAnswer": 0
+          }
+        ],
         "comments": [],
+        "title": "Variables in Python",
         "lessons": [
           {
             "title": "Types of variables",
@@ -55,31 +102,21 @@
             "title": "Creating a variable",
             "content": "Like this: x = \"Hello World!\" (yes, python is that easy)"
           }
-        ],
-        "quiz": [
-          {
-            "question": "What is a variable?",
-            "answerChoices": [
-              "Something",
-              "Something else",
-              "The correct answer",
-              "The wrong answer"
-            ],
-            "correctAnswer": 2
-          },
-          {
-            "question": "Is this the proper way to assign a variable: \"x == 2\"?",
-            "answerChoices": [
-              "Yes",
-              "No"
-            ],
-            "correctAnswer": 1
-          }
         ]
       },
       {
-        "title": "Conditionals",
+        "quiz": [
+          {
+            "answerChoices": [
+              "Correct answer",
+              "Wrong answer"
+            ],
+            "question": "Example question",
+            "correctAnswer": 0
+          }
+        ],
         "comments": [],
+        "title": "Conditional Statements",
         "lessons": [
           {
             "title": "If Statements",
@@ -89,8 +126,308 @@
             "title": "If/Else Statements",
             "content": "Adding an else will allow you to execute another bit of code if the original statement is false"
           }
+        ]
+      },
+      {
+        "quiz": [
+          {
+            "answerChoices": [
+              "Correct answer",
+              "Wrong answer"
+            ],
+            "question": "Example question",
+            "correctAnswer": 0
+          }
         ],
-        "quiz": []
+        "comments": [],
+        "title": "Strings in Python and Related Functions",
+        "lessons": [
+          {
+            "title": "Example Lesson",
+            "content": "Example lesson content"
+          }
+        ]
+      },
+      {
+        "quiz": [
+          {
+            "answerChoices": [
+              "Correct answer",
+              "Wrong answer"
+            ],
+            "question": "Example question",
+            "correctAnswer": 0
+          }
+        ],
+        "comments": [],
+        "title": "Lists in Python",
+        "lessons": [
+          {
+            "title": "Example Lesson",
+            "content": "Example lesson content"
+          }
+        ]
+      },
+      {
+        "quiz": [
+          {
+            "answerChoices": [
+              "True",
+              "False"
+            ],
+            "question": "True or false: \"for i in range(6):\" is the proper way to start a for loop in Python.",
+            "correctAnswer": 0
+          },
+          {
+            "answerChoices": [
+              "True",
+              "False"
+            ],
+            "question": "True or false: \"for i in range(6):\" will count up to and include 6.",
+            "correctAnswer": 1
+          },
+          {
+            "answerChoices": [
+              "for i in range(listOfNumbers):",
+              "for i in range(len(listOfNumbers)):",
+              "for every element in listOfNumbers:",
+              "for i in listOfNumbers:"
+            ],
+            "question": "How do you loop through a list named listOfNumbers?",
+            "correctAnswer": 4
+          },
+          {
+            "answerChoices": [
+              "To only execute code if a given conditional is true",
+              "To get user input",
+              "To repeat a section of code multiple times",
+              "To pause a program for a given number of seconds"
+            ],
+            "question": "What is the purpose of for loops?",
+            "correctAnswer": 2
+          }
+        ],
+        "comments": [
+          {
+            "replies": [],
+            "comment": "These are throwing me for a loop… hehehe",
+            "userid": "9048a0f8-2627-4af1-aed6-d64c706649e7"
+          }
+        ],
+        "title": "Loops",
+        "lessons": [
+          {
+            "title": "For Loops",
+            "content": "In Python, for loops are used to loop through a section of code a given number of times. The syntax for these loops is as follows: \nfor i in range(5):\n\tprint(i)\n\nThe output of the above code is:\n0\n1\n2\n3\n4\n\nNote that counting begins at 0 and does not include the upper limit."
+          },
+          {
+            "title": "Looping Through a List",
+            "content": "We can also loop through every element in a list if we need to print out a list or perform operations on the elements.\nThe syntax for these loops is as follows: \nexampleList = [1, 3, 5, 7]\nfor num in exampleList:\n\tprint(num + 2)\n\nThe output of the above code is:\n3\n5\n7\n9\n\nThese loops come in handy when we want a short way to operate on every element in a list."
+          }
+        ]
+      },
+      {
+        "quiz": [
+          {
+            "answerChoices": [
+              "Correct answer",
+              "Wrong answer"
+            ],
+            "question": "Example question",
+            "correctAnswer": 0
+          }
+        ],
+        "comments": [],
+        "title": "Functions",
+        "lessons": [
+          {
+            "title": "Example Lesson",
+            "content": "Example lesson content"
+          }
+        ]
+      },
+      {
+        "quiz": [
+          {
+            "answerChoices": [
+              "Correct answer",
+              "Wrong answer"
+            ],
+            "question": "Example question",
+            "correctAnswer": 0
+          }
+        ],
+        "comments": [],
+        "title": "Object Oriented Programming",
+        "lessons": [
+          {
+            "title": "Example Lesson",
+            "content": "Example lesson content"
+          }
+        ]
+      },
+      {
+        "quiz": [
+          {
+            "answerChoices": [
+              "Correct answer",
+              "Wrong answer"
+            ],
+            "question": "Example question",
+            "correctAnswer": 0
+          }
+        ],
+        "comments": [],
+        "title": "Python Classes",
+        "lessons": [
+          {
+            "title": "Example Lesson",
+            "content": "Example lesson content"
+          }
+        ]
+      },
+      {
+        "quiz": [
+          {
+            "answerChoices": [
+              "Correct answer",
+              "Wrong answer"
+            ],
+            "question": "Writing/Reading to Files",
+            "correctAnswer": 0
+          }
+        ],
+        "comments": [],
+        "title": "Variables",
+        "lessons": [
+          {
+            "title": "Example Lesson",
+            "content": "Example lesson content"
+          }
+        ]
+      },
+      {
+        "quiz": [
+          {
+            "answerChoices": [
+              "Correct answer",
+              "Wrong answer"
+            ],
+            "question": "Example question",
+            "correctAnswer": 0
+          }
+        ],
+        "comments": [],
+        "title": "Some Common Libraries to Look Into",
+        "lessons": [
+          {
+            "title": "Example Lesson",
+            "content": "Example lesson content"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "difficulty": "EASY",
+    "comments": [],
+    "reviews": [],
+    "author": "c3305b1c-0abc-48aa-812e-348b8aaeaf8a",
+    "description": "This is an introductory course to JavaScript: A popular language for websites or every day use!",
+    "students": [
+      {
+        "studentid": "598e1aa0-1db7-4135-b626-dc623b6b465a",
+        "moduleGrades": [
+          100,
+          95,
+          100,
+          90
+        ]
+      }
+    ],
+    "language": "JAVA_SCRIPT",
+    "id": "3efe3db7-62e2-48ac-8b16-dcad80477c49",
+    "title": "JavaScript for Beginners",
+    "modules": [
+      {
+        "quiz": [
+          {
+            "answerChoices": [
+              "Correct answer",
+              "Incorrect answer"
+            ],
+            "question": "Example question",
+            "correctAnswer": 0
+          }
+        ],
+        "comments": [],
+        "title": "Variables in JavaScript",
+        "lessons": [
+          {
+            "title": "Example Lesson",
+            "content": "Example lesson content"
+          }
+        ]
+      },
+      {
+        "quiz": [
+          {
+            "answerChoices": [
+              "Correct answer",
+              "Incorrect answer"
+            ],
+            "question": "Example question",
+            "correctAnswer": 0
+          }
+        ],
+        "comments": [],
+        "title": "Conditional Statemnts (Ifs and Elses)",
+        "lessons": [
+          {
+            "title": "Example Lesson",
+            "content": "Example lesson content"
+          }
+        ]
+      },
+      {
+        "quiz": [
+          {
+            "answerChoices": [
+              "Correct answer",
+              "Incorrect answer"
+            ],
+            "question": "Example question",
+            "correctAnswer": 0
+          }
+        ],
+        "comments": [],
+        "title": "Loops, Loops, and more Loops!",
+        "lessons": [
+          {
+            "title": "Example Lesson",
+            "content": "Example lesson content"
+          }
+        ]
+      },
+      {
+        "quiz": [
+          {
+            "answerChoices": [
+              "Correct answer",
+              "Incorrect answer"
+            ],
+            "question": "Example question",
+            "correctAnswer": 0
+          }
+        ],
+        "comments": [],
+        "title": "Functions",
+        "lessons": [
+          {
+            "title": "Example Lesson",
+            "content": "Example lesson content"
+          }
+        ]
       }
     ]
   }

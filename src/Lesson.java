@@ -31,6 +31,6 @@ public class Lesson {
   }
 
   public String toString() {
-    return "----- " + title + " -----\n" + content;
+    return "----- " + title + " -----\n\n" + content;
   }
 }

@@ -1,47 +1,42 @@
 package src;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.UUID;
 
-public class User {
+public abstract class User {
   private String username;
   private String firstName;
   private String lastName;
   private String email;
   private String password;
-  private String type;
+  private Date birthday;
   private UUID userid;
   private ArrayList<Course> registeredCourses;
-  private ArrayList<Course> completedCourses;
   private ArrayList<CourseInfo> gradeBook;
-  private ArrayList<Author> favoriteAuthors;
 
-  public User(String username, String firstName, String lastName, String email, String password) {
+  public User(String username, String firstName, String lastName, String email, String password, Date birthday) {
     this.username = username;
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
     this.password = password;
     this.userid = UUID.randomUUID();
-    this.type = "student";
+    this.birthday = birthday;
     registeredCourses = new ArrayList<Course>();
-    completedCourses = new ArrayList<Course>();
     gradeBook = new ArrayList<CourseInfo>();
-    favoriteAuthors = new ArrayList<Author>();
   }
 
-  public User(String username, String firstName, String lastName, String email, String password, UUID userid) {
+  public User(String username, String firstName, String lastName, String email, String password, UUID userid, Date birthday) {
     this.username = username;
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
     this.password = password;
     this.userid = userid;
-    this.type = "student";
+    this.birthday = birthday;
     registeredCourses = new ArrayList<Course>();
-    completedCourses = new ArrayList<Course>();
     gradeBook = new ArrayList<CourseInfo>();
-    favoriteAuthors = new ArrayList<Author>();
   }
 
   public String getUsername() {
@@ -68,16 +63,14 @@ public class User {
     return this.userid;
   }
 
-  public String getType() {
-    return this.type;
+  public abstract String getType();
+
+  public Date getBirthday() {
+    return birthday;
   }
 
   public ArrayList<Course> getRegisteredCourses() {
     return this.registeredCourses;
-  }
-
-  public ArrayList<Course> getCompletedCourses() {
-    return this.completedCourses;
   }
 
   public ArrayList<Double> getGrades(Course course) {
@@ -107,10 +100,6 @@ public class User {
     return false;
   }
 
-  public void setType(String type) {
-    this.type = type;
-  }
-
   public boolean registerCourse(Course course, ArrayList<Double> grades) {
     if (isEnrolled(course)) {
       return false;
@@ -133,17 +122,7 @@ public class User {
     this.registeredCourses.remove(course);
   }
 
-  public void addCompletedCourse(Course course) {
-    this.completedCourses.add(course);
-  }
-
-  public void addFavAuthor(Author author) {
-    this.favoriteAuthors.add(author);
-  }
-
-  public void removeFavAuthor(Author author) {
-    this.favoriteAuthors.remove(author);
-  }
+  public abstract void addCreatedCourse(Course course);
 
   public void updateCourseGrade(int moduleNum, double grade, Course course) {
     for (CourseInfo courseInfo : gradeBook) {
@@ -154,7 +133,18 @@ public class User {
     }
   }
 
-  public ArrayList<Course> getCreatedCourses() {
-    return new ArrayList<Course>();
+  public abstract ArrayList<Course> getCreatedCourses();
+
+  public boolean isCourseCompleted(Course course) {
+    if (!isEnrolled(course)) {
+      return false;
+    }
+    ArrayList<Double> grades = getGrades(course);
+    for (double grade : grades) {
+      if (grade < 0) {
+        return false;
+      }
+    }
+    return true;
   }
 }

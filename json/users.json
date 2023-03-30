@@ -3,6 +3,7 @@
     "firstName": "William",
     "lastName": "Edwards",
     "password": "cAtdOgHoRse159",
+    "dob": "03/14/2003",
     "id": "9d7251a2-ca51-403d-bcdf-52100291f5c2",
     "type": "student",
     "email": "wwe1@email.sc.edu",
@@ -12,6 +13,7 @@
     "firstName": "Casey",
     "lastName": "Fainberg",
     "password": "123mYpaSsWoRD321",
+    "dob": "08/09/1999",
     "id": "257f7426-37bb-4ac6-ae7e-2d990299e415",
     "type": "student",
     "email": "fainberg@email.sc.edu",
@@ -21,8 +23,9 @@
     "firstName": "Noah",
     "lastName": "Parker",
     "password": "author!5478",
+    "dob": "02/10/2001",
     "id": "c3305b1c-0abc-48aa-812e-348b8aaeaf8a",
-    "type": "student",
+    "type": "author",
     "email": "nhparker@email.sc.edu",
     "username": "nparker"
   },
@@ -30,9 +33,40 @@
     "firstName": "Austin",
     "lastName": "Sanza",
     "password": "passworddrowssap",
+    "dob": "04/28/1997",
     "id": "da6abb4c-eba4-41ef-a49b-158d6f295691",
-    "type": "student",
+    "type": "author",
     "email": "wsanza@email.sc.edu",
     "username": "sanza"
+  },
+  {
+    "firstName": "Scout",
+    "lastName": "Solace",
+    "password": "MyPassword!",
+    "dob": "08/22/2000",
+    "id": "598e1aa0-1db7-4135-b626-dc623b6b465a",
+    "type": "student",
+    "email": "ssolace@gmail.com",
+    "username": "ssolace"
+  },
+  {
+    "firstName": "Allie",
+    "lastName": "Anderson",
+    "password": "mYPaSSwoRD",
+    "dob": "12/05/1999",
+    "id": "9048a0f8-2627-4af1-aed6-d64c706649e7",
+    "type": "student",
+    "email": "alliea@gmail.com",
+    "username": "AllieAnderson"
+  },
+  {
+    "firstName": "John",
+    "lastName": "Wisdom",
+    "password": "passwisdom",
+    "dob": "09/17/1982",
+    "id": "b76646f2-aa35-41c6-9187-425ca9b87562",
+    "type": "author",
+    "email": "jwisdom12@gmail.com",
+    "username": "jWisdom"
   }
 ]
