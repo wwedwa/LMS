@@ -12,6 +12,10 @@ import org.json.simple.parser.JSONParser;
 
 public class DataLoader extends DataConstants {
 
+  /**
+   * Loads courses from JSON file into courseList
+   * @return ArrayList<Course>
+   */
   public static ArrayList<Course> loadCourses() {
     UserList userList = UserList.getInstance();
     ArrayList<Course> courses = new ArrayList<Course>();
@@ -46,6 +50,11 @@ public class DataLoader extends DataConstants {
 		return courses;
   }
 
+  /**
+   * Assigns given course and grades to the users taking them
+   * @param studentsJSON
+   * @param course
+   */
   private static void assignCourse(JSONArray studentsJSON, Course course) {
     UserList userList = UserList.getInstance();
     for (int i = 0; i < studentsJSON.size(); ++i) {
@@ -63,6 +72,11 @@ public class DataLoader extends DataConstants {
     }
   }
 
+  /**
+   * Loads modules from JSON into a list of module objects
+   * @param modulesJSON
+   * @return ArrayList<Module>
+   */
   private static ArrayList<Module> loadModules(JSONArray modulesJSON) {
     ArrayList<Module> modules = new ArrayList<Module>();
     for (int i = 0; i < modulesJSON.size(); ++i) {
@@ -79,6 +93,11 @@ public class DataLoader extends DataConstants {
     return modules;
   }
 
+  /**
+   * Loads reviews from JSON into a list of review objects
+   * @param reviewsJSON
+   * @return ArrayList<Review>
+   */
   private static ArrayList<Review> loadReviews(JSONArray reviewsJSON) {
     UserList userList = UserList.getInstance();
     ArrayList<Review> reviews = new ArrayList<Review>();
@@ -93,6 +112,11 @@ public class DataLoader extends DataConstants {
     return reviews;
   }
 
+  /**
+   * Recursively loads comements from JSON into a list of comment objects
+   * @param commentsJSON
+   * @return ArrayList<Comment>
+   */
   private static ArrayList<Comment> loadComments(JSONArray commentsJSON) {
     UserList userList = UserList.getInstance();
     ArrayList<Comment> comments = new ArrayList<Comment>();
@@ -108,6 +132,11 @@ public class DataLoader extends DataConstants {
     return comments;
   }
 
+  /**
+   * Loads lessons from JSON into a list of lesson objects
+   * @param lessonsJSON
+   * @return ArrayList<Lesson>
+   */
   private static ArrayList<Lesson> loadLessons(JSONArray lessonsJSON) {
     ArrayList<Lesson> lessons = new ArrayList<Lesson>();
     for (int i = 0; i < lessonsJSON.size(); ++i) {
@@ -119,6 +148,11 @@ public class DataLoader extends DataConstants {
     return lessons;
   }
 
+  /**
+   * Loads Assessment from JSON for modules in the courses
+   * @param questionsJSON
+   * @return Assessmnet
+   */
   private static Assessment loadAssessment(JSONArray questionsJSON) {
     ArrayList<Question> questions = new ArrayList<Question>();
     for (int i = 0; i < questionsJSON.size(); ++i) {
@@ -132,6 +166,11 @@ public class DataLoader extends DataConstants {
     return new Assessment(questions);
   }
 
+  /**
+   * Loads assessment choises from JSON for the quizzes of modules
+   * @param choicesJSON
+   * @return ArrayList<String>
+   */
   private static ArrayList<String> loadChoices(JSONArray choicesJSON) {
     ArrayList<String> choices = new ArrayList<String>();
     for (int i = 0; i < choicesJSON.size(); ++i) {
@@ -140,6 +179,10 @@ public class DataLoader extends DataConstants {
     return choices;
   }
 
+  /**
+   * Loads users from JSON into userList
+   * @return ArrayList<User>
+   */
   public static ArrayList<User> loadUsers() {
 		ArrayList<User> users = new ArrayList<User>();
 		try {
