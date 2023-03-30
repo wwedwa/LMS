@@ -13,9 +13,7 @@ public abstract class User {
   private Date birthday;
   private UUID userid;
   private ArrayList<Course> registeredCourses;
-  private ArrayList<Course> completedCourses;
   private ArrayList<CourseInfo> gradeBook;
-  private ArrayList<Author> favoriteAuthors;
 
   public User(String username, String firstName, String lastName, String email, String password, Date birthday) {
     this.username = username;
@@ -26,9 +24,7 @@ public abstract class User {
     this.userid = UUID.randomUUID();
     this.birthday = birthday;
     registeredCourses = new ArrayList<Course>();
-    completedCourses = new ArrayList<Course>();
     gradeBook = new ArrayList<CourseInfo>();
-    favoriteAuthors = new ArrayList<Author>();
   }
 
   public User(String username, String firstName, String lastName, String email, String password, UUID userid, Date birthday) {
@@ -40,9 +36,7 @@ public abstract class User {
     this.userid = userid;
     this.birthday = birthday;
     registeredCourses = new ArrayList<Course>();
-    completedCourses = new ArrayList<Course>();
     gradeBook = new ArrayList<CourseInfo>();
-    favoriteAuthors = new ArrayList<Author>();
   }
 
   public String getUsername() {
@@ -77,10 +71,6 @@ public abstract class User {
 
   public ArrayList<Course> getRegisteredCourses() {
     return this.registeredCourses;
-  }
-
-  public ArrayList<Course> getCompletedCourses() {
-    return this.completedCourses;
   }
 
   public ArrayList<Double> getGrades(Course course) {
@@ -132,19 +122,7 @@ public abstract class User {
     this.registeredCourses.remove(course);
   }
 
-  public void addCompletedCourse(Course course) {
-    this.completedCourses.add(course);
-  }
-
   public abstract void addCreatedCourse(Course course);
-
-  public void addFavAuthor(Author author) {
-    this.favoriteAuthors.add(author);
-  }
-
-  public void removeFavAuthor(Author author) {
-    this.favoriteAuthors.remove(author);
-  }
 
   public void updateCourseGrade(int moduleNum, double grade, Course course) {
     for (CourseInfo courseInfo : gradeBook) {
