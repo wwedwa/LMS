@@ -745,7 +745,7 @@ public class LMSUI {
     int moduleNum = getUserChoice(course.getModuleCount());
     moduleNum -= 1;
     Module module = course.getModules().get(moduleNum); 
-    System.out.println("Would you like to edit a lesson or quiz? (l/q)");
+    System.out.println("Would you like to edit/add a lesson or quiz? (l/q)");
     String type = scanner.nextLine();
     if (type.equals("q")) {
       editQuestion(module);
@@ -761,29 +761,43 @@ public class LMSUI {
    */
   private void editLesson(Module module) {
     clearScreen();
-    System.out.println("Choose the lesson you would like to edit");
     for (int i = 0; i < module.getLessons().size(); i++) {
-      System.out.println("Lesson " + (i + 1) + ": " + module.getLessons().get(i));
+      System.out.println("Lesson " + (i + 1) + ": " + module.getLessons().get(i).getTitle());
     }
-    System.out.println("Enter the number of the lesson you would like to edit: ");
-    int choice = getUserChoice(module.getLessons().size());
-    choice -= 1;
-    Lesson lesson = module.getLessons().get(choice);
-    System.out.println("You will now re create this lesson.");
-    System.out.println("Please enter the name of the lesson: ");
-    String lessonName = scanner.nextLine();
-    System.out.println("Enter all text for the lesson (Enter a line with just (finished) to end):");
-    String moduleText = "";
-    String tempLine = scanner.nextLine();
+    boolean running = true;
     do {
-      moduleText += tempLine;
-      tempLine = scanner.nextLine();
-      tempLine = "\n" + tempLine;
-    } while(!tempLine.equals("finished"));
-    lesson = new Lesson(lessonName, moduleText);
-    module.getLessons().set(choice, lesson);
-    System.out.println("Lesson successfully edited, returning to main menu...");
-    sleep(1000);
+      System.out.println("Would you like to edit or add a lesson? (e/a/quit)");
+      String edit = scanner.nextLine();
+      if (edit.equals("a")) {
+        System.out.println("You will now make the lesson");
+        Lesson lesson = makeLesson();
+        System.out.println("Which lesson number do you want this to be? ");
+        int choice = getUserChoice(module.getLessons().size());
+        module.getLessons().add(choice - 1, lesson);
+        running = false;
+        System.out.println("Lesson successfully added, returning to main menu...");
+        sleep(1000);
+      }
+      else if (edit.equals("e")) {
+        System.out.println("Enter the number of the lesson you would like to edit: ");
+        int choice = getUserChoice(module.getLessons().size());
+        choice -= 1;
+        Lesson lesson = module.getLessons().get(choice);
+        System.out.println("You will now re create this lesson.");
+        lesson = makeLesson();
+        module.getLessons().set(choice, lesson);
+        running = false;
+        System.out.println("Lesson successfully edited, returning to main menu...");
+        sleep(1000);
+      }
+      else if (edit.equals("quit")) {
+        return;
+      }
+      else {
+        System.out.println("Please enter either \"e\" or \"a\" or \"quit\"");
+      }
+    } while(running);
+    
   }
 
   /** 
@@ -791,30 +805,70 @@ public class LMSUI {
    */
   private void editQuestion(Module module) {
     clearScreen();
-    System.out.println("Choose the question you would like to edit");
+    boolean running = true;
     for (int i = 0; i < module.getAssessment().getQuestions().size(); i++) {
       System.out.println("Question " + (i + 1) + ": " + module.getAssessment().getQuestions().get(i));
     }
-    System.out.println("Enter the number of the Question you would like to edit: ");
-    int choice = getUserChoice(module.getAssessment().getQuestions().size());
-    choice -=1;
-    System.out.println("You will now recreate the question");
-    System.out.print("Enter the question: ");
-    String questionContent = scanner.nextLine();
-    System.out.print("Enter the number of answer choices (up to 4): ");
-    int choices = getUserChoice(4);
-    scanner.nextLine();
-    ArrayList<String> answers = new ArrayList<String>();
-    for (int i = 0; i < choices; i++) {
-      System.out.print("Enter answer choice " + (i + 1) + ": ");
-      answers.add(scanner.nextLine());
-    }
-    System.out.println("Enter the number of the correct answer: ");
-    int correctAnswer = scanner.nextInt();
-    scanner.nextLine();
-    Question quest = new Question(questionContent, answers, correctAnswer - 1);
-    module.getAssessment().getQuestions().set(choice, quest);
-    System.out.println("Question successfully edited, returning to main menu...");
-    sleep(1000);
+    do {
+      System.out.println("Would you like to edit or add a question? (e/a/quit)");
+      String edit = scanner.nextLine();
+      if (edit.equals("a")) {
+        System.out.println("You will now make the question");
+        Question question = makeQuestion();
+        System.out.println("Which question number do you want this to be? ");
+        int choice = getUserChoice(module.getAssessment().getQuestions().size() + 1);
+        module.getAssessment().getQuestions().add(choice - 1, question);
+        running = false;
+        System.out.println("Question successfully added, returning to main menu...");
+        sleep(1000);
+      }
+      else if (edit.equals("e")) {
+        System.out.println("Enter the number of the Question you would like to edit: ");
+        int choice = getUserChoice(module.getAssessment().getQuestions().size());
+        choice -=1;
+        System.out.println("You will now recreate the question");
+        Question quest = makeQuestion();
+        module.getAssessment().getQuestions().set(choice, quest);
+        running = false;
+        System.out.println("Question successfully edited, returning to main menu...");
+        sleep(1000);
+      }
+      else if (edit.equals("quit")) {
+        return;
+      }
+      else {
+        System.out.println("Please enter either \"e\" or \"a\" or \"quit\"");
+      }
+    } while (running);
   }
+
+  private Lesson makeLesson() {
+    System.out.println("Please enter the name of the lesson: ");
+      String lessonName = scanner.nextLine();
+      System.out.println("Enter all text for the lesson (Enter a line with just (finished) to end):");
+      String moduleText = "";
+      String tempLine = scanner.nextLine();
+      do {
+        moduleText += tempLine;
+        tempLine = scanner.nextLine();
+        tempLine = "\n" + tempLine;
+      } while(!tempLine.equals("\nfinished"));
+      return new Lesson(lessonName, moduleText);
+    }
+
+    private Question makeQuestion() {
+      System.out.print("Enter the question: ");
+      String questionContent = scanner.nextLine();
+      System.out.print("Enter the number of answer choices (up to 4): ");
+      int choices = getUserChoice(4);
+      ArrayList<String> answers = new ArrayList<String>();
+      for (int i = 0; i < choices; i++) {
+        System.out.print("Enter answer choice " + (i + 1) + ": ");
+        answers.add(scanner.nextLine());
+      }
+      System.out.println("Enter the number of the correct answer: ");
+      int correctAnswer = scanner.nextInt();
+      scanner.nextLine();
+      return new Question(questionContent, answers, correctAnswer - 1);
+    }
 }
