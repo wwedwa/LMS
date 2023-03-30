@@ -10,7 +10,6 @@ public abstract class User {
   private String lastName;
   private String email;
   private String password;
-  private String type;
   private Date birthday;
   private UUID userid;
   private ArrayList<Course> registeredCourses;
@@ -26,7 +25,6 @@ public abstract class User {
     this.password = password;
     this.userid = UUID.randomUUID();
     this.birthday = birthday;
-    this.type = "student";
     registeredCourses = new ArrayList<Course>();
     completedCourses = new ArrayList<Course>();
     gradeBook = new ArrayList<CourseInfo>();
@@ -41,7 +39,6 @@ public abstract class User {
     this.password = password;
     this.userid = userid;
     this.birthday = birthday;
-    this.type = "student";
     registeredCourses = new ArrayList<Course>();
     completedCourses = new ArrayList<Course>();
     gradeBook = new ArrayList<CourseInfo>();
@@ -111,10 +108,6 @@ public abstract class User {
       }
     }
     return false;
-  }
-
-  public void setType(String type) {
-    this.type = type;
   }
 
   public boolean registerCourse(Course course, ArrayList<Double> grades) {
