@@ -37,6 +37,7 @@ public class Author extends User {
   */
   public Author(String username, String firstName, String lastName, String email, String password, UUID id, Date birthday) {
     super(username, firstName, lastName, email, password, id, birthday);
+    setType("author");
   }
 
   /**

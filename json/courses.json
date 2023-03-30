@@ -8,15 +8,15 @@
             "replies": [
               {
                 "replies": [],
-                "comment": "thanks!",
+                "comment": "Nah, I just started on the second module",
                 "userid": "257f7426-37bb-4ac6-ae7e-2d990299e415"
               }
             ],
-            "comment": "Just click the button that says retake",
+            "comment": "I know! Its helped me so much. Have you completed it?",
             "userid": "da6abb4c-eba4-41ef-a49b-158d6f295691"
           }
         ],
-        "comment": "How do I retake quizzes?",
+        "comment": "This is an awesome course! Very helpful",
         "userid": "257f7426-37bb-4ac6-ae7e-2d990299e415"
       }
     ],
@@ -27,21 +27,52 @@
         "userid": "9d7251a2-ca51-403d-bcdf-52100291f5c2"
       }
     ],
-    "author": "da6abb4c-eba4-41ef-a49b-158d6f295691",
-    "description": "Python introduction for novices in coding",
+    "author": "b76646f2-aa35-41c6-9187-425ca9b87562",
+    "description": "This course is an introduction to the basic of Python. By the end, I hope you have a solid foundation in programming and Python",
     "students": [
       {
         "studentid": "9d7251a2-ca51-403d-bcdf-52100291f5c2",
         "moduleGrades": [
-          90,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
           -1
         ]
       },
       {
-        "studentid": "257f7426-37bb-4ac6-ae7e-2d990299e415",
+        "studentid": "598e1aa0-1db7-4135-b626-dc623b6b465a",
         "moduleGrades": [
+          95,
           100,
-          87
+          90,
+          85,
+          -1,
+          80,
+          95,
+          90,
+          100,
+          100
+        ]
+      },
+      {
+        "studentid": "9048a0f8-2627-4af1-aed6-d64c706649e7",
+        "moduleGrades": [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
         ]
       }
     ],
@@ -53,25 +84,15 @@
         "quiz": [
           {
             "answerChoices": [
-              "Something",
-              "Something else",
-              "The correct answer",
-              "The wrong answer"
+              "Correct answer",
+              "Wrong answer"
             ],
-            "question": "What is a variable?",
-            "correctAnswer": 2
-          },
-          {
-            "answerChoices": [
-              "Yes",
-              "No"
-            ],
-            "question": "Is this the proper way to assign a variable: \"x == 2\"?",
-            "correctAnswer": 1
+            "question": "Example question",
+            "correctAnswer": 0
           }
         ],
         "comments": [],
-        "title": "variables",
+        "title": "Variables in Python",
         "lessons": [
           {
             "title": "Types of variables",
@@ -87,15 +108,15 @@
         "quiz": [
           {
             "answerChoices": [
-              "Yes",
-              "No"
+              "Correct answer",
+              "Wrong answer"
             ],
-            "question": "Did you enjoy this module?",
+            "question": "Example question",
             "correctAnswer": 0
           }
         ],
         "comments": [],
-        "title": "Conditionals",
+        "title": "Conditional Statements",
         "lessons": [
           {
             "title": "If Statements",
@@ -106,64 +127,24 @@
             "content": "Adding an else will allow you to execute another bit of code if the original statement is false"
           }
         ]
-      }
-    ]
-  },
-  {
-    "difficulty": "EASY",
-    "comments": [],
-    "reviews": [
-      {
-        "review": "5",
-        "rating": 5,
-        "userid": "72e19b9d-2d72-4072-99ee-0273fd91d86a"
-      }
-    ],
-    "author": "72e19b9d-2d72-4072-99ee-0273fd91d86a",
-    "description": "This is a great course to learn JavaScript, a powerful language for all uses. If you want to get into web design or just want to learn a new skill, this course is great for you!",
-    "students": [
-      {
-        "studentid": "72e19b9d-2d72-4072-99ee-0273fd91d86a",
-        "moduleGrades": [
-          -1,
-          -1
-        ]
-      }
-    ],
-    "language": "JAVA_SCRIPT",
-    "id": "fe507baf-bf95-4da8-8f21-a68fdf302b46",
-    "title": "Introduction to JavaScript",
-    "modules": [
+      },
       {
         "quiz": [
           {
             "answerChoices": [
-              "The correct choice",
-              "The incorrect choice"
+              "Correct answer",
+              "Wrong answer"
             ],
-            "question": "How do you create a variable in JavaScript",
-            "correctAnswer": 0
-          },
-          {
-            "answerChoices": [
-              "A",
-              "B",
-              "C"
-            ],
-            "question": "Choose A",
+            "question": "Example question",
             "correctAnswer": 0
           }
         ],
         "comments": [],
-        "title": "Variables in JavaScript",
+        "title": "Strings in Python and Related Functions",
         "lessons": [
           {
-            "title": "Primitive data types in JavaScript",
-            "content": "EXAMPLE LESSON TEXT"
-          },
-          {
-            "title": "How to create a variable in JavaScript",
-            "content": "EXAMPLE LESSON TEXT"
+            "title": "Example Lesson",
+            "content": "Example lesson content"
           }
         ]
       },
@@ -171,21 +152,248 @@
         "quiz": [
           {
             "answerChoices": [
-              "Incorrect answer",
               "Correct answer",
-              "Incorrect answer",
-              "Incorrect answer"
+              "Wrong answer"
             ],
             "question": "Example question",
-            "correctAnswer": 1
+            "correctAnswer": 0
           }
         ],
         "comments": [],
-        "title": "Loops in JavaScript",
+        "title": "Lists in Python",
         "lessons": [
           {
-            "title": "While Loops",
-            "content": "EXAMPLE LESSON TEXT"
+            "title": "Example Lesson",
+            "content": "Example lesson content"
+          }
+        ]
+      },
+      {
+        "quiz": [
+          {
+            "answerChoices": [
+              "Correct answer",
+              "Wrong answer"
+            ],
+            "question": "Example question",
+            "correctAnswer": 0
+          }
+        ],
+        "comments": [
+          {
+            "replies": [],
+            "comment": "These are throwing me for a loop… hehehe",
+            "userid": "9048a0f8-2627-4af1-aed6-d64c706649e7"
+          }
+        ],
+        "title": "Loops",
+        "lessons": [
+          {
+            "title": "For Loops",
+            "content": "In Python, for loops are used to loop through a section of code a given number of times. The syntax for these loops is as follows: \nfor i in range(5):\n\tprint(i)\n\nThe output of the above code is:\n0\n1\n2\n3\n4\n\nNote that counting begins at 0 and does not include the upper limit."
+          }
+        ]
+      },
+      {
+        "quiz": [
+          {
+            "answerChoices": [
+              "Correct answer",
+              "Wrong answer"
+            ],
+            "question": "Example question",
+            "correctAnswer": 0
+          }
+        ],
+        "comments": [],
+        "title": "Functions",
+        "lessons": [
+          {
+            "title": "Example Lesson",
+            "content": "Example lesson content"
+          }
+        ]
+      },
+      {
+        "quiz": [
+          {
+            "answerChoices": [
+              "Correct answer",
+              "Wrong answer"
+            ],
+            "question": "Example question",
+            "correctAnswer": 0
+          }
+        ],
+        "comments": [],
+        "title": "Object Oriented Programming",
+        "lessons": [
+          {
+            "title": "Example Lesson",
+            "content": "Example lesson content"
+          }
+        ]
+      },
+      {
+        "quiz": [
+          {
+            "answerChoices": [
+              "Correct answer",
+              "Wrong answer"
+            ],
+            "question": "Example question",
+            "correctAnswer": 0
+          }
+        ],
+        "comments": [],
+        "title": "Python Classes",
+        "lessons": [
+          {
+            "title": "Example Lesson",
+            "content": "Example lesson content"
+          }
+        ]
+      },
+      {
+        "quiz": [
+          {
+            "answerChoices": [
+              "Correct answer",
+              "Wrong answer"
+            ],
+            "question": "Writing/Reading to Files",
+            "correctAnswer": 0
+          }
+        ],
+        "comments": [],
+        "title": "Variables",
+        "lessons": [
+          {
+            "title": "Example Lesson",
+            "content": "Example lesson content"
+          }
+        ]
+      },
+      {
+        "quiz": [
+          {
+            "answerChoices": [
+              "Correct answer",
+              "Wrong answer"
+            ],
+            "question": "Example question",
+            "correctAnswer": 0
+          }
+        ],
+        "comments": [],
+        "title": "Some Common Libraries to Look Into",
+        "lessons": [
+          {
+            "title": "Example Lesson",
+            "content": "Example lesson content"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "difficulty": "EASY",
+    "comments": [],
+    "reviews": [],
+    "author": "c3305b1c-0abc-48aa-812e-348b8aaeaf8a",
+    "description": "This is an introductory course to JavaScript: A popular language for websites or every day use!",
+    "students": [
+      {
+        "studentid": "598e1aa0-1db7-4135-b626-dc623b6b465a",
+        "moduleGrades": [
+          100,
+          95,
+          100,
+          90
+        ]
+      }
+    ],
+    "language": "JAVA_SCRIPT",
+    "id": "3efe3db7-62e2-48ac-8b16-dcad80477c49",
+    "title": "JavaScript for Beginners",
+    "modules": [
+      {
+        "quiz": [
+          {
+            "answerChoices": [
+              "Correct answer",
+              "Incorrect answer"
+            ],
+            "question": "Example question",
+            "correctAnswer": 0
+          }
+        ],
+        "comments": [],
+        "title": "Variables in JavaScript",
+        "lessons": [
+          {
+            "title": "Example Lesson",
+            "content": "Example lesson content"
+          }
+        ]
+      },
+      {
+        "quiz": [
+          {
+            "answerChoices": [
+              "Correct answer",
+              "Incorrect answer"
+            ],
+            "question": "Example question",
+            "correctAnswer": 0
+          }
+        ],
+        "comments": [],
+        "title": "Conditional Statemnts (Ifs and Elses)",
+        "lessons": [
+          {
+            "title": "Example Lesson",
+            "content": "Example lesson content"
+          }
+        ]
+      },
+      {
+        "quiz": [
+          {
+            "answerChoices": [
+              "Correct answer",
+              "Incorrect answer"
+            ],
+            "question": "Example question",
+            "correctAnswer": 0
+          }
+        ],
+        "comments": [],
+        "title": "Loops, Loops, and more Loops!",
+        "lessons": [
+          {
+            "title": "Example Lesson",
+            "content": "Example lesson content"
+          }
+        ]
+      },
+      {
+        "quiz": [
+          {
+            "answerChoices": [
+              "Correct answer",
+              "Incorrect answer"
+            ],
+            "question": "Example question",
+            "correctAnswer": 0
+          }
+        ],
+        "comments": [],
+        "title": "Functions",
+        "lessons": [
+          {
+            "title": "Example Lesson",
+            "content": "Example lesson content"
           }
         ]
       }

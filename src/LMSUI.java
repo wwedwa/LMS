@@ -300,6 +300,7 @@ public class LMSUI {
     }
     options.add("Return to Main Menu");
     displayOptions(options);
+    System.out.print("Choose a course number to see details or return to main menu: ");
     int choice = getUserChoice(options.size());
     if (choice < options.size()) {
       application.moveToCourse(choice);
@@ -311,10 +312,11 @@ public class LMSUI {
 
   private void displayCourse() {
     String description = application.getCourseDescription();
+    String difficulty = application.getCourse().getDifficulty().toString();
     String[] options = {"View Reviews", "Register for Course", "Return to Main Menu"};
     while (true) {
       clearScreen();
-      System.out.println("----- " + application.getCourse() + " -----\n\n" + description + "\n");
+      System.out.println("----- " + application.getCourse() + " -----\n\n" + "Difficulty: " + difficulty + "\n" + description + "\n");
       displayOptions(options);
       System.out.println("\nEnter number corresponding to what you want to do: ");
       int choice = getUserChoice(options.length);

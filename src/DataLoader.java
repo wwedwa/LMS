@@ -18,7 +18,6 @@ public class DataLoader extends DataConstants {
 		try {
 			FileReader reader = new FileReader(COURSE_FILE_NAME);
 			JSONArray coursesJSON = (JSONArray)new JSONParser().parse(reader);
-			
 			for(int i = 0; i < coursesJSON.size(); ++i) {
 				JSONObject courseJSON = (JSONObject)coursesJSON.get(i);
 				UUID id = UUID.fromString((String)courseJSON.get(COURSE_ID));
