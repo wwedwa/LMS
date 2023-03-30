@@ -35,6 +35,7 @@ public class DataLoader extends DataConstants {
         ArrayList<Comment> comments = loadComments(commentsJSON);
         Course course = new Course(title, author, comments, reviews, language, description, modules, difficulty, id);
         courses.add(course);
+        author.addCreatedCourse(course);
         JSONArray studentsJSON = (JSONArray)courseJSON.get(STUDENTS);
         assignCourse(studentsJSON, course);
 			}
@@ -157,7 +158,7 @@ public class DataLoader extends DataConstants {
 				String type = (String)personJSON.get(TYPE);
 
         if (type.equals("student")) {
-				  users.add(new User(username, firstName, lastName, email, password, id, birthday));
+				  users.add(new Student(username, firstName, lastName, email, password, id, birthday));
         } else if (type.equals("author")) {
           users.add(new Author(username, firstName, lastName, email, password, id, birthday));
         }
