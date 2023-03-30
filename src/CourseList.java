@@ -17,7 +17,7 @@ public class CourseList {
   }
   
   /**
-    * returns a courseList
+    * @return a courseList
     */
   public static CourseList getInstance() {
     if (courseList == null) {
@@ -27,8 +27,15 @@ public class CourseList {
   }
 
   /**
-    * adds course to courseList
-    */
+   * adds a course
+   * @param title
+   * @param author
+   * @param language
+   * @param description
+   * @param modules
+   * @param difficulty
+   * @return boolean if course was added
+   */
   public boolean addCourse(String title, User author, Language language, String description, ArrayList<Module> modules, Difficulty difficulty) {
     if (contains(title)) {
       return false;
@@ -38,14 +45,14 @@ public class CourseList {
   }
 
   /**
-    * returns all courses
+    * @return all courses
     */
   public ArrayList<Course> getAllCourses() {
     return courses;
   }
 
   /**
-    * returns arraylist of courses with keyword
+    * @return arraylist of courses with keyword
     @param word
     */
   public ArrayList<Course> getCoursesByKeyWord(String word) {
@@ -59,7 +66,7 @@ public class CourseList {
   }
 
   /**
-    * returns true if the course contians that title else false
+    * @return true if the course contians that title else false
     */
   public boolean contains(String title) {
     for (Course c : courses) {

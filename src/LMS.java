@@ -125,25 +125,25 @@ public class LMS {
     return this.courseList.getAllCourses();
   }
   /**
-   * returns arraylist of registered courses
+   * @return arraylist of registered courses
    */
   public ArrayList<Course> getRegisteredCourses() {
     return user.getRegisteredCourses();
   }
   /**
-   * returns the current module
+   * @return the current module
    */
   public ArrayList<Module> getModules() {
     return currCourse.getModules();
   }
   /**
-   * returns the current course description
+   * @return the current course description
    */
   public String getCourseDescription() {
     return currCourse.getDescription();
   }
   /**
-   * returns the current course grade of the user
+   * @return the current course grade of the user
    */
   public double getCourseGrade() {
     return user.getCourseGrade(currCourse);
@@ -201,14 +201,14 @@ public class LMS {
   }
 
   /**
-   * returns the course list titles
+   * @return the course list titles
    */
   public boolean checkCourseTitle(String title) {
     return this.courseList.contains(title);
   }
 
   /**
-   * returns the current modules quiz
+   * @return the current modules quiz
    */
   public Assessment getModuleQuiz() {
     return this.currModule.getAssessment();
@@ -241,7 +241,7 @@ public class LMS {
     return;
   }
   /**
-   * generates a list of comments and returns them
+   * generates a list of comments and @return them
    */
   private ArrayList<Comment> generateCommentList(ArrayList<Comment> comments) {
     ArrayList<Comment> commentList = new ArrayList<Comment>();
@@ -305,14 +305,14 @@ public class LMS {
   }
 
   /**
-   * returns the current course comments
+   * @return the current course comments
    */
   public ArrayList<Comment> getCourseComments() {
     return currCourse.getComments();
   }
 
   /**
-   * returns the current modules comments
+   * @return the current modules comments
    */
   public ArrayList<Comment> getModuleComments() {
     return currModule.getComments();
@@ -339,13 +339,13 @@ public class LMS {
   }
 
   /**
-   * returns the reviews of a current course
+   * @return the reviews of a current course
    */
   public ArrayList<Review> getReviews() {
     return currCourse.getReviews();
   }
   /**
-   * retursn true if the current course has reviews else false
+   * @return true if the current course has reviews else false
    */
   public boolean hasReviewed() {
     ArrayList<Review> reviews = currCourse.getReviews();
@@ -358,19 +358,20 @@ public class LMS {
   }
 
   /**
-   * returns the current user
+   * @return the current user
    */
   public User getUser() {
     return user;
   }
   /**
-   * returns true is the users current course is completed else false
+   * @return true is the users current course is completed else false
    */
   public boolean isCourseCompleted() {
     return user.isCourseCompleted(currCourse);
   }
   /**
    * saves a module to a file
+   * @return true or false if module is saved
    */
   public boolean saveModule() {
     String fileName = currModule.getTitle() + ".txt";

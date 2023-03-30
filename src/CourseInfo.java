@@ -23,7 +23,11 @@ public class CourseInfo {
       this.moduleGrades.add(-1.0);
     }
   }
-
+  /**
+   * CourseInfo constructor with grades parameter
+   * @param course
+   * @param moduleGrades
+   */
   public CourseInfo(Course course, ArrayList<Double> moduleGrades) {
     this.course = course;
     this.moduleGrades = moduleGrades;
@@ -39,15 +43,24 @@ public class CourseInfo {
       this.grade /= count;
     }
   }
-
+  /**
+   * grade accessor
+   * @return grade
+   */
   public double getGrade() {
     return grade;
   }
-
+  /**
+   * course accessor
+   * @return course
+   */
   public Course getCourse() {
     return course;
   }
-
+  /**
+   * grades accessor
+   * @return grades
+   */
   public ArrayList<Double> getGrades() {
     return moduleGrades;
   }

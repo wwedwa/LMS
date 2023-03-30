@@ -7,22 +7,33 @@ import java.util.Date;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * LMSUI class
+ * @author The Lobsters
+ */
 public class LMSUI {
   private Scanner scanner;
   private LMS application;
   String[] welcomeAuthorOptions = {"Explore Registered Courses", "Rate Registered Courses", "Register for Courses", "Create Course", "Edit Created Courses", "Logout"};
   String[] welcomeStudentOptions = {"Explore Registered Courses", "Rate Registered Courses", "Register for Courses", "Logout"};
 
+  /** 
+   * Main method
+   */
   public static void main(String[] args) {
     LMSUI ui = new LMSUI();
     ui.run();
   }
-
+  /**
+   * LMSUI constructor
+   */
   private LMSUI() {
     scanner = new Scanner(System.in);
     application = new LMS();
   }
-
+  /**
+   * run method
+   */
   private void run() {
     clearScreen();
     System.out.print("Do you already have an account? (y/n): ");
@@ -40,7 +51,9 @@ public class LMSUI {
     }
 
   }
-
+  /**
+   * displays the login info
+   */
   private void displayLogin() {
     System.out.print("\nEnter your username: ");
     String username = scanner.nextLine();
@@ -59,7 +72,9 @@ public class LMSUI {
     }
 
   }
-
+  /**
+   * displays the main menu for students
+   */
   private void displayStudentMainMenu() {
     while (true) {
       clearScreen();
@@ -78,14 +93,16 @@ public class LMSUI {
           searchCourses();
           break;
         case 4:
-          System.out.println("Saving progess...");
+          System.out.println("Saving progress...");
           sleep(500);
           System.out.println("Goodbye!");
           application.logout();
       }
     }
   }
-
+  /**
+   * displays the main menu for students
+   */
   private void displayAuthorMainMenu() {
     while (true) {
       clearScreen();
@@ -110,14 +127,16 @@ public class LMSUI {
           editCourse();
           break;
         case 6:
-          System.out.println("Saving progess...");
+          System.out.println("Saving progress...");
           sleep(500);
           System.out.println("Goodbye!");
           application.logout();
       }
     }
   }
-
+  /**
+   * view the course forum
+   */
   private void viewCourseForum() {
     ArrayList<String> options = new ArrayList<String>();
     while (true) {
@@ -141,7 +160,9 @@ public class LMSUI {
       }
     }
   }
-
+  /**
+   * view the module forum
+   */
   private void viewModuleForum() {
     ArrayList<String> options = new ArrayList<String>();
     while (true) {
@@ -165,7 +186,9 @@ public class LMSUI {
       }
     }
   }
-
+  /**
+   * displays the user's registered courses
+   */
   private void displayRegisteredCourses() {
     ArrayList<String> options = application.getRegisteredCourseStrings();
     options.add("Return to Main Menu");
@@ -182,7 +205,9 @@ public class LMSUI {
       }
     }
   }
-
+  /**
+   * displays the user's course
+   */
   private void displayRegisteredCourse() {
     ArrayList<String> options = application.getModuleGradeStrings();
     options.add("View Course Comments");
@@ -218,7 +243,9 @@ public class LMSUI {
       options.add("Return to Registered Courses");
     }
   }
-
+  /**
+   * displays module
+   */
   private void displayModule() {
     ArrayList<Lesson> lessons = application.getLessons();
     String[] options = {"Take Module Quiz", "View Module Comments", "Download Module Content", "Return to Course Information"};
@@ -249,7 +276,9 @@ public class LMSUI {
       }
     }
   }
-
+  /**
+   * allows the user to perform an assessment
+   */
   private void performAssessment() {
     clearScreen();
     Assessment quiz = application.getQuiz();
@@ -274,6 +303,10 @@ public class LMSUI {
     }
   }
 
+  /** 
+   * displays quiz score
+   * @param score
+   */
   private void displayScore(double score) {
     clearScreen();
     System.out.println("You scored a " + score + "%");
@@ -288,7 +321,9 @@ public class LMSUI {
         return;
     }
   }
-
+  /**
+   * allows the user to search courses
+   */
   private void searchCourses() {
     clearScreen();
     System.out.print("Enter a keyword to search for (or press ENTER to see all courses): ");
@@ -309,7 +344,9 @@ public class LMSUI {
       return;
     }
   }
-
+  /**
+   * displays a course
+   */
   private void displayCourse() {
     String description = application.getCourseDescription();
     String difficulty = application.getCourse().getDifficulty().toString();
@@ -334,7 +371,9 @@ public class LMSUI {
       }
     }
   }
-
+  /**
+   * allows the user to rate courses
+   */
   private void rateRegisteredCourses() {
     clearScreen();
     ArrayList<String> options = application.getRegisteredCourseStrings();
@@ -349,7 +388,9 @@ public class LMSUI {
       return;
     }
   }
-
+  /**
+   * allows user to create an account
+   */
   private void createAccount() {
     clearScreen();
     System.out.print("Please enter your email address: ");
@@ -371,6 +412,10 @@ public class LMSUI {
     sleep(1000);
   }
 
+  /** 
+   * gets type of user
+   * @return String
+   */
   private String getType() {
     System.out.print("Do you want to be an (a)uthor or (s)tudent (Enter \"a\" or \"s\"): ");
     String type = scanner.nextLine();
@@ -381,6 +426,10 @@ public class LMSUI {
     return (type.equals("a") ? "author" : "student");
   }
 
+  /** 
+   * gets user birthday
+   * @return Date
+   */
   private Date getBirthday() {
     boolean valid = false;
     Date birthday = new Date();
@@ -396,7 +445,9 @@ public class LMSUI {
     }
     return birthday;
   }
-
+  /**
+   * allows an author to create a course
+   */
   private void createCourse() {
     clearScreen();
     System.out.println("Current size of course list: " + application.getAllCourses().size());
@@ -416,6 +467,10 @@ public class LMSUI {
     sleep(1000);
   }
 
+  /** 
+   * creates lessons
+   * @param lessons
+   */
   private void createLessons(ArrayList<Lesson> lessons) {
     boolean addingLessons = true;
     while (addingLessons) {
@@ -439,6 +494,10 @@ public class LMSUI {
     }
   }
 
+  /** 
+   * gets the programming language
+   * @return Language
+   */
   private Language getLanguage() {
     clearScreen();
     Language[] languages = Language.values();
@@ -452,6 +511,10 @@ public class LMSUI {
     return languages[choice - 1];
   }
 
+  /** 
+   * gets the difficulty
+   * @return Difficulty
+   */
   private Difficulty getDifficulty() {
     clearScreen();
     Difficulty[] difficulties = Difficulty.values();
@@ -465,6 +528,10 @@ public class LMSUI {
     return difficulties[choice - 1];
   }
 
+  /** 
+   * allows for the author to create modules
+   * @param modules
+   */
   private void createModules(ArrayList<Module> modules) {
     clearScreen();
     System.out.println("You will now create modules for your course. Add as many as you want.");
@@ -492,6 +559,10 @@ public class LMSUI {
     }
   }
 
+  /** 
+   * allows for the author to create questions
+   * @param questions
+   */
   private void createQuestions(ArrayList<Question> questions) {
     boolean addingQuestions = true;
     while (addingQuestions) {
@@ -522,7 +593,9 @@ public class LMSUI {
       }
     }
   }
-
+  /**
+   * displays reviews
+   */
   private void displayReviews() {
     clearScreen();
     ArrayList<Review> reviews = application.getReviews();
@@ -536,7 +609,9 @@ public class LMSUI {
       return;
     }
   }
-
+  /**
+   * allows users to create a review
+   */
   private void createReview() {
     clearScreen();
     if (application.hasReviewed()) {
@@ -557,12 +632,18 @@ public class LMSUI {
       return;
     }
   }
-
+  /**
+   * clears screen
+   */
   private void clearScreen() {
     System.out.print("\033[H\033[2J");
     System.out.flush();
   }
 
+  /** 
+   * sleep
+   * @param milliseconds
+   */
   private void sleep(int milliseconds) {
     try {
       TimeUnit.MILLISECONDS.sleep(milliseconds);
@@ -571,18 +652,31 @@ public class LMSUI {
     }
   }
 
+  /** 
+   * displays options
+   * @param options
+   */
   private void displayOptions(ArrayList<String> options) {
     for (int i = 0; i < options.size(); i++) {
       System.out.println((i + 1) + ". " + options.get(i));
     }
   }
 
+  /** 
+   * displays options
+   * @param options
+   */
   private void displayOptions(String[] options) {
     for (int i = 0; i < options.length; i++) {
       System.out.println((i + 1) + ". " + options[i]);
     }
   }
 
+  /** 
+   * gets user input choice
+   * @param numOfOptions
+   * @return int
+   */
   private int getUserChoice(int numOfOptions) {
     boolean validChoice = false;
     int numChoice = -1;
@@ -601,7 +695,10 @@ public class LMSUI {
     }
     return numChoice;
   }
-
+  /** 
+   * gets user input choice yes or no
+   * @return String
+   */
   private String getYesNoChoice() {
     boolean validChoice = false;
     String choice = "";
@@ -616,11 +713,17 @@ public class LMSUI {
     return choice;
   }
 
+  /** 
+   * @param question
+   * @return String
+   */
   private String getField(String question) {
     System.out.print(question);
     return scanner.nextLine();
   }
-
+  /**
+   * edits a Course
+   */
   private void editCourse() {
     clearScreen();
     ArrayList<Course> courses = application.getCreatedCourses();
@@ -653,6 +756,9 @@ public class LMSUI {
     return;
   }
 
+  /** 
+   * @param module
+   */
   private void editLesson(Module module) {
     clearScreen();
     for (int i = 0; i < module.getLessons().size(); i++) {
@@ -694,6 +800,9 @@ public class LMSUI {
     
   }
 
+  /** 
+   * @param module
+   */
   private void editQuestion(Module module) {
     clearScreen();
     boolean running = true;

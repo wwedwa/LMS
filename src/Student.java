@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
 
+/**
+ * Student class
+ * @author The Lobsters
+ */
 public class Student extends User {
 
   /**
@@ -35,14 +39,15 @@ public class Student extends User {
   public String getType() {
     return "student";
   }
-  
+  /**
+   * adds a created course
+   */
   @Override
   public void addCreatedCourse(Course course) {
     return;
   }
-
   /**
-  * returns all created courses
+  * @return all created courses
   */
   @Override
   public ArrayList<Course> getCreatedCourses() {

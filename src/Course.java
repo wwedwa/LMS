@@ -71,7 +71,7 @@ public class Course {
 
   /**
   * add modules
-  *@param module
+  * @param module
   */
   public void addModules(Module module) {
     modules.add(module);
@@ -79,7 +79,7 @@ public class Course {
 
   /**
   * add comment
-  *@param comment
+  * @param comment
   */
   public void addComment(Comment comment) {
     comments.add(comment);
@@ -87,7 +87,7 @@ public class Course {
 
   /**
   * add review
-  *@param review
+  * @param review
   */
   public void addReview(Review review) {
     reviews.add(review);
@@ -95,8 +95,8 @@ public class Course {
   }
 
   /**
-  * returns module at index
-  *@param index
+  * @return module at index
+  * @param index
   */
   public Module getModule(int index) {
     return modules.get(index);
@@ -104,7 +104,7 @@ public class Course {
 
   /**
   * update rating
-  *@param rating
+  * @param rating
   */
   private void updateRating(int rating) {
     // multiply out to use for average
@@ -125,84 +125,84 @@ public class Course {
 
   /**
   * create certificate for the user
-  *@param user
+  * @param user
   */
   public void createCertificate(User user) {
     return;
   }
 
   /**
-  * returns course id
+  * @return course id
   */
   public UUID getCourseID() {
     return courseID;
   }
 
   /**
-  * returns rating
+  * @return rating
   */
   public double getRating() {
     return rating;
   }
 
   /**
-  * returns title
+  * @return title
   */
   public String getTitle() {
     return title;
   }
 
   /**
-  * returns author
+  * @return author
   */
   public User getAuthor() {
     return author;
   }
 
   /**
-  * returns course comments
+  * @return course comments
   */
   public ArrayList<Comment> getComments() {
     return comments;
   }
 
   /**
-  * returns course reviews
+  * @return course reviews
   */
   public ArrayList<Review> getReviews() {
     return reviews;
   }
 
   /**
-  * returns course language
+  * @return course language
   */
   public Language getLanguage() {
     return language;
   }
 
   /**
-  * returns course description
+  * @return course description
   */
   public String getDescription() {
     return description;
   }
 
   /**
-  * returns modules
+  * @return modules
   */
   public ArrayList<Module> getModules() {
     return modules;
   }
 
   /**
-  * returns difficulty
+  * @return difficulty
   */
   public Difficulty getDifficulty() {
     return difficulty;
   }
 
   /**
-  * returns the module index
+  * @return the module index
   */
   public int getModuleCount() {
     return modules.size();
