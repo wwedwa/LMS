@@ -175,14 +175,6 @@
               "True",
               "False"
             ],
-            "question": "True or false: \"for i in range(6):\" is the proper way to start a for loop in Python.",
-            "correctAnswer": 0
-          },
-          {
-            "answerChoices": [
-              "True",
-              "False"
-            ],
             "question": "True or false: \"for i in range(6):\" will count up to and include 6.",
             "correctAnswer": 1
           },
