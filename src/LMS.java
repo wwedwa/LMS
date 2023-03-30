@@ -3,10 +3,6 @@ package src;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.BufferedWriter;
-import java.io.FileOutputStream;
-import java.io.OutputStreamWriter;
-import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -267,9 +263,13 @@ public class LMS {
    * creates a certificate for a specific course for the user
    * @throws IOException
    */
-  public void createCertificate() {
-    try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(currCourse.getTitle()+".txt"), "utf-8"))) {
+  public void createCertificate() {String fileName = currCourse.getTitle() + ".txt";
+    File file = new File(fileName);
+    try {
+      file.createNewFile();
+      FileWriter writer = new FileWriter(fileName);
       writer.write("Congratulations "+user.getFirstName()+" you completed "+currCourse.getTitle()+"!");
+      writer.close();
     } catch (IOException e) {
       e.printStackTrace();
     }
