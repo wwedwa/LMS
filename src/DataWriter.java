@@ -10,6 +10,10 @@ import org.json.simple.JSONObject;
 
 public class DataWriter extends DataConstants {
   
+  /**
+   * Saves all courses into a json file
+   * @param courses
+   */
   public static void saveCourses(ArrayList<Course> courses) {
     JSONArray jsonCourses = new JSONArray();
     for (int i = 0; i < courses.size(); ++i) {
@@ -23,6 +27,11 @@ public class DataWriter extends DataConstants {
     }
   }
 
+  /**
+   * Create JSONOBject for courses to be saved in json file
+   * @param course
+   * @return JSONObject for given course
+   */
   public static JSONObject getCourseJSON(Course course) {
 		JSONObject courseDetails = new JSONObject();
 		courseDetails.put(COURSE_ID, course.getCourseID().toString());
@@ -38,6 +47,11 @@ public class DataWriter extends DataConstants {
     return courseDetails;
 	}
 
+  /**
+   * Creates JSONArray of students that are taking the given course
+   * @param course
+   * @return JSONArray of students in a particular course
+   */
   public static JSONArray getStudentsJSON(Course course) {
     UserList userList = UserList.getInstance();
     JSONArray jsonStudents = new JSONArray();
@@ -49,6 +63,12 @@ public class DataWriter extends DataConstants {
     return jsonStudents;
   }
 
+  /**
+   * Creates JSONObject representing a student and their grades in given course
+   * @param user
+   * @param course
+   * @return JSONObject for student in the given course
+   */
   public static JSONObject getStudentJSON(User user, Course course) {
     JSONObject studentDetails = new JSONObject();
     studentDetails.put(STUDENT_ID, user.getId().toString());
@@ -56,6 +76,11 @@ public class DataWriter extends DataConstants {
     return studentDetails;
   }
 
+  /**
+   * Creates JSONArray of modules made from the given module list
+   * @param modules
+   * @return JSONArray of modules 
+   */
   public static JSONArray getModulesJSON(ArrayList<Module> modules) {
     JSONArray jsonModules = new JSONArray();
     for (int i = 0; i < modules.size(); ++i) {
@@ -64,6 +89,11 @@ public class DataWriter extends DataConstants {
     return jsonModules;
   }
 
+  /**
+   * Recursively creates JSONArray of comments from given list of comments
+   * @param comments
+   * @return JSONArray of comments
+   */
   public static JSONArray getCommentsJSON(ArrayList<Comment> comments) {
     JSONArray jsonComments = new JSONArray();
     for (int i = 0; i < comments.size(); ++i) {
@@ -72,6 +102,11 @@ public class DataWriter extends DataConstants {
     return jsonComments;
   }
 
+  /**
+   * Creates JSONObject for given comment
+   * @param comment
+   * @return JSONObject of the given comment
+   */
   public static JSONObject getCommentJSON(Comment comment) {
     JSONObject commentDetails = new JSONObject();
     commentDetails.put(WRITER_ID, comment.getAuthor().getId().toString());
@@ -80,6 +115,11 @@ public class DataWriter extends DataConstants {
     return commentDetails;
   }
 
+  /**
+   * Creates JSONArray of given reviews
+   * @param reviews
+   * @return JSONArray of given reviews
+   */
   public static JSONArray getReviewsJSON(ArrayList<Review> reviews) {
     JSONArray jsonReviews = new JSONArray();
     for (int i = 0; i < reviews.size(); ++i) {
@@ -88,6 +128,11 @@ public class DataWriter extends DataConstants {
     return jsonReviews;
   }
 
+  /**
+   * Creates JSONObject of given review
+   * @param review
+   * @return JSONObject of given review
+   */
   public static JSONObject getReviewJSON(Review review) {
     JSONObject reviewDetails = new JSONObject();
     reviewDetails.put(WRITER_ID, review.getWriter().getId().toString());
@@ -96,6 +141,11 @@ public class DataWriter extends DataConstants {
     return reviewDetails;
   }
 
+  /**
+   * Creates JSONObject of given module
+   * @param module
+   * @return JSONObject of given module
+   */
   public static JSONObject getModuleJSON(Module module) {
     JSONObject moduleDetails = new JSONObject();
     moduleDetails.put(MODULE_TITLE, module.getTitle());
@@ -105,6 +155,11 @@ public class DataWriter extends DataConstants {
     return moduleDetails;
   }
 
+  /**
+   * Creates JSONArray from given list of lessons
+   * @param lessons
+   * @return JSONArray of lessons
+   */
   public static JSONArray getLessonsJSON(ArrayList<Lesson> lessons) {
     JSONArray jsonLessons = new JSONArray();
     for (int i = 0; i < lessons.size(); ++i) {
@@ -113,6 +168,11 @@ public class DataWriter extends DataConstants {
     return jsonLessons;
   }
 
+  /**
+   * Creates JSONObject of the given lesson
+   * @param lesson
+   * @return JSONObject of the given lesson
+   */
   public static JSONObject getLessonJSON(Lesson lesson) {
     JSONObject lessonDetails = new JSONObject();
     lessonDetails.put(LESSON_TITLE, lesson.getTitle());
@@ -120,6 +180,11 @@ public class DataWriter extends DataConstants {
     return lessonDetails;
   }
 
+  /**
+   * Creates JSONArray of questions representing the quiz of a module
+   * @param quiz
+   * @return JSONArray of questions
+   */
   public static JSONArray getQuizJSON(Assessment quiz) {
     JSONArray jsonQuestions = new JSONArray();
     ArrayList<Question> questions = quiz.getQuestions();
@@ -129,6 +194,11 @@ public class DataWriter extends DataConstants {
     return jsonQuestions;
   }
 
+  /**
+   * Creates JSONObject of question 
+   * @param question
+   * @return JSONObject of question 
+   */
   public static JSONObject getQuestionJSON(Question question) {
     JSONObject questionDetails = new JSONObject();
     questionDetails.put(QUIZ_QUESTION, question.getQuestion());
@@ -137,6 +207,11 @@ public class DataWriter extends DataConstants {
     return questionDetails;
   }
 
+  /**
+   * Creates JSONArray of choices for a question
+   * @param choices
+   * @return JSONArray of String choices
+   */
   public static JSONArray getChoicesJSON(ArrayList<String> choices) {
     JSONArray jsonChoices = new JSONArray();
     for (int i = 0; i < choices.size(); ++i) {
@@ -145,6 +220,10 @@ public class DataWriter extends DataConstants {
     return jsonChoices;
   }
 
+  /**
+   * Saves user data into a JSON file
+   * @param users
+   */
 	public static void saveUsers(ArrayList<User> users) {
 		JSONArray jsonUsers = new JSONArray();
 		for (int i = 0; i < users.size(); ++i) {
@@ -158,6 +237,11 @@ public class DataWriter extends DataConstants {
     }
 	}
 	
+  /**
+   * Creates JSONObject with User data
+   * @param user
+   * @return JSONObject
+   */
 	public static JSONObject getUserJSON(User user) {
 		JSONObject userDetails = new JSONObject();
     SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");  
@@ -171,9 +255,4 @@ public class DataWriter extends DataConstants {
     userDetails.put(USER_DOB, formatter.format(user.getBirthday()));
     return userDetails;
 	}
-
-  public static void main(String[] args) {
-    ArrayList<Course> course = DataLoader.loadCourses();
-    saveCourses(course);
-  }
 }

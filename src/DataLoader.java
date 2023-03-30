@@ -212,33 +212,4 @@ public class DataLoader extends DataConstants {
 		}
 		return null;
   }
-
-  public static void main(String[] args) {
-    ArrayList<User> users = loadUsers();
-    for (User u : users) {
-      System.out.println(u.getUsername());
-    }
-    ArrayList<Course> cs = loadCourses();
-    Course c = cs.get(0); 
-    System.out.println(c.getTitle());
-    System.out.println(c.getDescription());
-    System.out.println(c.getRating());
-    System.out.println(c.getLanguage());
-    ArrayList<Module> modules = c.getModules();
-    for (Module m : modules) {
-      System.out.println(m.getTitle());
-      ArrayList<Lesson> ls = m.getLessons();
-      for (Lesson l : ls) {
-        System.out.println(l.getTitle());
-        System.out.println(l.getContent());
-        System.out.println("--------------------------------------");
-      }
-    }
-    for (Review r : c.getReviews()) {
-      System.out.println(r);
-    }
-    for (Comment comment : c.getComments()) {
-      System.out.println(comment);
-    }
-  }
 }
