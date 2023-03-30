@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
 
-public class User {
+public abstract class User {
   private String username;
   private String firstName;
   private String lastName;
@@ -72,9 +72,7 @@ public class User {
     return this.userid;
   }
 
-  public String getType() {
-    return this.type;
-  }
+  public abstract String getType();
 
   public Date getBirthday() {
     return birthday;
@@ -145,6 +143,8 @@ public class User {
     this.completedCourses.add(course);
   }
 
+  public abstract void addCreatedCourse(Course course);
+
   public void addFavAuthor(Author author) {
     this.favoriteAuthors.add(author);
   }
@@ -162,9 +162,7 @@ public class User {
     }
   }
 
-  public ArrayList<Course> getCreatedCourses() {
-    return new ArrayList<Course>();
-  }
+  public abstract ArrayList<Course> getCreatedCourses();
 
   public boolean isCourseCompleted(Course course) {
     if (!isEnrolled(course)) {

@@ -4,12 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
 
-/**
- * author class
- * @author The Lobsters
- */
-public class Author extends User {
-  private ArrayList<Course> createdCourses;
+public class Student extends User {
 
   /**
   * Author constructor with type
@@ -19,9 +14,8 @@ public class Author extends User {
   *@param username
   *@param password
   */
-  public Author(String username, String firstName, String lastName, String email, String password, Date birthday) {
+  public Student(String username, String firstName, String lastName, String email, String password, Date birthday) {
     super(username, firstName, lastName, email, password, birthday);
-    createdCourses = new ArrayList<Course>();
   }
 
   /**
@@ -33,24 +27,18 @@ public class Author extends User {
   *@param password
   *@param id
   */
-  public Author(String username, String firstName, String lastName, String email, String password, UUID id, Date birthday) {
+  public Student(String username, String firstName, String lastName, String email, String password, UUID id, Date birthday) {
     super(username, firstName, lastName, email, password, id, birthday);
-    createdCourses = new ArrayList<Course>();
   }
 
   @Override
   public String getType() {
-    return "author";
+    return "student";
   }
-
+  
   @Override
   public void addCreatedCourse(Course course) {
-    for (Course c : createdCourses) {
-      if (c.getCourseID().equals(course.getCourseID())) {
-        return;
-      }
-    }
-    createdCourses.add(course);
+    return;
   }
 
   /**
@@ -58,6 +46,6 @@ public class Author extends User {
   */
   @Override
   public ArrayList<Course> getCreatedCourses() {
-    return this.createdCourses;
+    return new ArrayList<Course>();
   }
 }
