@@ -406,11 +406,13 @@ public class LMSUI {
     System.out.println("\nEnter the Course Difficulty: ");
     Difficulty difficulty = getDifficulty();
     createModules(modules); 
-    System.out.println("Thank you! Saving new course...");
-    sleep(1000);
+    System.out.println("Thank you! Checking new course...");
+    sleep(500);
     if (!application.addCourse(courseName, language, description, modules, difficulty)) {
       courseName = getField("Course title is taken. Please enter new title for your course: ");
     }
+    System.out.println("Saving new course...");
+    sleep(1000);
   }
 
   private void createLessons(ArrayList<Lesson> lessons) {

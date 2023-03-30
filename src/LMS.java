@@ -173,12 +173,7 @@ public class LMS {
    * @return
    */
   public ArrayList<Course> getCreatedCourses() {
-    ArrayList<Course> courses = new ArrayList<>();
-    for (Course c : getAllCourses())
-    if (c.getAuthor().equals(getUser())) {
-      courses.add(c);
-    }
-    return courses;
+    return user.getCreatedCourses();
   }
 
   /**
