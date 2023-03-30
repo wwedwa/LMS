@@ -399,6 +399,7 @@ public class LMSUI {
 
   private void createCourse() {
     clearScreen();
+    System.out.println("Current size of course list: " + application.getAllCourses().size());
     ArrayList<Module> modules = new ArrayList<Module>();
     String courseName = getField("Enter the name of the course: ");
     String description = getField("\nEnter the course Description: \n");
@@ -408,7 +409,7 @@ public class LMSUI {
     createModules(modules); 
     System.out.println("Thank you! Checking new course...");
     sleep(500);
-    if (!application.addCourse(courseName, language, description, modules, difficulty)) {
+    while (!application.addCourse(courseName, language, description, modules, difficulty)) {
       courseName = getField("Course title is taken. Please enter new title for your course: ");
     }
     System.out.println("Saving new course...");
@@ -422,14 +423,15 @@ public class LMSUI {
       String lessonName = scanner.nextLine();
       System.out.println("Enter all text for the lesson (Enter a line with just \"finished\" to end):");
       String moduleText = "";
-      String tempLine = "";
+      String tempLine = scanner.nextLine();
       do {
         moduleText += tempLine;
         tempLine = scanner.nextLine();
-      } while(!tempLine.equals("finished"));
+        tempLine = "\n" + tempLine;
+      }  while(!tempLine.equals("\nfinished"));
       Lesson lesson = new Lesson(lessonName, moduleText);
       lessons.add(lesson);
-      System.out.println("Would you like to add another lesson? (y/n)");
+      System.out.print("Would you like to add another lesson? (y/n): ");
       String choice = getYesNoChoice();
       if (choice.equals("n")) {
         addingLessons = false;
@@ -465,7 +467,7 @@ public class LMSUI {
 
   private void createModules(ArrayList<Module> modules) {
     clearScreen();
-    System.out.print("You will now create modules for your course. Add as many as you want.");
+    System.out.println("You will now create modules for your course. Add as many as you want.");
     boolean addingModules = true;
     int moduleNum = 1;
     while(addingModules) {
@@ -557,8 +559,8 @@ public class LMSUI {
   }
 
   private void clearScreen() {
-    System.out.print("\033[H\033[2J");
-    System.out.flush();
+    //System.out.print("\033[H\033[2J");
+    //System.out.flush();
   }
 
   private void sleep(int milliseconds) {
@@ -666,10 +668,11 @@ public class LMSUI {
     String lessonName = scanner.nextLine();
     System.out.println("Enter all text for the lesson (Enter a line with just (finished) to end):");
     String moduleText = "";
-    String tempLine = "";
+    String tempLine = scanner.nextLine();
     do {
       moduleText += tempLine;
       tempLine = scanner.nextLine();
+      tempLine = "\n" + tempLine;
     } while(!tempLine.equals("finished"));
     lesson = new Lesson(lessonName, moduleText);
     module.getLessons().set(choice, lesson);

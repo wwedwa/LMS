@@ -85,7 +85,10 @@ public class LMS {
    * @param difficulty
    */
   public boolean addCourse(String title, Language language, String description, ArrayList<Module> modules, Difficulty difficulty) {
-    return courseList.addCourse(title, user, language, description, modules, difficulty);
+    System.out.println("Current size of course list: " + getAllCourses().size());
+    boolean toReturn = courseList.addCourse(title, user, language, description, modules, difficulty);
+    System.out.println("Current size of course list: " + getAllCourses().size());
+    return toReturn;
   }
 
   /**
