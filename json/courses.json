@@ -194,7 +194,7 @@
               "for i in listOfNumbers:"
             ],
             "question": "How do you loop through a list named listOfNumbers?",
-            "correctAnswer": 0
+            "correctAnswer": 4
           },
           {
             "answerChoices": [
