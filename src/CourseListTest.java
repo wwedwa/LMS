@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+//tested by noah parker
 public class CourseListTest {
     private UserList userList = UserList.getInstance();
     private User user = userList.getUser("nparker");
