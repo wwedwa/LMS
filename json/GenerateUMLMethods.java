@@ -6,7 +6,7 @@ import java.util.Scanner; // Import the Scanner class to read text files
 
 public class GenerateUMLMethods {
   // ***CHANGE BELOW VARIABLE FOR WHATEVER FILE YOU WANT THE METHODS OF***
-  private static String FILE_NAME = "src/Course.java";
+  private static String FILE_NAME = "src/UserList.java";
   public static void main(String[] args) {
     try {
       File myObj = new File(FILE_NAME);
